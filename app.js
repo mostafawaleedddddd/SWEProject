@@ -5,20 +5,17 @@ const path=require('path');
 const session=require('express-session');
 const fileUpload=require('express-fileupload');
 
-//Importing Custom Files
-const credentials=require('./credentials.js');
-
 //Starting app using express
 const backend=express();
 
 //Connecting with the database
-mongoose.connect(credentials.DataBaseURI)
-
-.then(()=>{
-    console.log("Database connected sucessfully");
-    backend.listen(8080);
-})
-.catch((err)=>{console.log(err)});
+mongoose.connect("mongodb+srv://akram2206148:<db_password>@cluster0.sps6z.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0")
+  .then(() => {
+    console.log('Mongo Connected!');
+  })
+  .catch(() => {
+    console.log('Mongo connection failed');
+  });
 
 backend.use(express.urlencoded({ extended: true }));
 
@@ -26,9 +23,14 @@ backend.use(express.urlencoded({ extended: true }));
 backend.use(fileUpload());
 backend.use(express.static(path.join(__dirname,'public')));
 backend.use(session({
-    secret: credentials.Secret,
-    resave: true,
-    saveUninitialized: true
+    secret: 'your_secret_key', 
+    resave: false,
+    saveUninitialized: true,
+    store: MongoStore.create({
+      mongoUrl: "mongodb+srv://akram2206148:<db_password>@cluster0.sps6z.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0",
+      collectionName: 'sessions'
+    }),
+    cookie: { secure: false } 
 }));
 //Setting up the view engine
 backend.set('view engine', 'ejs');
