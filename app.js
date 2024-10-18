@@ -26,10 +26,6 @@ backend.use(session({
     secret: 'your_secret_key', 
     resave: false,
     saveUninitialized: true,
-    store: MongoStore.create({
-      mongoUrl: "mongodb+srv://akram2206148:<db_password>@cluster0.sps6z.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0",
-      collectionName: 'sessions'
-    }),
     cookie: { secure: false } 
 }));
 //Setting up the view engine
