@@ -36,7 +36,7 @@
                     </div>
                     <div class="user-input-box">
                         <label for="phoneNumber">Phone Number</label>
-                        <input type="text" id="phoneNumber" name="phoneNumber" placeholder="Enter Phone Number"
+                        <input type="tel" id="phoneNumber" name="phoneNumber" placeholder="Enter Phone Number"
                             required />
                     </div>
                     <div class="user-input-box">
@@ -49,37 +49,39 @@
                             placeholder="Confirm Password" required />
                     </div>
                 </div>
-                <span class="gender-title">Date of Birth</span>
-                <br>
-                <div class="gender-details-box">                  
-                    
-                    <select id="day" name="day" required>
-                        <option value="">Day</option>
-                        <script>
-                            for (let i = 1; i <= 31; i++) {
-                                document.write('<option value="' + i + '">' + i + '</option>');
-                            }
-                        </script>
-                    </select>
-                    <select id="month" name="month" required>
-                        <option value="">Month</option>
-                        <script>
-                            const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
-                            for (let i = 1; i <= 12; i++) {
-                                document.write('<option value="' + i + '">' + months[i - 1] + '</option>');
-                            }
-                        </script>
-                    </select>
-                    <select id="year" name="year" required>
-                        <option value="">Year</option>
-                        <script>
-                            const currentYear = new Date().getFullYear();
-                            for (let i = 1944; i <= currentYear; i++) {
-                                document.write('<option value="' + i + '">' + i + '</option>');
-                            }
-                        </script>
-                    </select><br><br>
 
+                <div class="gender-details-box">
+                    <span class="gender-title">Date of Birth</span>
+                    <br>
+                    <div class="gender-category">
+                        <select id="day" name="day" required>
+                            <option value="">Day</option>
+                            <script>
+                                for (let i = 1; i <= 31; i++) {
+                                    document.write('<option value="' + i + '">' + i + '</option>');
+                                }
+                            </script>
+                        </select>
+                        <select id="month" name="month" required>
+                            <option value="">Month</option>
+                            <script>
+                                const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+                                for (let i = 1; i <= 12; i++) {
+                                    document.write('<option value="' + i + '">' + months[i - 1] + '</option>');
+                                }
+                            </script>
+                        </select>
+                        <select id="year" name="year" required>
+                            <option value="">Year</option>
+                            <script>
+                                const currentYear = new Date().getFullYear();
+                                for (let i = 1944; i <= currentYear; i++) {
+                                    document.write('<option value="' + i + '">' + i + '</option>');
+                                }
+                            </script>
+                        </select>
+                    </div>
+                    <br>
                     <span class="gender-title">Gender</span>
                     <div class="gender-category">
                         <input type="radio" name="gender" id="male">
@@ -89,7 +91,7 @@
                         <input type="radio" name="gender" id="other">
                         <label for="other">Other</label>
                     </div>
-                    
+
                 </div>
                 <div class="form-submit-btn">
                     <input type="submit" value="Register">

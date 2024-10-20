@@ -87,17 +87,27 @@ body{
 }
 
 .gender-category{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
     margin: 15px 0;
     color: white;
 }
 
-.gender-details-box{
+#day ,
+#month
+ {
+    margin-right: 8px;
+}
+
+/* .gender-details-box{
     display: grid;
     grid-template-columns: 150px 150px 150px;
     column-gap: 10px ;
     justify-content: center;
     align-items: center;
-}
+} */
 
 .gender-category label{
     padding: 0 20px 0 5px;
@@ -108,9 +118,6 @@ body{
 .gender-category label,
 .gender-category input,
 .form-submit-btn input{
-    display: contents;
-    justify-content: center;
-    align-items: center;
     cursor: pointer;
 }
 
