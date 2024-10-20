@@ -9,19 +9,20 @@ const fileUpload=require('express-fileupload');
 const backend=express();
 
 //Connecting with the database
-mongoose.connect("mongodb+srv://akram2206148:akram2206148@cluster0.sps6z.mongodb.net/Medira?retryWrites=true&w=majority&appName=Cluster0")
+mongoose.connect("mongodb+srv://akram2206148:tZQVGe4raqYzUDzq@cluster0.sps6z.mongodb.net/Medira?retryWrites=true&w=majority&appName=Cluster0")
   .then(() => {
     console.log('Mongo Connected!');
+    backend.listen(8080);
   })
   .catch((error) => {
-    console.log('Mongo connection failed',error.message);
+    console.log('Mongo connection failed',error);
   });
 
 backend.use(express.urlencoded({ extended: true }));
 
 //Setting up the some important backend defaults
 backend.use(fileUpload());
-backend.use(express.static(path.join(__dirname,'public')));
+backend.use(express.static(path.join(__dirname,'Media')));
 backend.use(session({
     secret: 'your_secret_key', 
     resave: false,
@@ -41,6 +42,6 @@ backend.use('/', indexRoutes);
 backend.use('/user',userRoutes)
 // backend.use('/admin', adminRoutes);
 // 404 page
-backend.use((req, res) => {
-    res.status(404).render('404', { user: (req.session.user === undefined ? "" : req.session.user) });
-});
+// backend.use((req, res) => {
+//     res.status(404).render('404', { user: (req.session.user === undefined ? "" : req.session.user) });
+// });
