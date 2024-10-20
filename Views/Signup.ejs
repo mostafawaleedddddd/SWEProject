@@ -1,62 +1,102 @@
 <!DOCTYPE html>
-<html lang="en" class="signup">
-<head>
-    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>3lemni-tech</title>
-</head>
-<body>
-    <div class="login">
-        <form class="signup__form" action="/user/addLearner" method="post" >
-            <h1 class="signup__title">Sign up</h1>
+<html>
 
-            <div class="signup__inputs">
-                <div class="signup__box">
-                    <input type="text" placeholder="First Name" class="signup__input" id="fn" name="fn"/>
-                    <div id="First_Name_Validation" class="errorMessage"></div>                    
-                </div>
-                <div class="signup__box">
-                    <input type="text" placeholder="Last Name" class="signup__input" id="ln" name="ln" />
-                    <div id="Last_Name_Validation" class="errorMessage"></div>                     
-               </div>
-               <div class="signup__box" id="full" >
-                    <input type="email"placeholder="Email" class="signup__input" id="email" name="email" />
-                    <div id="Email_Validation" class="errorMessage"></div>
-               </div>
-               <div class="signup__box" id="full">
-                    <input type="password" placeholder="Password" class="signup__input" id="pass" name="pass"/>
-                    <div id="Password_Validation" class="errorMessage"></div>
-                </div>
-                <div class="signup__box" id="full">
-                    <input type="password" placeholder="Confirm Password" class="signup__input" id="confirm-pass"/>
-                    <div id="Confirm_Password_Validation" class="errorMessage"></div>
-                </div>
-               <div class="signup__box">
-                    <input type="tel" placeholder="Phone Number" class="signup__input" id="teleNo" name="teleNo">
-                    <div id="Phone_Validation" class="errorMessage"></div>
-               </div>
-               <div class="signup__box" id="date__box" >
-                    <input type="date" class="signup__input" min="1907-03-04" id="dob" name="dob" oninvalid="this.setCustomValidity('You have to be 12 year old or more')"/> 
-                    <div id="DOB_Validation" class="errorMessage"></div>
-               </div>
-                <div class="signup__box" id="full">
-                    <input type="text" placeholder="address" class="signup__input" id="address" name="address" >
-                </div>
-               <div class="signup__box__borderless">
-                  <span class="gender"><input type="radio" name="gender" value="M" id="m" style="margin-right: 1rem;"><label for="m">Male</label></span>
-                  <span class="gender"><input type="radio" name="gender" value="F" id="f" style="margin-right: 1rem;" ><label for="f">Female</label></span>
-                </div>
-            </div>
-            <div class="back_button">
-            <button type="submit" class="login__button">Sign up</button> <buton onclick="window.location.href='/';" class="login__button"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M10.3623 15.529L8.94804 16.9432L3.99829 11.9934L8.94804 7.0437L10.3623 8.45791L7.86379 10.9564H16.0018C18.2109 10.9564 20.0018 12.7472 20.0018 14.9564V16.9564H18.0018V14.9564C18.0018 13.8518 17.1063 12.9564 16.0018 12.9564H7.78965L10.3623 15.529Z" fill="currentColor" /></svg></buton>
-            
-        </div>
-            <div class="login__register">
-               Already have an account? <a href="/user/login">Login</a>
-            </div>
-         </form>
+<head>
+    <meta charset="utf-8" />
+    <title>Medira</title>
+    <meta name="viewport" content="width=device-width,
+      initial-scale=1.0" />
+    <link rel="stylesheet" href="/css/signup.css">
+    <link rel="stylesheet" href="/css/NavBar.css">
+
+</head>
+
+<body>
+    <!-- phone number , gender , date of birth ,name , email , password -->
+    <div id="navbar">
+        <%- include("./NavBar.ejs") %>
     </div>
 
+    <div class="center-container">
+        <div class="container">
+            <h1 class="form-title">SignUp</h1>
+            <form action="#">
+                <div class="main-user-info">
+                    <div class="user-input-box">
+                        <label for="fullName">Full Name</label>
+                        <input type="text" id="fullName" name="fullName" placeholder="Enter Full Name" required />
+                    </div>
+                    <div class="user-input-box">
+                        <label for="username">Username</label>
+                        <input type="text" id="username" name="username" placeholder="Enter Username" required />
+                    </div>
+                    <div class="user-input-box">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" placeholder="Enter Email" required />
+                    </div>
+                    <div class="user-input-box">
+                        <label for="phoneNumber">Phone Number</label>
+                        <input type="text" id="phoneNumber" name="phoneNumber" placeholder="Enter Phone Number"
+                            required />
+                    </div>
+                    <div class="user-input-box">
+                        <label for="password">Password</label>
+                        <input type="password" id="password" name="password" placeholder="Enter Password" required />
+                    </div>
+                    <div class="user-input-box">
+                        <label for="confirmPassword">Confirm Password</label>
+                        <input type="password" id="confirmPassword" name="confirmPassword"
+                            placeholder="Confirm Password" required />
+                    </div>
+                </div>
+                <span class="gender-title">Date of Birth</span>
+                <br>
+                <div class="gender-details-box">                  
+                    
+                    <select id="day" name="day" required>
+                        <option value="">Day</option>
+                        <script>
+                            for (let i = 1; i <= 31; i++) {
+                                document.write('<option value="' + i + '">' + i + '</option>');
+                            }
+                        </script>
+                    </select>
+                    <select id="month" name="month" required>
+                        <option value="">Month</option>
+                        <script>
+                            const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+                            for (let i = 1; i <= 12; i++) {
+                                document.write('<option value="' + i + '">' + months[i - 1] + '</option>');
+                            }
+                        </script>
+                    </select>
+                    <select id="year" name="year" required>
+                        <option value="">Year</option>
+                        <script>
+                            const currentYear = new Date().getFullYear();
+                            for (let i = 1944; i <= currentYear; i++) {
+                                document.write('<option value="' + i + '">' + i + '</option>');
+                            }
+                        </script>
+                    </select><br><br>
+
+                    <span class="gender-title">Gender</span>
+                    <div class="gender-category">
+                        <input type="radio" name="gender" id="male">
+                        <label for="male">Male</label>
+                        <input type="radio" name="gender" id="female">
+                        <label for="female">Female</label>
+                        <input type="radio" name="gender" id="other">
+                        <label for="other">Other</label>
+                    </div>
+                    
+                </div>
+                <div class="form-submit-btn">
+                    <input type="submit" value="Register">
+                </div>
+            </form>
+        </div>
+    </div>
 </body>
+
 </html>

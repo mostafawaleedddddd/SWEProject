@@ -13,6 +13,7 @@ mongoose.connect("mongodb+srv://akram2206148:tZQVGe4raqYzUDzq@cluster0.sps6z.mon
   .then(() => {
     console.log('Mongo Connected!');
     backend.listen(8080);
+    console.log('Server is running on port 8080');
   })
   .catch((error) => {
     console.log('Mongo connection failed',error);

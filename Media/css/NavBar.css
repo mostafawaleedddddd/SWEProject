@@ -15,7 +15,7 @@
   width: 100%; 
   z-index: 1000; 
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); 
-  height: 200px;
+  height: 120px;
 }
 ul {
   text-decoration: none;
@@ -24,8 +24,8 @@ ul {
   margin-left: auto; 
 }
 .logo img {
-  width: 500px;  
-  height: 200px;
+  width: 250px;  
+  height: 100px;
 }
 li {
   text-decoration: none;
