@@ -36,12 +36,14 @@ backend.set('view engine', 'ejs');
 //Setting up the routes
 const indexRoutes = require('./Routes/index.js');
 const userRoutes= require('./Routes/user.js');
+
+const AdminRoutes= require('./Routes/Admin.js');
 const { error } = require('console');
 // const adminRoutes = require('./routes/admin.js');
 //Linking each request with the suitable router for it
 backend.use('/', indexRoutes);
 backend.use('/user',userRoutes)
-// backend.use('/admin', adminRoutes);
+backend.use('/Admin', AdminRoutes);
 // 404 page
 // backend.use((req, res) => {
 //     res.status(404).render('404', { user: (req.session.user === undefined ? "" : req.session.user) });
