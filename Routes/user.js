@@ -1,11 +1,12 @@
 //Importing Modules
 const express=require('express');
 var bodyParser=require('body-parser');
+const UserSchema=require('../models/User');
 //Setting up router
 const router=express.Router();
 router.use(bodyParser.json());
 //Importing Users' controller
-const User=require('../controller/User')
+// const User=require('../controller/User')
 // check if User is logged in
 router.use((req, res, next) => {
     if (req.session.user === undefined && req.session.user == null) {

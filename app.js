@@ -9,12 +9,12 @@ const fileUpload=require('express-fileupload');
 const backend=express();
 
 //Connecting with the database
-mongoose.connect("mongodb+srv://akram2206148:<db_password>@cluster0.sps6z.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0")
+mongoose.connect("mongodb+srv://akram2206148:akram2206148@cluster0.sps6z.mongodb.net/Medira?retryWrites=true&w=majority&appName=Cluster0")
   .then(() => {
     console.log('Mongo Connected!');
   })
-  .catch(() => {
-    console.log('Mongo connection failed');
+  .catch((error) => {
+    console.log('Mongo connection failed',error.message);
   });
 
 backend.use(express.urlencoded({ extended: true }));
@@ -32,13 +32,14 @@ backend.use(session({
 backend.set('view engine', 'ejs');
 
 //Setting up the routes
-const indexRoutes = require('./routes/index.js');
-const userRoutes= require('./routes/user.js');
-const adminRoutes = require('./routes/admin.js');
+const indexRoutes = require('./Routes/index.js');
+const userRoutes= require('./Routes/user.js');
+const { error } = require('console');
+// const adminRoutes = require('./routes/admin.js');
 //Linking each request with the suitable router for it
 backend.use('/', indexRoutes);
 backend.use('/user',userRoutes)
-backend.use('/admin', adminRoutes);
+// backend.use('/admin', adminRoutes);
 // 404 page
 backend.use((req, res) => {
     res.status(404).render('404', { user: (req.session.user === undefined ? "" : req.session.user) });
