@@ -1,0 +1,99 @@
+body{
+  height: 100%;
+  width: 100%;
+  background: #fff;
+}
+.logo{
+  width: 50px;
+}
+.container{
+  display:flex;
+  align-items: center;
+  justify-content: space-between ;
+  margin-top:60px;
+  width:100%;
+}
+.right-content img{
+  padding-top: 120px;
+  width: 650px;
+  height:730px;
+}
+.left-content{
+  padding-left: 80px;
+ font-size: 50px;
+ font-weight: 400px
+}
+.left-content h3{
+  color: rgb(0, 140, 255);
+}
+.left-content p{
+  font-size: 35px;
+  letter-spacing: .4px;
+  margin: 50px 0px 20px;
+}
+.left-content form{
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+.left-content form label{
+  font-size: 20px;
+  margin-top: 10px;
+}
+form input, form textarea{
+  border:1.5px solid  rgb(0, 140, 255);
+  border-radius: 5px;
+  padding:5px;
+  font-size: 12px;
+  resize: none;
+}
+textarea:focus, form input:focus{
+  outline: .5px solid rgb(0, 140, 255);
+}
+.btn{
+  background: rgb(0, 140, 255);
+  color: #fff;
+  padding: 7px 0;
+  font-weight: 550;
+  cursor: pointer;
+  transition: .3s;
+  font-size: 15px;
+}
+.btn:hover{
+background:#68AAC8;
+}
+.contact-info{
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 10px;
+}
+.contact-info div{
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+.contact-info div span{
+  font-size: 20px;
+  margin-left: 5px;
+}
+.social-btns{
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  position: fixed;
+  right: 0;
+  bottom: 100px;
+  background: #8dc8e3;
+  padding: 10px 10px 8px 8px;
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+}
+.social-btns a{
+  text-decoration: none;
+  padding: 4px;
+  background: #68AAC8;
+  border-radius: 50%;
+  color:#fff;
+  font-size:10px;
+}

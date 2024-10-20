@@ -7,5 +7,8 @@ router.get('/', (req, res) => {
 router.get('/signup', (req, res) => {
     res.render('Signup',{user: (req.session.user === undefined ? "" : req.session.user)});
 });
+router.get('/ContactUs', (req, res) => {
+    res.render('ContactUs',{user: (req.session.user === undefined ? "" : req.session.user)});
+});
 // router.post('/addUser' , User.addLearner);
 module.exports = router;
