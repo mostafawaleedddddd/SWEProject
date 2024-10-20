@@ -7,7 +7,7 @@ const path = require('path');
 function login(req, res) {
     var query = { Username: req.body.Email, Password: req.body.Password };
   
-    let adminPromise = Admins.findOne(query);
+    let adminPromise = Admins.findOne(query); 
     let userPromise = User.findOne(query);
   
     Promise.all([adminPromise, userPromise])
@@ -34,31 +34,31 @@ function login(req, res) {
   };
 async function addUser(req,res){
 try{
-  let Full_name=req.body.fn +' '+req.body.ln;
+  let Full_name=req.body.fullName;
   let email=req.body.email;
   const query={Username:email,Name:Full_name} 
   let user = await User.findOne(query);
+  console.log('checking user')
   if(user){
     res.json({message:"User already exists"});
   }  
   else{
-    let password=req.body.pass;
-    let birthdate=new Date(req.body.dob);
-    let phonenumber=req.body.teleNo;
-    let aaddress=req.body.address;
-    let Gender="Male";
+    let password=req.body.password;
+    let birthdate=new Date(req.body.month+"/"+req.body.day+"/"+req.body.year);
+    let phonenumber=req.body.phoneNumber;
+    let Gender=req.body.gender;
+    console.log(Gender);
     let user = new User({
             Name: Full_name,
             phoneNum:phonenumber,
-            Address:aaddress,
             gender: Gender,
             DateOfBirth: birthdate,
             Username: email,
             Password: password
-    });
-    await learner.save()
+    }); 
+    await user.save()
         .then(()=>{
-            res.redirect('/user/login');
+            res.redirect('/user/signed');
         })
   }
 }

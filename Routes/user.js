@@ -1,13 +1,14 @@
 //Importing Modules
 const express=require('express');
 var bodyParser=require('body-parser');
-const UserSchema=require('../models/User');
 //Setting up router
 const router=express.Router();
 router.use(bodyParser.json());
 //Importing Users' controller
-// const User=require('../controller/User')
+const path = require('path');
+const User = require(path.join(__dirname, '../Controllers/User'));
 // check if User is logged in
+router.post('/addUser' , User.addUser);
 router.use((req, res, next) => {
     if (req.session.user === undefined && req.session.user == null) {
         next();
@@ -26,4 +27,8 @@ router.get('/signup',(req, res)=>{
 router.get('/dashboard',(req, res)=>{
     res.render('dashboard',{ user: (req.session.user === undefined ? "" : req.session.user) });
 });
+router.get('/signed',(req, res)=>{
+    res.render('Signedup', { user: (req.session.user === undefined ? "" : req.session.user) });
+});
+
 module.exports = router;

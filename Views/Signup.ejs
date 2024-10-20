@@ -20,15 +20,11 @@
     <div class="center-container">
         <div class="container">
             <h1 class="form-title">SignUp</h1>
-            <form action="#">
+            <form action="/user/addUser" method="post" onsubmit="">
                 <div class="main-user-info">
                     <div class="user-input-box">
                         <label for="fullName">Full Name</label>
                         <input type="text" id="fullName" name="fullName" placeholder="Enter Full Name" required />
-                    </div>
-                    <div class="user-input-box">
-                        <label for="username">Username</label>
-                        <input type="text" id="username" name="username" placeholder="Enter Username" required />
                     </div>
                     <div class="user-input-box">
                         <label for="email">Email</label>
@@ -84,11 +80,11 @@
                     <br>
                     <span class="gender-title">Gender</span>
                     <div class="gender-category">
-                        <input type="radio" name="gender" id="male">
+                        <input type="radio" name="gender" value="Male" id="male">
                         <label for="male">Male</label>
-                        <input type="radio" name="gender" id="female">
+                        <input type="radio" name="gender" value="Female" id="female">
                         <label for="female">Female</label>
-                        <input type="radio" name="gender" id="other">
+                        <input type="radio" name="gender" value="Other" id="other">
                         <label for="other">Other</label>
                     </div>
 
