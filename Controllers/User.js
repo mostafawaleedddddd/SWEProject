@@ -5,7 +5,7 @@ const User = require('../models/User');
 const path = require('path');
 
 function login(req, res) {
-    var query = { Username: req.body.Email, Password: req.body.Password };
+    var query = { Username: req.body.email, Password: req.body.password };
   
     let adminPromise = Admins.findOne(query); 
     let userPromise = User.findOne(query);
@@ -18,11 +18,11 @@ function login(req, res) {
         if (adminResult != null) {
           req.session.user = adminResult;
           req.session.role = 'Admin';
-          res.redirect('/admin');
+          res.redirect('/');
         } else if (userResult != null) {
           req.session.user = userResult;
           req.session.role = 'User'; 
-          res.redirect('/user');
+          res.redirect('/');
         } else {
           res.status(401).send('Invalid credentials');
         }
