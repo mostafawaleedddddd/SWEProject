@@ -38,7 +38,6 @@ try{
   let email=req.body.email;
   const query={Username:email,Name:Full_name} 
   let user = await User.findOne(query);
-  console.log('checking user')
   if(user){
     res.json({message:"User already exists"});
   }  
@@ -47,7 +46,6 @@ try{
     let birthdate=new Date(req.body.month+"/"+req.body.day+"/"+req.body.year);
     let phonenumber=req.body.phoneNumber;
     let Gender=req.body.gender;
-    console.log(Gender);
     let user = new User({
             Name: Full_name,
             phoneNum:phonenumber,
@@ -79,16 +77,7 @@ async function checkCredentials(req,res){
   .catch(err=>{
       console.log(err);
   });
-  await Instructors.find(query)
-  .then(result=>{
-      if(result.length>0){
-          found=true;
-      }
-  })
-  .catch(err=>{
-      console.log(err);
-  });
-  await Learners.find(query)
+  await User.find(query)
   .then(result=>{
       if(result.length>0){
           found=true;

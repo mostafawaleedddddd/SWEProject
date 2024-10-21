@@ -9,6 +9,7 @@ const path = require('path');
 const User = require(path.join(__dirname, '../Controllers/User'));
 // check if User is logged in
 router.post('/addUser' , User.addUser);
+router.post('/checkUser' , User.checkCredentials);
 router.use((req, res, next) => {
     if (req.session.user === undefined && req.session.user == null) {
         next();
