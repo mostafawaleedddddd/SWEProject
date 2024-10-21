@@ -1,41 +1,46 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  width: 100%;
+  min-height: 100%; /* Ensures content stretches if necessary */
+  overflow-x: hidden; /* Prevents horizontal overflow */
+}
+
+body {
+  display: flex;
+  flex-direction: column; /* Ensure footer stays after content */
+}
+
 .image-container {
   position: relative;
-  width: 1890px;
-  height: 900px;
+  width: 1995px;
+  height: 1100px;
   display: flex;
   justify-content: center;  
   align-items: center;  
   flex-direction: column; 
-  margin-top: 140px; 
+  margin-top: 140px;
+  background-image: url(/images/Picture.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
 }
-
-
-
-.image-container img {
-  position: absolute; 
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover; 
-  z-index: 1;
-  opacity: 2;
-}
-
 
 .image-container p {
   position: absolute;  
   z-index: 2;  
   margin: 0;
-  padding: 15px;
+  padding: 28px;
   color: white;
   font-size: 80px;
   font-family: "Montserrat", sans-serif;
   font-weight: 800px;
   border-radius: 8px;
   text-align: center;  
-  top: 20%; 
-  transform: translateY(30px);
+  top: 25%; 
   transform: translateX(50px);
 }
 
@@ -51,7 +56,6 @@
   text-align: center;  
   top: 40%; 
 }
-
 .button-container {
   position: absolute;  
   z-index: 2;
@@ -82,21 +86,36 @@
 }
 
 footer {
-  background-color: #f8f9fa; 
-  padding: 20px;
-  text-align: center;
-  border-top: 1px solid #ddd; 
+  background-color: #fff; 
+  height: auto;
+  width: 100vw;
+  font-family:'Open Sans';
+  padding-top: 40px;
+  color: #111;
 }
 
 .footer-content {
   display: flex; 
   align-items: center; 
   justify-content: center; 
-  margin-bottom: 10px; 
+  flex-direction: column;
+  text-align: center;
+}
+
+.footer-content p{
+  max-width:500px;
+  margin:10px auto;
+  line-height: 28px;
+  font-size: 14px;
+  display: flex; 
+  align-items: center; 
+  justify-content: center; 
+  flex-direction: column;
+  text-align: center;
 }
 
 .footer-logo {
-  height: 50px; 
+  height: 80px; 
   margin-right: 20px; 
 }
 
@@ -116,7 +135,11 @@ footer nav ul li {
 }
 
 footer nav ul li a {
+  font-size: 1.8rem;
+  font-weight: 400;
   text-decoration: none; 
+  text-transform: capitalize;
+  line-height: 3rem;
   color: #007bff; 
 }
 
