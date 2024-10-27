@@ -14,6 +14,9 @@ router.get('/login',(req, res)=>{
 router.get('/ContactUs', (req, res) => {
     res.render('ContactUs',{user: (req.session.user === undefined ? "" : req.session.user)});
 });
+router.get('/Chat', (req, res) => {
+    res.render('Chat',{user: (req.session.user === undefined ? "" : req.session.user)});
+});
 router.post('/loging' , User.login);
 // router.post('/addUser' , User.addLearner);
 module.exports = router;

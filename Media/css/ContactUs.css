@@ -44,7 +44,7 @@ form input, form textarea{
   border:1.5px solid  rgb(0, 140, 255);
   border-radius: 5px;
   padding:5px;
-  font-size: 12px;
+  font-size: 20px;
   resize: none;
 }
 textarea:focus, form input:focus{
@@ -57,7 +57,7 @@ textarea:focus, form input:focus{
   font-weight: 550;
   cursor: pointer;
   transition: .3s;
-  font-size: 15px;
+  font-size: 20px;
 }
 .btn:hover{
 background:#68AAC8;
