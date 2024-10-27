@@ -22,7 +22,7 @@ function login(req, res) {
         } else if (userResult != null) {
           req.session.user = userResult;
           req.session.role = 'User'; 
-          res.redirect('/');
+          res.redirect('/user');
         } else {
           res.status(401).send('Invalid credentials');
         }
