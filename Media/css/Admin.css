@@ -5,7 +5,7 @@
 
 h1 {
     text-align: center;
-}
+} 
 
 table {
     width: 100%;
@@ -117,7 +117,7 @@ button.delete {
     font-family: sans-serif;
   }
   
-  .navbar {
+  /* .navbar {
     background: white; 
     font-family: calibri; 
     padding: 40px; 
@@ -152,7 +152,7 @@ button.delete {
     font-size: 25px; 
     font-weight: bold; 
   }
-  
+   */
   /* Button styles */
   button {
     border: none; 

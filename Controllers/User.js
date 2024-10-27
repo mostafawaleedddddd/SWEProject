@@ -18,7 +18,7 @@ function login(req, res) {
         if (adminResult != null) {
           req.session.user = adminResult;
           req.session.role = 'Admin';
-          res.redirect('/');
+          res.redirect('/admin');
         } else if (userResult != null) {
           req.session.user = userResult;
           req.session.role = 'User'; 
