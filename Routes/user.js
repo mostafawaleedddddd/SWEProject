@@ -32,4 +32,5 @@ router.get('/signed',(req, res)=>{
 router.get('/',(req, res)=>{
     res.render('index', { user: (req.session.user === undefined ? "" : req.session.user) });
 });
+
 module.exports = router;

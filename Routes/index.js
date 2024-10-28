@@ -17,6 +17,12 @@ router.get('/ContactUs', (req, res) => {
 router.get('/Chat', (req, res) => {
     res.render('Chat',{user: (req.session.user === undefined ? "" : req.session.user)});
 });
+router.get('/DiscussionForum', (req, res) => {
+    res.render('DiscussionForum',{user: (req.session.user === undefined ? "" : req.session.user)});
+});
+router.get('/Feedback',(req, res)=>{
+    res.render('Feedback', { user: (req.session.user === undefined ? "" : req.session.user) });
+});
 router.post('/loging' , User.login);
 // router.post('/addUser' , User.addLearner);
 module.exports = router;
