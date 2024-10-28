@@ -1,6 +1,7 @@
 // Importing Database Models of Users
 const Admins = require('../models/Admin');
 const User = require('../models/User');
+const HealthCare = require('../Models/HealthCare');
 // Importing Modules
 const path = require('path');
 
@@ -9,11 +10,13 @@ function login(req, res) {
   
     let adminPromise = Admins.findOne(query); 
     let userPromise = User.findOne(query);
+    let CarePromise = HealthCare.findOne(query);
   
-    Promise.all([adminPromise, userPromise])
+    Promise.all([adminPromise, userPromise, CarePromise])
       .then(results => {
         let adminResult = results[0];
         let userResult = results[1];
+        let HealthResult = results[2];
   
         if (adminResult != null) {
           req.session.user = adminResult;
@@ -23,7 +26,12 @@ function login(req, res) {
           req.session.user = userResult;
           req.session.role = 'User'; 
           res.redirect('/user');
-        } else {
+        }else if(HealthResult!= null){
+          req.session.user = HealthResult;
+          req.session.role = 'HealthCare'; 
+          res.redirect('/HealthCare');
+        } 
+        else {
           res.status(401).send('Invalid credentials');
         }
       })
@@ -37,7 +45,7 @@ try{
   let Full_name=req.body.fullName;
   let email=req.body.email;
   const query={Username:email,Name:Full_name} 
-  let user = await User.findOne(query);
+  let user = await HealthCare.findOne(query);
   if(user){
     res.json({message:"User already exists"});
   }  
@@ -46,7 +54,7 @@ try{
     let birthdate=new Date(req.body.month+"/"+req.body.day+"/"+req.body.year);
     let phonenumber=req.body.phoneNumber;
     let Gender=req.body.gender;
-    let user = new User({
+    let user = new HealthCare({
             Name: Full_name,
             phoneNum:phonenumber,
             gender: Gender,
@@ -78,6 +86,15 @@ async function checkCredentials(req,res){
       console.log(err);
   });
   await User.find(query)
+  .then(result=>{
+      if(result.length>0){
+          found=true;
+      }
+  })
+  .catch(err=>{
+      console.log(err);
+  });
+  await HealthCare.find(query)
   .then(result=>{
       if(result.length>0){
           found=true;

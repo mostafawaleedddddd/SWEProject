@@ -36,7 +36,7 @@ backend.set('view engine', 'ejs');
 //Setting up the routes
 const indexRoutes = require('./Routes/index.js');
 const userRoutes= require('./Routes/user.js');
-
+const HealthCareRoutes = require('./Routes/HealthCare.js');
 const AdminRoutes= require('./Routes/Admin.js');
 const { error } = require('console');
 // const adminRoutes = require('./routes/admin.js');
@@ -44,7 +44,8 @@ const { error } = require('console');
 backend.use('/', indexRoutes);
 backend.use('/user',userRoutes)
 backend.use('/Admin', AdminRoutes);
+backend.use('/HealthCare', HealthCareRoutes);
 // 404 page
-// backend.use((req, res) => {
-//     res.status(404).render('404', { user: (req.session.user === undefined ? "" : req.session.user) });
-// });
+backend.use((req, res) => {
+    res.status(404).render('404', { user: (req.session.user === undefined ? "" : req.session.user) });
+});
