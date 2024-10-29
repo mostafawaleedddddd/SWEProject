@@ -4,19 +4,20 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Medira</title>
-  <link rel="stylesheet" href="/css/NavBar.css">
+  <link rel="stylesheet" href="/css/Admin.css">
 </head>
 <body>
 	<nav class="navbar">
 			<div class="logo"><a href="#"><img src="/images/LOGO.png" ></a> </div>
+			<h2 class = "Admin_dash">Admin Dashboard</h2>
 			<ul>
-                <h2>Admin Dashboard</h2>
-				<li><a href="/">User Management</a></li>
+               
+				<li><a href="/admin">User Management</a></li>
                 <li><a href="/">Questions</a></li>
-				<li><a href="/">Analytics</a></li>
-				<li><a href="/"> </a>Settings</li>
+				<li><a href="/admin/analytics">Analytics</a></li>
+				<li><a href="/"> Settings</a></li>
        
-				<button class="Sign_out" onclick="location.href='/sign_OUT';">Sign Out</button>
+				<button class="Sign_out" onclick="location.href='/admin/logout';">Sign Out</button>
         
 			</ul>
 	</nav>

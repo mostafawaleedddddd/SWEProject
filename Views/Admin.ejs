@@ -6,105 +6,36 @@
     <title>Admin Dashboard - User Management</title>
     <link rel="stylesheet" href="/css/Admin.css">
     <link rel="stylesheet" href="/css/NavBar.css">
+    <link rel="stylesheet" href="/Routes/Admin.js">
+
 </head>
 <body>
-
-    <!-- Header Section -->
-    <header>
      
 
-    <!-- Main Content Section -->
-    
-
-        <!-- <div class="add-Admin">
-            <button onclick="openAddUserModal()">Add New Admin</button>
-        </div>
-
-        <table>
-            <thead>
-                <tr>
-                    <th>Username</th>
-                    <th>Email</th>
-                    <th>Role</th>
-                    <th>Actions</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>JohnDoe</td>
-                    <td>john@example.com</td>
-                    <td>Patient</td>
-                    <td class="actions">
-                        <button onclick="editUser()">Edit</button>
-                        <button class="delete" onclick="deleteUser()">Delete</button>
-                    </td>
-                </tr>
-                <tr>
-                    <td>JaneSmith</td>
-                    <td>jane@example.com</td>
-                    <td>Healthcare Provider</td>
-                    <td class="actions">
-                        <button onclick="editUser()">Edit</button>
-                        <button class="delete" onclick="deleteUser()">Delete</button>
-                    </td>
-                </tr>
-            </tbody>
-        </table> -->
-
-        <!-- Add User Modal (Hidden Initially) -->
-        <!-- <div id="addUserModal" class="modal" style="display: none;">
-            <h3>Add New User</h3>
-            <form>
-                <label for="username">Username:</label>
-                <input type="text" id="username" name="username"><br><br>
-
-                <label for="email">Email:</label>
-                <input type="email" id="email" name="email"><br><br>
-
-                <label for="role">Role:</label>
-                <select id="role" name="role">
-                    <option value="healthcare_provider">Healthcare Provider</option>
-                    <option value="patient">Patient</option>
-                </select><br><br>
-
-                <button type="submit">Add User</button>
-                <button type="button" onclick="closeAddUserModal()">Cancel</button>
-            </form>
-        </div>
-    </main>
-
-    <script src="/js/Admin.js"></script>
-</body>
-</html> -->
-
-
-
-
-
-  <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link src="/Media/js/index.js">
- 
- 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet"> -->
+   
 <link rel="stylesheet" href="/css/Admin.css">
-<link rel="stylesheet" href="/css/Styles.css">
+<!-- <link rel="stylesheet" href="/css/Styles.css"> -->
   <title>Medira</title>
 </head>
 <body>
   <div id="navbar">
-    <%- include("./NavBar.ejs") %>
+    <%- include("./Adminnav.ejs") %>
   </div>
 
   <div class="image-container">
-    <!-- <img src="/images/Picture.jpg" alt="Beautiful scenery"> -->
-    <div class="add-Admin">
+    <!-- <img src="/images/pexels-pixabay-40568.jpg" alt="Beautiful scenery"> -->
+    
+    
+    <div class="button_Admin">
         <button onclick="openAddUserModal()">Add New Admin</button>
     </div>
 
-    <table>
-        <thead>
+    <table class="add-admin">
+        
+
+        <thead  >
+            
+           
             <tr>
                 <th>Username</th>
                 <th>Email</th>
@@ -117,6 +48,24 @@
                 <td>JohnDoe</td>
                 <td>john@example.com</td>
                 <td>Patient</td>
+                <td class="actions">
+                    <button onclick="editUser()">Edit</button>
+                    <button class="delete" onclick="deleteUser()">Delete</button>
+                </td>
+            </tr>
+            <tr>
+                <td>Ramez</td>
+                <td>ramez@Miuegypt.com</td>
+                <td>Patient</td>
+                <td class="actions">
+                    <button onclick="editUser()">Edit</button>
+                    <button class="delete" onclick="deleteUser()">Delete</button>
+                </td>
+            </tr>
+            <tr>
+                <td>mazenamir</td>
+                <td>mazen@miu.com</td>
+                <td>Healthcare Provider</td>
                 <td class="actions">
                     <button onclick="editUser()">Edit</button>
                     <button class="delete" onclick="deleteUser()">Delete</button>
@@ -158,7 +107,7 @@
 
 <script src="/js/Admin.js"></script>
   </div>
-  <footer>
+  <!-- <footer>
     <div class="footer-content">
       <h3><img src="./images/LOGO.png" alt="Medira Logo" class="footer-logo"></h3> 
       <nav>
@@ -167,6 +116,6 @@
       </nav>
       <p>&copy; 2024 Medira. All rights reserved. </p>Empowering healthcare professionals and patients with reliable medical information.
     </div>
-  </footer>
+  </footer> -->
 </body>
 </html>

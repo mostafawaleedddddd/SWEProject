@@ -18,7 +18,7 @@ router.get('/', (req, res) => {
     });
 });
 // Route to render the User Management page
-router.get('/users', (req, res) => {
+router.get('/admin', (req, res) => {
     res.render('UserManagement', { Admin: (req.session.Admin === undefined ? "" : req.session.Admin) });
 });
 
