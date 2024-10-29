@@ -23,6 +23,9 @@ router.get('/', (req, res) => {
         role: req.session.role === undefined ? "" : req.session.role
     });
 });
+router.get('/DiscussionForum', (req, res) => {
+    res.render('DiscussionForum',{user: (req.session.user === undefined ? "" : req.session.user)});
+});
 router.get('/logout', (req, res) => {
     req.session.destroy();
     res.redirect('/');

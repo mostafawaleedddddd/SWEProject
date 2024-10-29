@@ -28,7 +28,12 @@ router.get('/dashboard',(req, res)=>{
 router.get('/signed',(req, res)=>{
     res.render('Signedup', { user: (req.session.user === undefined ? "" : req.session.user) });
 });
-
+router.get('/ContactUs', (req, res) => {
+    res.render('ContactUs',{user: (req.session.user === undefined ? "" : req.session.user)});
+});
+router.get('/DiscussionForum', (req, res) => {
+    res.render('DiscussionForum',{user: (req.session.user === undefined ? "" : req.session.user)});
+});
 router.get('/', (req, res) => {
     res.render('index', {
         user: req.session.user === undefined ? "" : req.session.user,
