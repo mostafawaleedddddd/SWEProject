@@ -87,6 +87,7 @@ button.delete {
 
 .modal {
   position: fixed;
+ 
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
@@ -94,16 +95,15 @@ button.delete {
   /* padding: 2rem; */
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   /* display: none; */
+  width: 30%;
+  height: 30%;
+  text-align: center;
 }
 .Admin_dash{
  margin-left: 5%;
 }
 
 
-.image-container{
- 
-
-}
 .add-admin
 {
 margin-top: 5%;
@@ -128,5 +128,6 @@ margin-top: 8%;
   
   
 }
+
 
 
