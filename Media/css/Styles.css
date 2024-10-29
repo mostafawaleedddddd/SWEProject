@@ -23,7 +23,7 @@ body {
   justify-content: center;  
   align-items: center;  
   flex-direction: column; 
-  margin-top: 140px;
+  margin-top: 110px;
   background-image: url(/images/Picture.jpg);
   background-repeat: no-repeat;
   background-size: cover;
@@ -90,7 +90,6 @@ footer {
   height: auto;
   width: 100vw;
   font-family:'Open Sans';
-  padding-top: 40px;
   color: #111;
 }
 
