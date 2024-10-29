@@ -3,7 +3,10 @@ const router = express.Router();
 const path = require('path');
 const User = require(path.join(__dirname, '../Controllers/User'));
 router.get('/', (req, res) => {
-    res.render('index',{user: (req.session.user === undefined ? "" : req.session.user)});
+    res.render('index', {
+        user: req.session.user === undefined ? "" : req.session.user,
+        role: req.session.role === undefined ? "" : req.session.role
+    });
 });
 router.get('/signup', (req, res) => {
     res.render('Signup',{user: (req.session.user === undefined ? "" : req.session.user)});

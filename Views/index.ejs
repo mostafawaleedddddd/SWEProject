@@ -15,14 +15,16 @@
   <div id="navbar">
     <%- include("./NavBar.ejs") %>
   </div>
-
   <div class="image-container">
     <!-- <img src="/images/Picture.jpg" alt="Beautiful scenery"> -->
     <p><b>Welcome to Medira</b></p>
     <h2>Empowering healthcare professionals and patients with accurate medical <br>answers. Discover how our NLP-driven system enhances clinical decision-<br>making.</h2>
     <div class="button-container">
-      <button id="start"class="Started" onclick="location.href='/login';">Get Started</button>
-      <button class="Learn" onclick="location.href='/About';" >Learn More</button>
+      <% if(!role){ %>
+        <button id="start"class="Started" onclick="location.href='/Signup';">Get Started</button>
+      <%}else{%>
+        <button id="start"class="Started" onclick="location.href='/Chat';">Start Chatting</button>
+      <%}%>
     </div>
   </div>
   <footer>
@@ -30,7 +32,6 @@
       <h3><img src="./images/LOGO.png" alt="Medira Logo" class="footer-logo"></h3> 
       <nav>
         <ul>
-          <li><a href="/About">About</a></li>
           <li><a href="/Discussion Forum">Discussion Forum</a></li>
         </ul>
       </nav>

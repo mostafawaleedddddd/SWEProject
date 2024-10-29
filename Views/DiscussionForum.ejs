@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="Stylesheet" href="/css/DiscussionForum.css">
+    <title>Medical Forum</title>
+</head>
+<body>
+    <main>
+        <section id="featured-topics">
+            <h2>Featured Topics</h2>
+            <ul>
+                <li><a href="#topic1">Understanding Diabetes</a></li>
+                <li><a href="#topic2">Managing Hypertension</a></li>
+                <li><a href="#topic3">Vaccination Myths</a></li>
+            </ul>
+        </section>
+
+        <section id="recent-discussions">
+            <h2>Recent Discussions</h2>
+            <ul>
+                <li><a href="#discussion1">How to treat a cold?</a></li>
+                <li><a href="#discussion2">Symptoms of anxiety?</a></li>
+                <li><a href="#discussion3">Diet for heart health?</a></li>
+            </ul>
+        </section>
+
+        <section id="discussion-thread">
+            <h2>Discussion: How to treat a cold?</h2>
+            <div id="posts">
+                <div class="post">
+                    <p><strong>User1:</strong> I recommend rest and hydration.</p>
+                </div>
+                <div class="post">
+                    <p><strong>User2:</strong> Vitamin C can also help!</p>
+                </div>
+            </div>
+            <div>
+                <h3>Reply</h3>
+                <textarea id="replyText" rows="4" cols="50" placeholder="Type your reply..."></textarea><br>
+                <button onclick="submitReply()">Submit Reply</button>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Medical Forum</p>
+    </footer>
+</body>
+</html>

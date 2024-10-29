@@ -12,9 +12,11 @@ const router = express.Router();
 
 // Route to render the Admin main page
 router.get('/', (req, res) => {
-    res.render('Admin', { Admin: (req.session.Admin === undefined ? "" : req.session.Admin) });
+    res.render('Admin', {
+        user: req.session.user === undefined ? "" : req.session.user,
+        role: req.session.role === undefined ? "" : req.session.role
+    });
 });
-
 // Route to render the User Management page
 router.get('/users', (req, res) => {
     res.render('UserManagement', { Admin: (req.session.Admin === undefined ? "" : req.session.Admin) });
@@ -34,5 +36,8 @@ router.get('/settings', (req, res) => {
 router.get('/analytics', (req, res) => {
     res.render('Analytics', { Admin: (req.session.Admin === undefined ? "" : req.session.Admin) });
 });
-
+router.get('/logout', (req, res) => {
+    req.session.destroy();
+    res.redirect('/');
+  });
 module.exports = router;

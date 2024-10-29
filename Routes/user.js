@@ -29,8 +29,14 @@ router.get('/signed',(req, res)=>{
     res.render('Signedup', { user: (req.session.user === undefined ? "" : req.session.user) });
 });
 
-router.get('/',(req, res)=>{
-    res.render('index', { user: (req.session.user === undefined ? "" : req.session.user) });
+router.get('/', (req, res) => {
+    res.render('index', {
+        user: req.session.user === undefined ? "" : req.session.user,
+        role: req.session.role === undefined ? "" : req.session.role
+    });
 });
-
+router.get('/logout', (req, res) => {
+    req.session.destroy();
+    res.redirect('/');
+  });
 module.exports = router;
