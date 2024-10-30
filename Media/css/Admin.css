@@ -121,12 +121,10 @@ margin-top: 8%;
  body {
   
   background-image: url('/images/Picture.jpg');    background-size: cover; /* Makes the image cover the entire screen */
-    background-repeat: no-repeat; /* Prevents the image from repeating */
-    background-attachment: fixed; /* Keeps the image in a fixed position as you scroll */
-    background-position: center center; /* Centers the image */
-    max-width: 100%;
-  
-  
+  background-repeat: no-repeat; /* Prevents the image from repeating */
+  background-attachment: fixed; /* Keeps the image in a fixed position as you scroll */
+  background-position: center center; /* Centers the image */
+  max-width: 100%;
 }
 
 

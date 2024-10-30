@@ -1,7 +1,7 @@
 * {
   font-weight: 300;
   font-family: "Roboto", "Segoe Ui", "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: 29px;
+  font-size: 32px; /* Enlarged from 29px */
   color: #5b6d91;
   margin: 0;
 }
@@ -9,35 +9,30 @@
 body {
   margin: 0;
   padding: 0;
-  background-color: #ecf2f7
+  background-color: #ecf2f7;
 }
 
 button {
-  font-size: 14px;
+  font-size: 18px; /* Enlarged from 14px */
   background-color: #FDD85F;
-  padding: 12px 26px;
+  padding: 16px 32px; /* Increased padding */
   border-radius: 40px;
   width: auto;
   color: #3b4a67;
   border: none;
   cursor: pointer;
-  box-shadow: 0px 8px 8px 0px rgba(0, 0, 0, 0.08);
+  box-shadow: 0px 10px 12px rgba(0, 0, 0, 0.1); /* Adjusted shadow */
 }
 
 textarea,
 input {
+  font-size: 18px; /* Enlarged from 14px */
+  padding: 20px; /* Increased padding */
+  border-radius: 12px; /* Slightly larger border radius */
   border: none;
-  background-image: none;
   background-color: #fff;
-  -webkit-box-shadow: none;
-  -moz-box-shadow: none;
-  box-shadow: none;
-  font-size: 14px;
-  padding: 16px;
-  border-radius: 10px;
-  border: 0px;
+  box-shadow: 0px 8px 10px rgba(0, 0, 0, 0.05); /* Increased shadow */
   resize: none;
-  box-shadow: 0px 7px 7px 0px rgba(0, 0, 0, 0.04);
 }
 
 input:hover,
@@ -46,7 +41,7 @@ input:focus {
 }
 
 .content {
-  padding-top: 48px;
+  padding-top: 64px; /* Increased padding */
   position: absolute;
   top: 0;
   left: 0;
@@ -55,38 +50,46 @@ input:focus {
   margin: 0 auto;
   display: flex;
   align-items: center;
-  max-width: 980px;
+  max-width: 1100px; /* Increased max width */
   justify-content: center;
-  .feedback-description {
-      max-width: 310px;
-      padding-bottom: 72px;
-      .subtitle {
-          font-size: 16px;
-      }
-  }    
-  .feedback-form {
-      min-width: 280px;
-      padding-left: 64px;
-      display: flex;
-      flex-direction: column;
-      * {
-          margin-bottom: 16px;
-      }
-      button {
-          align-self: flex-end;
-      }
-  }
+}
+
+.feedback-description {
+  max-width: 350px; /* Enlarged max width */
+  padding-bottom: 80px; /* Increased bottom padding */
+}
+
+.subtitle {
+  font-size: 18px; /* Enlarged font size */
+}
+
+.feedback-form {
+  min-width: 320px; /* Increased min width */
+  padding-left: 72px; /* Increased padding */
+  display: flex;
+  flex-direction: column;
+}
+
+.feedback-form > * {
+  margin-bottom: 20px; /* Increased margin between elements */
+}
+
+.feedback-form button {
+  align-self: flex-end;
 }
 
 @media screen and (max-width: 674px) {
   .content {
-      flex-direction: column;
-      align-items: center;
-      .feedback-form {
-          padding-left: 0;
-      }
+    flex-direction: column;
+    align-items: center;
   }
+  
+  .feedback-form {
+    padding-left: 0;
+  }
+
   button {
-      width: 100%;
+    width: 100%;
+    padding: 16px; /* Increased padding */
   }
 }
