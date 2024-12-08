@@ -6,23 +6,21 @@
     <title>Medira</title>
     <meta name="viewport" content="width=device-width,
       initial-scale=1.0" />
-    <link rel="stylesheet" href="/css/signup.css">
-    <link rel="stylesheet" href="/css/NavBar.css">
+    <link rel="stylesheet" href="/Medira/Media/css/signup.css">
+    <link rel="stylesheet" href="/Medira/Media/css/NavBar.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="/js/login.js"></script>
-
 </head>
 
 <body>
     <!-- phone number , gender , date of birth ,name , email , password -->
     <div id="navbar">
-        <%- include("./NavBar.ejs") %>
+    <?php include "NavBar.php"; ?>
     </div>
 
     <div class="center-container">
         <div class="container">
             <h1 class="form-title">Login</h1>
-            <form action="/loging" method="post" onsubmit="return validateLogin()">
+            <form action="" method="post" onsubmit="">
                 <div class="main-user-info">
                     
                     <div class="user-input-box">
