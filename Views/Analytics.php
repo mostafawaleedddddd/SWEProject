@@ -4,14 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Most Asked Questions Analytics Dashboard</title>
-    <link rel="stylesheet" href="/css/Analytics.css">
-    <link rel="stylesheet" href="/css/NavBar.css">
+    <link rel="stylesheet" href="/Medira/Media/css/Analytics.css">
+    <link rel="stylesheet" href="/Medira/Media/css/NavBar.css">
+
 </head>
 <body>
 
-    <div id="navbar">
-        <%- include("./Adminnav.ejs") %>
-      </div>
+<div id="navbar">
+  <?php include "Adminnav.php"; ?>
+  </div>
       
     <div class="dashboard">
         <!-- Header Section -->

@@ -1,26 +1,33 @@
+
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Dashboard - User Management</title>
-    <link rel="stylesheet" href="/css/Admin.css">
-    <link rel="stylesheet" href="/css/NavBar.css">
-    <link rel="stylesheet" href="/Routes/Admin.js">
-
+    <link rel="stylesheet" href="/Media/css/Admin.css">
+    <link rel="stylesheet" href="Media/css/NavBar.css">
+    <link rel="stylesheet" href="/Medira/Media/css/NavBar.css">
+  <link rel="stylesheet" href="/Medira/Media/css/Styles.css">
+ 
+  <link rel="stylesheet" href="/Medira/Media/css/Styles.css">
+   
 </head>
 <body>
      
-
+<div id="navbar">
+  <?php include "Adminnav.php"; ?>
+  </div>
    
 <link rel="stylesheet" href="/css/Admin.css">
 <!-- <link rel="stylesheet" href="/css/Styles.css"> -->
   <title>Medira</title>
 </head>
 <body>
-  <div id="navbar">
-    <%- include("./Adminnav.ejs") %>
-  </div>
+  
 
   <div class="image-container">
     <!-- <img src="/images/pexels-pixabay-40568.jpg" alt="Beautiful scenery"> -->
@@ -33,7 +40,7 @@
     <table class="add-admin">
         
 
-        <thead  >
+        <thead>
             
            
             <tr>
@@ -74,7 +81,7 @@
             <tr>
                 <td>JaneSmith</td>
                 <td>jane@example.com</td>
-                <td>Admin</td>
+                <td>Healthcare Provider</td>
                 <td class="actions">
                     <button onclick="editUser()">Edit</button>
                     <button class="delete" onclick="deleteUser()">Delete</button>
@@ -97,7 +104,6 @@
             <select id="role" name="role">
                 <option value="healthcare_provider">Healthcare Provider</option>
                 <option value="patient">Patient</option>
-                <option value="patient">Admin</option>
             </select><br><br>
 
             <button type="submit">Add User</button>
@@ -106,7 +112,7 @@
     </div>
 </main>
 
-<script src="/js/Admin.js"></script>
+<script src="js/Admin.js"></script>
   </div>
   <!-- <footer>
     <div class="footer-content">
