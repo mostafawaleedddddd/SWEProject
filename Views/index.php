@@ -47,14 +47,14 @@ $user_type = $_SESSION['user_type'];
       <h3><img src="/Medira/Media/images/LOGO.png" alt="Medira Logo" class="footer-logo"></h3>
       <nav>
         <ul>
-          <li><a href="/DiscussionForum">Discussion Forum</a></li>
+          <li><a href="/Medira/Views/DiscussionForum.php">Discussion Forum</a></li>
         </ul>
       </nav>
       <p>&copy; 2024 Medira. All rights reserved. </p>Empowering healthcare professionals and patients with reliable
       medical information.
     </div>
   </footer>
-  <div class="feedback-button" id="feedbackButton" onclick="location.href='/Feedback';">Feedback</div>
+  <div class="feedback-button" id="feedbackButton" onclick="location.href='/Medira/Views/Feedback.php';">Feedback</div>
 </body>
 
 </html>

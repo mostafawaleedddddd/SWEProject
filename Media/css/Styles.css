@@ -16,14 +16,10 @@ body {
 }
 
 .image-container {
-  position: relative;
-  width: 1995px;
-  height: 1100px;
   display: flex;
-  justify-content: center;  
-  align-items: center;  
-  flex-direction: column; 
-  margin-top: 110px;
+  position: relative;
+  height: 1100px;
+  justify-content: center;
   background-image: url(/Medira/Media/images/Picture.jpg);
   background-repeat: no-repeat;
   background-size: cover;

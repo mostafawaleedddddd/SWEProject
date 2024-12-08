@@ -25,11 +25,11 @@ $user_type = $_SESSION['user_type'];
             <?php elseif ($user_type == 'patient'): ?>
                 <li><a href="/">Home</a></li>
                 <li><a href="/Medira/Views/DiscussionForum.php">Discussion Forum </a></li>
-                <li><a href="/Medira/Views/ContuctUs.php">Contuct Us</a></li>
+                <li><a href="/Medira/Views/ContactUs.php">Contuct Us</a></li>
             <?php else: ?>
 				<li><a href="/Medira/Views/index.php">Home</a></li>
 				<li><a href="/Medira/Views/DiscussionForum.php">Discussion Forum </a></li>
-                <li><a href="/Medira/Views/ContuctUs.php">Contuct Us</a></li>
+                <li><a href="/Medira/Views/ContactUs.php">Contuct Us</a></li>
 				<button class="Signup" onclick="location.href='/Medira/Views/signup.php';">SignUp</button>
 				<button class="SignIn" onclick="location.href='/Medira/Views/login.php';">SignIn</button>
             <?php endif; ?>

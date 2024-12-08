@@ -5,16 +5,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chat Platform</title>
-    <link rel="stylesheet" href="/css/discussion.css">
+    <link rel="stylesheet" href="/Medira/Media/css/discussion.css">
     <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css'>
     <script src='//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
-    <link rel="stylesheet" href="/css/NavBar.css">
+    <link rel="stylesheet" href="/Medira/Media/css/NavBar.css">
 </head>
 
 <body>
     <!-- Navigation Bar -->
     <div id="navbar">
-        <%- include("./NavBar.ejs") %>
+     <?php include "NavBar.php"; ?>
     </div>
 
     <!-- Chat Area -->

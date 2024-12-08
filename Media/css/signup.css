@@ -10,7 +10,7 @@ body{
     height: 100vh;
     /* justify-content: center; */
     align-items: center;
-    background-image: url(../Medira/Media/images/Picture.jpg);
+    background-image: url(/Medira/Media/images/Picture.jpg);
     background-size: cover;
     
 }

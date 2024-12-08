@@ -8,14 +8,14 @@
     href="https://cdn.jsdelivr.net/npm/remixicon@4.3.0/fonts/remixicon.css"
     rel="stylesheet"
 />
-<link rel="stylesheet" href="/css/Styles.css">
-<link rel="stylesheet" href="/css/Feedback.css">
-<link rel="stylesheet" href="/css/ContactUs.css">
-<link rel="stylesheet" href="/css/NavBar.css">
+<link rel="stylesheet" href="/Medira/Media/css/Styles.css">
+<link rel="stylesheet" href="/Medira/Media/css/Feedback.css">
+<link rel="stylesheet" href="/Medira/Media/css/ContactUs.css">
+<link rel="stylesheet" href="/Medira/Media/css/NavBar.css">
 </head>
 <body>
   <div id="navbar">
-    <%- include("./NavBar.ejs") %>
+    <?php include "NavBar.php"; ?>
   </div>
   <div class="container">
 <div class="left-content">
@@ -34,7 +34,7 @@
 </form>
 </div>
 <div class="right-content">
-  <img src="/images/Contact us-amico.png">
+  <img src="/Medira/Media/images/Contact us-amico.png">
   <div class="contact-info">
     <div>
       <i class="ri-map-pin-line"></i>
@@ -62,6 +62,6 @@
       <i class="ri-linkedin-fill"></i>
     </a>
   </div>
-  <div class="feedback-button" id="feedbackButton" onclick="location.href='/Feedback';">Feedback</div>  
+  <div class="feedback-button" id="feedbackButton" onclick="location.href='/Medira/Views/Feedback.php';">Feedback</div>  
 </body>
 </html>
