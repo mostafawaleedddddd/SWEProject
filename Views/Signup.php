@@ -34,7 +34,7 @@ if (isset($_GET['action']) && !empty($_GET['action'])) {
     <div class="center-container">
         <div class="container">
             <h1 class="form-title">SignUp</h1>
-            <form action="insert" method="post" onsubmit="">
+            <form action="Signup.php?action=insert" method="post" onsubmit="">
                 <div class="main-user-info">
                     <div class="user-input-box">
                         <label for="fullName">Full Name</label>

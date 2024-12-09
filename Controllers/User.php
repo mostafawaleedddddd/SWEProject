@@ -5,6 +5,10 @@ require_once '../Models/model.php'; // Assume this contains your database connec
 require_once('../Controllers/Controller.php');
 
 class UserController extends Controller {
+    protected $model;
+    public function __construct() {
+        $this->model = new User();
+    }
     public function  insert() {
         $name = $_REQUEST['fullName'];
         $password = $_REQUEST['password'];
