@@ -1,3 +1,16 @@
+<?php
+require_once '../Models/User.php';
+require_once '../Controllers/User.php';
+
+$model = new User();
+$controller = new UserController($model);
+
+if (isset($_GET['action']) && !empty($_GET['action'])) {
+	$controller->{$_GET['action']}();
+}
+
+?>
+
 <!DOCTYPE html>
 <html>
 
@@ -21,7 +34,7 @@
     <div class="center-container">
         <div class="container">
             <h1 class="form-title">SignUp</h1>
-            <form action="" method="post" onsubmit="">
+            <form action="insert" method="post" onsubmit="">
                 <div class="main-user-info">
                     <div class="user-input-box">
                         <label for="fullName">Full Name</label>
