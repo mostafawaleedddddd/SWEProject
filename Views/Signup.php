@@ -33,7 +33,7 @@ if (isset($_GET['action']) && !empty($_GET['action'])) {
 
     <div class="center-container">
         <div class="container">
-            <h1 class="form-title">SignUp</h1>
+            <h1 class="form-title">Register</h1>
             <form action="Signup.php?action=insert" method="post" onsubmit="">
                 <div class="main-user-info">
                     <div class="user-input-box">
@@ -52,11 +52,6 @@ if (isset($_GET['action']) && !empty($_GET['action'])) {
                     <div class="user-input-box">
                         <label for="password">Password</label>
                         <input type="password" id="password" name="password" placeholder="Enter Password" required />
-                    </div>
-                    <div class="user-input-box">
-                        <label for="confirmPassword">Confirm Password</label>
-                        <input type="password" id="confirmPassword" name="confirmPassword"
-                            placeholder="Confirm Password" required />
                     </div>
                 </div>
 
