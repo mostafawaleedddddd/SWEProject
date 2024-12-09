@@ -17,51 +17,62 @@ class UserController extends Controller {
         $gender = $_REQUEST['gender'];
         $phoneno=$_REQUEST['phoneNumber'];
     
-        $this->model->insertUser($name,$password,$email, $birthdate,$gender,$phoneno);
+       $result= $this->model->insertUser($name,$password,$email, $birthdate,$gender,$phoneno);
+       if ($result === true) {
+        // Start session and store user info
+        session_start();
+        $_SESSION['user_name'] =  $name;
+        $_SESSION['user_email'] = $email;
+
+        // Redirect to welcome page
+        header("Location: ../Views/Signedup.php");
+        exit();
     }
+    }
+    public function login($email, $password) {
+         // Assume $conn is the database connection from db.php
+    
+        $query = "SELECT * FROM Admins WHERE Username = '?' AND Password = '?'";
+        $stmt = $this->conn->prepare($query);
+        $stmt->bind_param("ss", $email, $password);
+        $stmt->execute();
+        $adminResult = $stmt->get_result()->fetch_assoc();
+    
+        $query = "SELECT * FROM Patients WHERE Username = '?' AND Password = '?'";
+        $stmt = $this->conn->prepare($query);
+        $stmt->bind_param("ss", $email, $password);
+        $stmt->execute();
+        $userResult = $stmt->get_result()->fetch_assoc();
+    
+        $query = "SELECT * FROM HealthCare WHERE Username = '?' AND Password = '?'";
+        $stmt = $this->conn->prepare($query);
+        $stmt->bind_param("ss", $email, $password);
+        $stmt->execute();
+        $healthResult = $stmt->get_result()->fetch_assoc();
+    
+        if ($adminResult) {
+            $_SESSION['user'] = $adminResult;
+            $_SESSION['user_type'] = 'admin';
+            header("Location: /admin");
+        } elseif ($userResult) {
+            $_SESSION['user'] = $userResult;
+            $_SESSION['user_type'] = 'patient';
+            header("Location: /user");
+        } elseif ($healthResult) {
+            $_SESSION['user'] = $healthResult;
+            $_SESSION['user_type'] = 'healthCare';
+            header("Location: /HealthCare");
+        } else {
+            http_response_code(401);
+            echo 'Invalid credentials';
+        }
+    }
+    
     
 }
 
 
 
-// function login($email, $password) {
-//     global $conn; // Assume $conn is the database connection from db.php
-
-//     $query = "SELECT * FROM Admins WHERE Username = '$email' AND Password = '$password'";
-//     $stmt = $conn->prepare($query);
-//     $stmt->bind_param("ss", $email, $password);
-//     $stmt->execute();
-//     $adminResult = $stmt->get_result()->fetch_assoc();
-
-//     $query = "SELECT * FROM Patients WHERE Username = '$email' AND Password = '$password'";
-//     $stmt = $conn->prepare($query);
-//     $stmt->bind_param("ss", $email, $password);
-//     $stmt->execute();
-//     $userResult = $stmt->get_result()->fetch_assoc();
-
-//     $query = "SELECT * FROM HealthCare WHERE Username = '$email' AND Password = '$password'";
-//     $stmt = $conn->prepare($query);
-//     $stmt->bind_param("ss", $email, $password);
-//     $stmt->execute();
-//     $healthResult = $stmt->get_result()->fetch_assoc();
-
-//     if ($adminResult) {
-//         $_SESSION['user'] = $adminResult;
-//         $_SESSION['user_type'] = 'admin';
-//         header("Location: /admin");
-//     } elseif ($userResult) {
-//         $_SESSION['user'] = $userResult;
-//         $_SESSION['user_type'] = 'patient';
-//         header("Location: /user");
-//     } elseif ($healthResult) {
-//         $_SESSION['user'] = $healthResult;
-//         $_SESSION['user_type'] = 'healthCare';
-//         header("Location: /HealthCare");
-//     } else {
-//         http_response_code(401);
-//         echo 'Invalid credentials';
-//     }
-// }
 
 // function addUser($fullName, $email, $password, $birthdate, $phoneNumber, $gender) {
 //     global $conn;

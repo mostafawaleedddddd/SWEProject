@@ -21,7 +21,6 @@ class User {
             phone VARCHAR(20) NOT NULL
         )";
         if ($this->db->query($sql)) {
-            echo "Table initialized successfully.<br>";
         } else {
             die("Error initializing table: " . $this->db->getConn()->error);
         }
@@ -32,9 +31,9 @@ class User {
         $sql = "INSERT INTO users (name, password, email, birthdate, gender, phone) 
                 VALUES ('$name', '$password', '$email', '$birthdate', '$gender', '$phoneno')";
         if ($this->db->query($sql)) {
-            echo "User added successfully!";
+           
         } else {
-            echo "Error: " . $this->db->getConn()->error;
+            $this->db->getConn()->error;
         }
     }
 }

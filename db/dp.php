@@ -35,7 +35,6 @@ class DBh {
 
         $sql = "CREATE DATABASE IF NOT EXISTS $this->dbname";
         if ($tempConn->query($sql) === TRUE) {
-            echo "Database initialized successfully.<br>";
         } else {
             die("Error initializing database: " . $tempConn->error);
         }

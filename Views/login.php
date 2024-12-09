@@ -1,3 +1,58 @@
+<?php
+require_once '../db/dp.php'; // Database connection
+require_once '../Models/User.php';
+require_once '../Controllers/User.php';
+require_once 'NavBar.php'; // Ensure this file is included to initialize the session
+
+$model = new User();
+$controller = new UserController($model);
+
+if (isset($_POST['login'])) {
+    $name = $_POST["username"];
+    $password = $_POST["password"];
+    $dbh = new DBh();
+    $conn = $dbh->getConn();
+
+    // Define an array to store user type and query structure
+    $userTables = [
+        'admin' => 'admins',
+        'patient' => 'users',
+        'healthCare' => 'healthCare'
+    ];
+
+    $authenticated = false;
+
+    foreach ($userTables as $userType => $tableName) {
+        $query = "SELECT * FROM $tableName WHERE Username = ?";
+        $stmt = $conn->prepare($query);
+
+        if (!$stmt) {
+            die("Query preparation failed: " . $conn->error);
+        }
+
+        $stmt->bind_param("s", $name);
+        $stmt->execute();
+        $result = $stmt->get_result()->fetch_assoc();
+
+        if ($result && password_verify($password, $result['Password'])) {
+            $_SESSION['user'] = $result;
+            $_SESSION['user_type'] = $userType;
+            $authenticated = true;
+            break;
+        }
+    }
+
+    if ($authenticated) {
+        header("Location:/Medira/Views/index.php");
+        exit(); // Stop further execution
+    } else {
+        http_response_code(401);
+        echo 'Invalid credentials';
+        exit();
+    }
+}
+?>
+
 <!DOCTYPE html>
 <html>
 
@@ -19,17 +74,17 @@
   </div>
   <div class="center-container">
     <div class="wrapper">
-      <form action="">
+      <form action="login.php"method="post">
         <h1>Login</h1>
           <div class="input-box">
-            <input type="text" placeholder="Username" required>
+            <input type="text" placeholder="Username" name="username" required>
             <i class='bx bxs-user'></i>
           </div>
           <div class="input-box">
-            <input type="password" placeholder="Password" required>
+            <input type="password" placeholder="Password" name="password" required>
             <i class='bx bxs-lock-alt'></i>
           </div>
-          <button type="submit" class="btn" value="Login">Login</button>
+          <button type="submit" class="btn" value="Login" name="login">Login</button>
           <div class="register-link">
             <p>Dont have an account? <a href="/Medira/Views/Signup.php">Register</a></p>
           </div>

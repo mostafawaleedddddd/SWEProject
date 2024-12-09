@@ -4,6 +4,8 @@ if (!isset($_SESSION['user_type'])) {
   $_SESSION['user_type'] = 'guest';
 }
 $user_type = $_SESSION['user_type'];
+echo "Welcome to Index!<br>";
+echo "User type: " . ($_SESSION['user_type'] ?? 'guest');
 ?>
 <!DOCTYPE html>
 <html lang="en">
