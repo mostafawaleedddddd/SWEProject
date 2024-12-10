@@ -4,6 +4,14 @@ if (session_status() == PHP_SESSION_NONE) {
 }
 
 $user_type = isset($_SESSION['user_type']) ? $_SESSION['user_type'] : 'guest';
+
+if (isset($_GET['logout'])) {
+    session_destroy();
+    header("Location: /Medira/Views/index.php"); // Redirect to the same page after logout
+    exit;
+}
+
+
 ?>
 
 <nav class="navbar">
@@ -12,14 +20,17 @@ $user_type = isset($_SESSION['user_type']) ? $_SESSION['user_type'] : 'guest';
         <?php if ($user_type == 'healthcare'): ?>
             <li><a href="/Medira/Views/index.php">Home</a></li>
             <li><a href="/Medira/Views/DiscussionForum.php">Discussion Forum</a></li>
+            <li><a href="?logout=true" class="button">Logout</a></li>
         <?php elseif ($user_type == 'admin'): ?>
             <li><a href="/Medira/Views/Admin.php">Admin Home</a></li>
             <li><a href="/Medira/Views/Manage.php">Manage Users</a></li>
             <li><a href="/Medira/Views/Analytics.php">Analytics</a></li>
+            <li><a href="?logout=true" class="button">Logout</a></li>
         <?php elseif ($user_type == 'patient'): ?>
-            <li><a href="/">Home</a></li>
+            <li><a href="/Medira/Views/index.php">Home</a></li>
             <li><a href="/Medira/Views/DiscussionForum.php">Discussion Forum</a></li>
             <li><a href="/Medira/Views/ContactUs.php">Contact Us</a></li>
+            <li><a href="?logout=true" class="button">Logout</a></li>
         <?php else: ?>
             <li><a href="/Medira/Views/index.php">Home</a></li>
             <li><a href="/Medira/Views/DiscussionForum.php">Discussion Forum</a></li>

@@ -15,7 +15,7 @@
 <body>
      
 <div id="navbar">
-  <?php include "Adminnav.php"; ?>
+    <?php include "NavBar.php"; ?>
   </div>
    
 <link rel="stylesheet" href="/css/Admin.css">
