@@ -7,8 +7,8 @@ $controller = new UserController($model);
 
 if (isset($_GET['action']) && !empty($_GET['action'])) {
 	$controller->{$_GET['action']}();
+    header("Location: /Medira/Views/Signedup.php");
 }
-
 ?>
 
 <!DOCTYPE html>
