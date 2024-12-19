@@ -66,5 +66,25 @@ class DBh {
     public function __destruct() {
         $this->conn->close();
     }
+   
+
+
+
+    // Modify the query method to support prepared statements
+   
+
+    // Add a method to get the last inserted ID
+    public function getLastInsertId() {
+        return $this->conn->insert_id;
+    }
+
+    // Add a method to get the number of affected rows
+    public function getAffectedRows() {
+        return $this->conn->affected_rows;
+    }
+
+    // ... (keep the rest of the existing code)
 }
 ?>
+
+?> <?php

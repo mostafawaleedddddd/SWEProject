@@ -1,11 +1,14 @@
 <?php
 require_once 'Person.php';
 
-class Admin extends Person {
-    public function __construct($name, $phoneNum, $gender, $dateOfBirth, $username, $password) {
-        parent::__construct($name, $phoneNum, $gender, $dateOfBirth, $username, $password);
-    }
+class Admin  {
+  
+  private $db;
 
+    public function __construct() {
+        $this->db = new DBh();
+  
+    }
 
     function getName() {
         return $this->name;
@@ -78,36 +81,25 @@ class Admin extends Person {
 			array_push($this->user, new user(row['name'], row['phoneNum'],  row['gender'], row['dateOfBirth'] , row['username'] , row['password']));
 		}
 	}
-    function insertUser($name, $phoneNum, $gender, $dateOfBirth, $username, $password){
-		$sql = "INSERT INTO user (name, password, age, phoneNum, dateOfBirth , username , gender ) VALUES ('$name','$password', '$username', '$phoneNum','$gender','$dateOfBirth')";
-		if($this->db->query($sql) === true){
-			echo "Records inserted successfully.";
-			$this->fillArray();
-		} 
-		else{
-			echo "ERROR: Could not able to execute $sql. " . $this->conn->error;
-		}
+   
+
+
+  function deleteUser($name){
+	  $sql="delete from movie where name= ?;";
+	  if($this->db->query($sql) === true){
+            echo "deletet successfully.";
+        } else{
+            echo "ERROR: Could not able to execute $sql. " . $this->conn->error;
+        }
 	}
-
-
-    function deleteUser(){
-        $sql="delete from user where username=$this->username;";
-        if($this->db->query($sql) === true){
-              echo "deletet successfully.";
-          } else{
-              echo "ERROR: Could not able to execute $sql. " . $this->conn->error;
-          }
+    public function insertHealthcare($name, $password, $email, $birthdate, $gender, $phoneno) {
+      $sql = "INSERT INTO health (name, password, email, birthdate, gender, phone) 
+              VALUES ('$name', '$password', '$email', '$birthdate', '$gender', '$phoneno')";
+      if ($this->db->query($sql)) {
+         
+      } else {
+          $this->db->getConn()->error;
       }
-      function editUser($name, $phoneNum, $gender, $dateOfBirth, $username, $password){
-        $sql = "update user set name='$name',password='$password', gender='$gender', phone='$phoneNum',username='$username',dateOfBirth
-         where username=$this->username;";
-          if($this->db->query($sql) === true){
-              echo "updated successfully.";
-              $this->readUser($this->username);
-          } else{
-              echo "ERROR: Could not able to execute $sql. " . $this->conn->error;
-          }
-  
-    }
+  }
 }
 ?>

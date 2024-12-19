@@ -93,8 +93,7 @@ if (isset($_GET['action']) && !empty($_GET['action'])) {
                         <label for="male">Male</label>
                         <input type="radio" name="gender" value="Female" id="female">
                         <label for="female">Female</label>
-                        <input type="radio" name="gender" value="Other" id="other">
-                        <label for="other">Other</label>
+                
                     </div>
 
                 </div>
