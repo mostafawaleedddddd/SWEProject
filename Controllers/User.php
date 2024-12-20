@@ -13,7 +13,10 @@ class UserController extends Controller {
         $name = $_REQUEST['fullName'];
         $password = $_REQUEST['password'];
         $email = $_REQUEST['email'];
-        $birthdate = $_REQUEST['day'];
+        $day = str_pad($_REQUEST['day'], 2, '0', STR_PAD_LEFT);
+        $month = str_pad($_REQUEST['month'], 2, '0', STR_PAD_LEFT);
+        $year = $_REQUEST['year'];
+        $birthdate = "$year-$month-$day";
         $gender = $_REQUEST['gender'];
         $phoneno=$_REQUEST['phoneNumber'];
     

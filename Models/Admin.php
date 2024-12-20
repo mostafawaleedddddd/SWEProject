@@ -85,7 +85,7 @@ class Admin  {
 
 
   function deleteUser($name){
-	  $sql="delete from movie where name= ?;";
+	  $sql="delete from users where name= ?;";
 	  if($this->db->query($sql) === true){
             echo "deletet successfully.";
         } else{

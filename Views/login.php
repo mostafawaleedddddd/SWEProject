@@ -1,6 +1,5 @@
 <?php
 
-
 require_once '../db/dp.php'; // Database connection
 require_once '../Models/User.php';
 require_once '../Controllers/User.php';
@@ -8,6 +7,8 @@ require_once 'NavBar.php'; // Ensure this file is included to initialize the ses
 
 $model = new User();
 $controller = new UserController($model);
+
+$loginError = false; // Initialize login error flag
 
 if (isset($_POST['login'])) {
     $name = $_POST["username"];
@@ -32,42 +33,27 @@ if (isset($_POST['login'])) {
             die("Query preparation failed: " . $conn->error);
         }
 
-        $stmt->bind_param("ss", $name,$password); // Bind email (username) parameter
+        $stmt->bind_param("ss", $name, $password); // Bind email (username) parameter
         $stmt->execute();
         $result = $stmt->get_result()->fetch_assoc();
 
-        // Debugging: Check what is returned from the query
         if ($result) {
-            echo '<pre>';
-            print_r($result);  // This will print the result of the query for debugging
-            echo '</pre>';
             $_SESSION['user'] = $result;
             $_SESSION['user_type'] = $userType;
             $authenticated = true;
             break;
         }
-
-        // Verify password if user is found
-        // if ($result && password_verify($password, $result['password'])) {
-        //     $_SESSION['user'] = $result;
-        //     $_SESSION['user_type'] = $userType;
-        //     $authenticated = true;
-        //     break;
-        // }
     }
 
-    // If authenticated, redirect to the appropriate page
-    if ($authenticated){
-          header("Location:/Medira/Views/index.php");
-        exit(); // Stop further execution
+    // Handle authentication result
+    if ($authenticated) {
+        header("Location: /Medira/Views/index.php");
+        exit();
     } else {
-        http_response_code(401); // Unauthorized
-        echo 'Invalid credentials'; // Error message
-        exit(); // Stop further execution
+        $loginError = true; // Set the error flag
     }
 }
 ?>
-
 <!DOCTYPE html>
 <html>
 
@@ -81,7 +67,6 @@ if (isset($_POST['login'])) {
 </head>
 
 <body>
-  <!-- phone number, gender, date of birth, name, email, password -->
   <div id="navbar">
     <?php include "NavBar.php"; ?>
   </div>
@@ -89,21 +74,29 @@ if (isset($_POST['login'])) {
     <div class="wrapper">
       <form action="login.php" method="post">
         <h1>Login</h1>
-          <div class="input-box">
-            <input type="text" placeholder="Username (Email)" name="username" required>
-            <i class='bx bxs-user'></i>
-          </div>
-          <div class="input-box">
-            <input type="password" placeholder="Password" name="password" required>
-            <i class='bx bxs-lock-alt'></i>
-          </div>
-          <button type="submit" class="btn" value="Login" name="login">Login</button>
-          <div class="register-link">
-            <p>Don't have an account? <a href="/Medira/Views/Signup.php">Register</a></p>
-          </div>
+        <div class="input-box">
+          <input type="text" placeholder="Username (Email)" name="username" required>
+          <i class='bx bxs-user'></i>
+        </div>
+        <div class="input-box">
+          <input type="password" placeholder="Password" name="password" required>
+          <i class='bx bxs-lock-alt'></i>
+        </div>
+        <button type="submit" class="btn" value="Login" name="login">Login</button>
+        <div class="register-link">
+          <p>Don't have an account? <a href="/Medira/Views/Signup.php">Register</a></p>
+        </div>
       </form>
     </div>
   </div>
+
+  <!-- Inline Alert for Invalid Credentials -->
+  <?php if ($loginError): ?>
+    <script>
+      alert("Invalid credentials. Please try again.");
+    </script>
+    <?php $loginError=false;  ?>
+  <?php endif; ?>
 </body>
 
 </html>

@@ -24,7 +24,7 @@ function validateSignupData($data) {
     if (empty($email) || !filter_var($email, FILTER_VALIDATE_EMAIL)) {
         $errors[] = "Invalid email format.";
     } else {
-        // Check if email exists in the database
+        // Check if email exists in the patient database
         $sql = "SELECT COUNT(*) as count FROM users WHERE email = ?";
         $stmt = $db->getConn()->prepare($sql);
         $stmt->bind_param("s", $email);
@@ -36,6 +36,30 @@ function validateSignupData($data) {
             // Overwrite errors if email already exists
             return ["The email address is already registered."];
         }
+        // Check if email exists in the admin database
+        $sql1 = "SELECT COUNT(*) as count FROM admins WHERE email = ?";
+        $stmt1 = $db->getConn()->prepare($sql1);
+        $stmt1->bind_param("s", $email);
+        $stmt1->execute();
+        $result1 = $stmt1->get_result();
+        $row1 = $result1->fetch_assoc();
+
+        if ($row1['count'] > 0) {
+            // Overwrite errors if email already exists
+            return ["The email address is already registered."];
+        }
+         // Check if email exists in the healthcare database
+         $sql2 = "SELECT COUNT(*) as count FROM healthcare WHERE email = ?";
+         $stmt2 = $db->getConn()->prepare($sql2);
+         $stmt2->bind_param("s", $email);
+         $stmt2->execute();
+         $result2 = $stmt2->get_result();
+         $row2 = $result2->fetch_assoc();
+ 
+         if ($row2['count'] > 0) {
+             // Overwrite errors if email already exists
+             return ["The email address is already registered."];
+         }
     }
 
     // Validate phone number
