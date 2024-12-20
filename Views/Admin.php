@@ -13,7 +13,7 @@
   rel="stylesheet" />
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@2.44.0/tabler-icons.min.css">
 <!-- Core Css -->
-<link rel="stylesheet" href="/Medira/Media/css/Admin.css" />
+<link rel="stylesheet" href="/Medira/Media/css/theme.css" />
 	<title>Spike TailwindCSS HTML Admin Template</title>
 </head>
 
