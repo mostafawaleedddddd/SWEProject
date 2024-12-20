@@ -1,5 +1,8 @@
 <?php
+require_once("../db/dp.php");
+
 function validateSignupData($data) {
+    $db = new DBh();
     $errors = [];
 
     // Extract and sanitize inputs
@@ -20,10 +23,23 @@ function validateSignupData($data) {
     // Validate email
     if (empty($email) || !filter_var($email, FILTER_VALIDATE_EMAIL)) {
         $errors[] = "Invalid email format.";
+    } else {
+        // Check if email exists in the database
+        $sql = "SELECT COUNT(*) as count FROM users WHERE email = ?";
+        $stmt = $db->getConn()->prepare($sql);
+        $stmt->bind_param("s", $email);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $row = $result->fetch_assoc();
+
+        if ($row['count'] > 0) {
+            // Overwrite errors if email already exists
+            return ["The email address is already registered."];
+        }
     }
 
     // Validate phone number
-    if (empty($phoneNumber) || !preg_match("/^\d{10}$/", $phoneNumber)) {
+    if (empty($phoneNumber) || !preg_match("/^\d{11}$/", $phoneNumber)) {
         $errors[] = "Phone number must be 10 digits.";
     }
 
