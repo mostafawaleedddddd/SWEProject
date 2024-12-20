@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Register</title>
 </head>
+
 <body>
     <style>
         body {
@@ -100,7 +102,7 @@
             border-color: #00bfff;
         }
 
-        .form label .input + span {
+        .form label .input+span {
             color: rgba(255, 255, 255, 0.5);
             position: absolute;
             left: 10px;
@@ -111,13 +113,13 @@
             padding: 0 5px;
         }
 
-        .form label .input:placeholder-shown + span {
+        .form label .input:placeholder-shown+span {
             top: 12.5px;
             font-size: 0.9em;
         }
 
-        .form label .input:focus + span,
-        .form label .input:valid + span {
+        .form label .input:focus+span,
+        .form label .input:valid+span {
             color: #00bfff;
             top: 0px;
             font-size: 0.7em;
@@ -206,11 +208,13 @@
                 transform: scale(0.9);
                 opacity: 1;
             }
+
             to {
                 transform: scale(1.8);
                 opacity: 0;
             }
         }
+
         .message {
             padding: 15px 25px;
             border-radius: 10px;
@@ -240,14 +244,17 @@
                 opacity: 0;
                 transform: translateY(-20px);
             }
+
             10% {
                 opacity: 1;
                 transform: translateY(0);
             }
+
             80% {
                 opacity: 1;
                 transform: translateY(0);
             }
+
             100% {
                 opacity: 0;
                 transform: translateY(-20px);
@@ -255,87 +262,106 @@
         }
     </style>
 
-<?php
-require_once '../Controllers/AdminController.php';
-require_once '../Models/Admin.php';
+    <?php
+    require_once '../Controllers/AdminController.php';
+    require_once '../Models/Admin.php';
 
-$model = new Admin();
-$controller = new AdminController();
+    $model = new Admin();
+    $controller = new AdminController();
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Collect form data
-    $fullName = $_POST['fullName'];
-    $email = $_POST['email'];
-    $password = $_POST['password'];
-    $phone = $_POST['phoneNumber'];
-    $gender = $_POST['gender'];
-    
-    $day = str_pad($_POST['day'], 2, '0', STR_PAD_LEFT);
-    $month = str_pad($_POST['month'], 2, '0', STR_PAD_LEFT);
-    $year = $_POST['year'];
-    $birthdate = "$year-$month-$day";
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        // Collect form data
+        $fullName = $_POST['fullName'];
+        $email = $_POST['email'];
+        $password = $_POST['password'];
+        $phone = $_POST['phoneNumber'];
+        $gender = $_POST['gender'];
+        $errors = [];
+        $day = str_pad($_POST['day'], 2, '0', STR_PAD_LEFT);
+        $month = str_pad($_POST['month'], 2, '0', STR_PAD_LEFT);
+        $year = $_POST['year'];
+        $birthdate = "$year-$month-$day";
 
-    // Basic validation
-    if (empty($fullName) || empty($email) || empty($password) || empty($phone) || empty($gender) || empty($birthdate)) {
-        echo "<div class='message error'>All fields are required.</div>";
-    } else {
-        // Additional validation can be added here
-        
-        // Attempt to add the user
-        if ($controller->addUser($fullName, $password, $email, $birthdate, $gender, $phone)) {
-            echo "<div class='message success'>User added successfully!</div>";
+        // Basic validation
+        if (empty($fullName) || empty($email) || empty($password) || empty($phone) || empty($gender) || empty($birthdate)) {
+            $errors[] = "All fields are required.";
+        }
+        if (!preg_match("/^[a-zA-Z\s]+$/", $fullName)) {
+            $errors[] = "Invalid full name.";
+        }
+        if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+            $errors[] = "Invalid email.";
+        }
+        if (strlen($password) < 8 || !preg_match("/[A-Z]/", $password)) {
+            $errors[] = "Password must be at least 8 characters long and contain One UpperCase letter.";
+        }
+        if (!preg_match("/^\d{11}$/", $phone)) {
+            $errors[] = "Invalid phone number.";
+        }
+        if (!empty($errors)) {
+            $message = ''; // Initialize the message variable
+            foreach ($errors as $error) {
+                $message .= $error . " "; // Use .= to concatenate strings
+            }
+            echo "<div class='message error'>" . $message . "</div>";
         } else {
-            echo "<div class='message error'>Error adding user. Please try again.</div>";
+            // Additional validation can be added here
+    
+            // Attempt to add the user
+            if ($controller->addUser($fullName, $password, $email, $birthdate, $gender, $phone)) {
+                echo "<div class='message success'>User added successfully!</div>";
+            } else {
+                echo "<div class='message error'>Error adding user. Please try again.</div>";
+            }
         }
     }
-}
-?>
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-    const form = document.querySelector('.form');
-    const messageContainer = document.getElementById('messageContainer');
+    ?>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const form = document.querySelector('.form');
+            const messageContainer = document.getElementById('messageContainer');
 
-    form.addEventListener('submit', function(e) {
-        // If there's already a message showing, remove the show class
-        const existingMessage = document.querySelector('.message.show');
-        if (existingMessage) {
-            existingMessage.classList.remove('show');
-        }
+            form.addEventListener('submit', function (e) {
+                // If there's already a message showing, remove the show class
+                const existingMessage = document.querySelector('.message.show');
+                if (existingMessage) {
+                    existingMessage.classList.remove('show');
+                }
 
-        // If we have a message container, show it
-        if (messageContainer) {
-            setTimeout(() => {
-                messageContainer.classList.add('show');
-            }, 100);
+                // If we have a message container, show it
+                if (messageContainer) {
+                    setTimeout(() => {
+                        messageContainer.classList.add('show');
+                    }, 100);
 
-            // Remove the message after animation completes
-            setTimeout(() => {
-                messageContainer.classList.remove('show');
-            }, 4000);
-        }
-    });
-});
-</script>
+                    // Remove the message after animation completes
+                    setTimeout(() => {
+                        messageContainer.classList.remove('show');
+                    }, 4000);
+                }
+            });
+        });
+    </script>
     <div class="container">
         <form class="form" method="POST" action="">
             <p class="title">Adding HealthCare Provider</p>
             <p class="message">Here you can Add Users</p>
-            
+
             <label>
                 <input class="input" type="text" placeholder="" required="" name="fullName">
                 <span>Full Name</span>
             </label>
-            
+
             <label>
                 <input class="input" type="email" name="email" placeholder="" required="">
                 <span>Email</span>
             </label>
-            
+
             <label>
                 <input class="input" type="password" placeholder="" name="password" required="">
                 <span>Password</span>
             </label>
-            
+
             <label>
                 <input class="input" type="tel" placeholder="" name="phoneNumber" required="">
                 <span>Phone Number</span>
@@ -393,4 +419,5 @@ document.addEventListener('DOMContentLoaded', function() {
         </form>
     </div>
 </body>
+
 </html>

@@ -11,20 +11,19 @@ class User {
 
     // Create the `users` table if it doesn't exist
     private function initializeTables() {
-        $sql = "CREATE TABLE IF NOT EXISTS users (
-            id INT AUTO_INCREMENT PRIMARY KEY,
-            name VARCHAR(100) NOT NULL,
-            password VARCHAR(255) NOT NULL,
-            email VARCHAR(255) NOT NULL UNIQUE,
-            birthdate DATE NOT NULL,
-            gender VARCHAR(10) NOT NULL,
-            phone VARCHAR(20) NOT NULL
-        )";
-        if ($this->db->query($sql)) {
-        } else {
-            die("Error initializing table: " . $this->db->getConn()->error);
-        }
-    }
+        // Create ContactUs table
+          $sql = "CREATE TABLE IF NOT EXISTS ContactUs (
+              id INT AUTO_INCREMENT PRIMARY KEY,
+              name VARCHAR(100) NOT NULL,
+              username VARCHAR(100) NOT NULL,
+              message TEXT NOT NULL,
+              created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+          )";
+          
+          if (!$this->db->query($sql)) {
+              die("Error initializing ContactUs table: " . $this->db->getConn()->error);
+          }
+      }
 
     // Insert a new user
     public function insertUser($name, $password, $email, $birthdate, $gender, $phoneno) {
