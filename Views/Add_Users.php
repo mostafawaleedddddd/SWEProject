@@ -211,6 +211,48 @@
                 opacity: 0;
             }
         }
+        .message {
+            padding: 15px 25px;
+            border-radius: 10px;
+            font-size: 14px;
+            font-weight: 500;
+            width: 300px;
+            text-align: center;
+            animation: fadeInOut 4s ease-in-out forwards;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            opacity: 0;
+        }
+
+        .success {
+            background-color: rgba(0, 191, 255, 0.9);
+            color: white;
+            border: 1px solid rgba(0, 191, 255, 0.3);
+        }
+
+        .error {
+            background-color: rgba(255, 69, 58, 0.9);
+            color: white;
+            border: 1px solid rgba(255, 69, 58, 0.3);
+        }
+
+        @keyframes fadeInOut {
+            0% {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            10% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+            80% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+            100% {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+        }
     </style>
 
 <?php
@@ -248,10 +290,36 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 }
 ?>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const form = document.querySelector('.form');
+    const messageContainer = document.getElementById('messageContainer');
+
+    form.addEventListener('submit', function(e) {
+        // If there's already a message showing, remove the show class
+        const existingMessage = document.querySelector('.message.show');
+        if (existingMessage) {
+            existingMessage.classList.remove('show');
+        }
+
+        // If we have a message container, show it
+        if (messageContainer) {
+            setTimeout(() => {
+                messageContainer.classList.add('show');
+            }, 100);
+
+            // Remove the message after animation completes
+            setTimeout(() => {
+                messageContainer.classList.remove('show');
+            }, 4000);
+        }
+    });
+});
+</script>
     <div class="container">
         <form class="form" method="POST" action="">
-            <p class="title">Adding User</p>
-            <p class="message">Here you can Add Users As Admin</p>
+            <p class="title">Adding HealthCare Provider</p>
+            <p class="message">Here you can Add Users</p>
             
             <label>
                 <input class="input" type="text" placeholder="" required="" name="fullName">
@@ -321,7 +389,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 </div>
             </div>
 
-            <button class="submit">Submit</button>
+            <button class="submit">AddUser</button>
         </form>
     </div>
 </body>

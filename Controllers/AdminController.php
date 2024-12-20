@@ -47,10 +47,68 @@ class AdminController extends Controller{
         return $stmt->fetchColumn() > 0;
     }
 	public function isValidName($name) {
-		// This regex allows letters, spaces, hyphens, and apostrophes
+		
 		return preg_match('/^[a-zA-Z\s\'-]+$/', $name) === 1;
 	}
 	
-	
+	public function getAllUsers() {
+        $users = [];
+        
+        $sqlUsers = "SELECT *, 'User' as role FROM users";
+        $resultUsers = $this->db->query($sqlUsers);
+        
+        while ($row = $resultUsers->fetch_assoc()) {
+            $row['status'] = 'Active'; 
+            $row['registration_date'] = $row['birthdate']; 
+            $users[] = $row;
+        }
+        
+
+        $sqlHealthcare = "SELECT *, 'Healthcare Provider' as role FROM healthcare";
+        $resultHealthcare = $this->db->query($sqlHealthcare);
+        
+        while ($row = $resultHealthcare->fetch_assoc()) {
+            $row['status'] = 'Active'; 
+            $row['registration_date'] = $row['birthdate']; 
+            $users[] = $row;
+        }
+        
+        return $users;
+    }
+	public function searchUsers($searchQuery, $role = 'All Roles', $status = 'All Status') {
+        $users = [];
+        
+        // Build queries based on search parameters
+        $userQuery = "SELECT *, 'User' as role FROM users WHERE 1=1";
+        $healthcareQuery = "SELECT *, 'Healthcare Provider' as role FROM healthcare WHERE 1=1";
+        
+        if (!empty($searchQuery)) {
+            $searchTerm = $this->db->real_escape_string($searchQuery);
+            $userQuery .= " AND name LIKE '%$searchTerm%'";
+            $healthcareQuery .= " AND name LIKE '%$searchTerm%'";
+        }
+        
+        // Execute queries based on role filter
+        if ($role === 'All Roles' || $role === 'User') {
+            $resultUsers = $this->db->query($userQuery);
+            while ($row = $resultUsers->fetch_assoc()) {
+                $row['status'] = 'Active';
+                $row['registration_date'] = $row['birthdate'];
+                $users[] = $row;
+            }
+        }
+        
+        if ($role === 'All Roles' || $role === 'Healthcare Provider') {
+            $resultHealthcare = $this->db->query($healthcareQuery);
+            while ($row = $resultHealthcare->fetch_assoc()) {
+                $row['status'] = 'Active';
+                $row['registration_date'] = $row['birthdate'];
+                $users[] = $row;
+            }
+        }
+        
+        return $users;
+    }
+
 }
 ?>

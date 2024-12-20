@@ -1,7 +1,6 @@
 <?php
 
 require_once("../db/dp.php");
-
 abstract class Model{
     protected $db;
     protected $conn;
