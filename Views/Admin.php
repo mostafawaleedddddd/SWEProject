@@ -393,7 +393,8 @@
 						  </div>
 					   </div>
 					
-							
+					   <div class="timeline-desc py-[6px] px-4">
+					   <p class="text-gray-500 text-sm font-normal">Payment Done</p>
 	</main>
 
 
