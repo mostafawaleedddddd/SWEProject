@@ -131,7 +131,7 @@
 
         .users-table th {
             background: #f8fafc;
-            padding: 1rem;
+            padding: 0.25rem;
             text-align: left;
             font-weight: 600;
             color: var(--secondary);
@@ -398,7 +398,6 @@
                     <option>All Roles</option>
                     <option>Healthcare Provider</option>
                     <option>User</option>
-
                 </select>
                 <select>
                     <option>All Status</option>
@@ -412,33 +411,33 @@
                 <table>
                     <thead>
                         <tr>
-                            <th><input type="checkbox" id="selectAll"></th>
+                            <th></th>
                             <th>Name</th>
                             <th>Role</th>
                             <th>Status</th>
-                            <th>Registration Date</th>
-                            <th>Actions</th>
+                            <th>Birth Date</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <?php
+                       
+                       <?php
                         require_once '../Controllers/AdminController.php';
+                        require_once '../Models/Admin.php';
+                
+                        $model = new Admin();
                         $controller = new AdminController();
                         $users = $controller->getAllUsers();
 
                         foreach ($users as $user) {
-                            $userId = htmlspecialchars($user['name']); // Using name as ID for this example
-                            echo "<tr>";
-                            echo "<td><input type='checkbox' class='user-checkbox' data-userid='{$userId}'></td>";
-                            echo "<td>{$userId}</td>";
-                            echo "<td>" . htmlspecialchars($user['role']) . "</td>";
+                            $userId = htmlspecialchars($user['id']);
+                            $userName = htmlspecialchars($user['name']);
+                            $userRole = htmlspecialchars($user['role']);
+                            echo "<tr data-userid='{$userId}' data-role='{$userRole}'>";
+                            Echo"          ";echo "<td>{$userName}</td>";
+                            echo "<td>{$userRole}</td>";
                             echo "<td><span class='status-badge status-active'>" . htmlspecialchars($user['status']) . "</span></td>";
                             echo "<td>" . htmlspecialchars($user['registration_date']) . "</td>";
                             echo "<td>
-                                    <div class='action-buttons' data-actions='{$userId}'>
-                                        <button class='button button-primary' onclick='editUser(\"{$userId}\")'>Edit</button>
-                                        <button class='button button-danger' onclick='deleteUser(\"{$userId}\")'>Delete</button>
-                                    </div>
                                   </td>";
                             echo "</tr>";
                         }
@@ -459,48 +458,6 @@
         </div>
     </div>
 
-    <script>
-        // Function to toggle action buttons visibility
-        function updateActionButtons() {
-            document.querySelectorAll('.user-checkbox').forEach(checkbox => {
-                const userId = checkbox.getAttribute('data-userid');
-                const actionButtons = document.querySelector(`[data-actions="${userId}"]`);
-                
-                if (actionButtons) {
-                    if (checkbox.checked) {
-                        actionButtons.classList.add('show');
-                    } else {
-                        actionButtons.classList.remove('show');
-                    }
-                }
-            });
-        }
-
-        // Add event listeners to checkboxes
-        document.querySelectorAll('.user-checkbox').forEach(checkbox => {
-            checkbox.addEventListener('change', updateActionButtons);
-        });
-
-        // Handle "Select All" checkbox
-        const selectAll = document.getElementById('selectAll');
-        selectAll.addEventListener('change', function() {
-            const checkboxes = document.querySelectorAll('.user-checkbox');
-            checkboxes.forEach(checkbox => {
-                checkbox.checked = selectAll.checked;
-            });
-            updateActionButtons();
-        });
-
-        // User action functions
-        function editUser(userId) {
-            console.log('Editing user:', userId);
-            // Add your edit logic here
-        }
-
-        function deleteUser(userId) {
-            console.log('Deleting user:', userId);
-            // Add your delete logic here
-        }
-    </script>
+    
 </body>
 </html>
