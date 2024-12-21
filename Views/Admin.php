@@ -8,7 +8,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
 <!-- Favicon icon-->
-<link rel="shortcut icon" type="image/png" href="/Medira/Views/assets/images/logos/favicon.png" />
+<link rel="shortcut icon" type="image/png" href="/Medira/Media/assets/images/logos/favicon.png" />
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap"
   rel="stylesheet" />
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@2.44.0/tabler-icons.min.css">
@@ -55,13 +55,20 @@
 
         <li class="text-xs font-bold mb-4 mt-6">
           <i class="ti ti-dots nav-small-cap-icon text-lg hidden text-center"></i>
-          <span class="text-xs text-gray-400 font-semibold">Admin_dash</span>
+          <span class="text-xs text-gray-400 font-semibold">Admin_Board</span>
         </li>
 
         <li class="sidebar-item">
           <a class="sidebar-link gap-3 py-2.5 my-1 text-base   flex items-center relative  rounded-md text-gray-500  w-full" href="/Medira/Views/Admin_dashboard.php"
            >
             <i class="ti ti-article ps-2 text-2xl"></i> <span>Admin Dashboard</span>
+          </a>
+        </li>
+
+		<li class="sidebar-item">
+          <a class="sidebar-link gap-3 py-2.5 my-1 text-base   flex items-center relative  rounded-md text-gray-500  w-full" href="/Medira/Views/Admin_home.php"
+           >
+            <i class="ti ti-cards ps-2 text-2xl"></i> <span>Manage Admin</span>
           </a>
         </li>
 
@@ -393,8 +400,7 @@
 						  </div>
 					   </div>
 					
-					   <div class="timeline-desc py-[6px] px-4">
-					   <p class="text-gray-500 text-sm font-normal">Payment Done</p>
+						
 	</main>
 
 

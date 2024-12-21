@@ -5,178 +5,197 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Medical System - Admin Dashboard</title>
     <style>
-        :root {
-            --primary: #2563eb;
-            --secondary: #64748b;
-            --success: #22c55e;
-            --danger: #ef4444;
-            --warning: #f59e0b;
-            --background: #f8fafc;
-            --surface: #ffffff;
-        }
+      :root {
+    --primary: #2563eb;
+    --secondary: #64748b;
+    --success: #22c55e;
+    --danger: #ef4444;
+    --warning: #f59e0b;
+    --background: #f8fafc;
+    --surface: #ffffff;
+}
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
-        body {
-            font-family: 'Segoe UI', system-ui, sans-serif;
-            background: var(--background);
-            color: #1e293b;
-            line-height: 1.5;
-        }
+body {
+    font-family: 'Segoe UI', system-ui, sans-serif;
+    background: var(--background);
+    color: #1e293b;
+    line-height: 1.5;
+}
 
-        .dashboard {
-            display: grid;
-            grid-template-columns: 250px 1fr;
-            min-height: 100vh;
-        }
+.dashboard {
+    display: grid;
+    grid-template-columns: 250px 1fr;
+    min-height: 100vh;
+}
 
-        .sidebar {
-            background: var(--surface);
-            padding: 1.5rem;
-            border-right: 1px solid #e2e8f0;
-        }
+.sidebar {
+    background: var(--surface);
+    padding: 1.5rem;
+    border-right: 1px solid #e2e8f0;
+}
 
-        .logo {
-            font-size: 1.5rem;
-            font-weight: bold;
-            color: var(--primary);
-            margin-bottom: 2rem;
-        }
+.logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: var(--primary);
+    margin-bottom: 2rem;
+}
 
-        .nav-item {
-            padding: 0.75rem 1rem;
-            margin: 0.5rem 0;
-            border-radius: 0.5rem;
-            cursor: pointer;
-            transition: all 0.2s;
-        }
+.nav-item {
+    padding: 0.75rem 1rem;
+    margin: 0.5rem 0;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    transition: all 0.2s;
+}
 
-        .nav-item:hover {
-            background: #f1f5f9;
-        }
+.nav-item:hover {
+    background: #f1f5f9;
+}
 
-        .nav-item.active {
-            background: var(--primary);
-            color: white;
-        }
+.nav-item.active {
+    background: var(--primary);
+    color: white;
+}
 
-        .main-content {
-            padding: 2rem;
-        }
+.main-content {
+    padding: 2rem;
+}
 
-        .header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 2rem;
-        }
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+}
 
-        .search-bar {
-            display: flex;
-            gap: 1rem;
-            margin-bottom: 2rem;
-        }
+.search-bar {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
 
-        input, select {
-            padding: 0.5rem 1rem;
-            border: 1px solid #e2e8f0;
-            border-radius: 0.375rem;
-            font-size: 0.875rem;
-        }
+input, select {
+    padding: 0.5rem 1rem;
+    border: 1px solid #e2e8f0;
+    border-radius: 0.375rem;
+    font-size: 0.875rem;
+}
 
-        .button {
-            padding: 0.5rem 1rem;
-            border: none;
-            border-radius: 0.375rem;
-            font-weight: 500;
-            cursor: pointer;
-            transition: opacity 0.2s;
-        }
+.button {
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 0.375rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: opacity 0.2s;
+}
 
-        .button:hover {
-            opacity: 0.9;
-        }
+.button:hover {
+    opacity: 0.9;
+}
 
-        .button-primary {
-            background: var(--primary);
-            color: white;
-        }
+.button-primary {
+    background: var(--primary);
+    color: white;
+}
 
-        .button-danger {
-            background: var(--danger);
-            color: white;
-        }
+.button-danger {
+    background: var(--danger);
+    color: white;
+}
 
-        .button-success {
-            background: var(--success);
-            color: white;
-        }
+.button-success {
+    background: var(--success);
+    color: white;
+}
 
-        .users-table {
-            width: 100%;
-            background: var(--surface);
-            border-radius: 0.5rem;
-            overflow: hidden;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-        }
+.users-table {
+    width: 100%;
+    background: var(--surface);
+    border-radius: 0.5rem;
+    overflow: hidden;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
 
-        .users-table table {
-            width: 100%;
-            border-collapse: collapse;
-        }
+.users-table table {
+    width: 100%;
+    border-collapse: collapse;
+}
 
-        .users-table th {
-            background: #f8fafc;
-            padding: 0.25rem;
-            text-align: left;
-            font-weight: 600;
-            color: var(--secondary);
-        }
+.users-table th, .users-table td {
+    padding: 1rem;
+    text-align: left; /* Ensuring all text is aligned to the left */
+    border-top: 1px solid #e2e8f0; /* Border between rows */
+}
 
-        .users-table td {
-            padding: 1rem;
-            border-top: 1px solid #e2e8f0;
-        }
+.users-table th {
+    background: #f8fafc;
+    font-weight: 600;
+    color: var(--secondary);
+}
 
-        .status-badge {
-            padding: 0.25rem 0.75rem;
-            border-radius: 1rem;
-            font-size: 0.875rem;
-            font-weight: 500;
-        }
+.users-table td {
+    color: #1e293b; /* Text color for better readability */
+}
 
-        .status-active {
-            background: #dcfce7;
-            color: #166534;
-        }
+.users-table tr {
+    margin: 0;
+    padding: 0;
+}
 
-        .status-inactive {
-            background: #fee2e2;
-            color: #991b1b;
-        }
+.users-table th:first-child,
+.users-table td:first-child {
+    padding-left: 1rem; /* Adding consistent padding for the first column */
+}
 
-        .action-buttons {
-            display: none;
-            gap: 0.5rem;
-        }
+.users-table th:last-child,
+.users-table td:last-child {
+    padding-right: 1rem; /* Adding consistent padding for the last column */
+}
 
-        .action-buttons.show {
-            display: flex;
-        }
+.status-badge {
+    padding: 0.25rem 0.75rem;
+    border-radius: 1rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+}
 
-        .bulk-actions {
-            background: var(--surface);
-            padding: 1rem;
-            border-radius: 0.5rem;
-            margin-top: 1rem;
-            display: flex;
-            gap: 1rem;
-            align-items: center;
-        }
+.status-active {
+    background: #dcfce7;
+    color: #166534;
+}
+
+.status-inactive {
+    background: #fee2e2;
+    color: #991b1b;
+}
+
+.action-buttons {
+    display: none;
+    gap: 0.5rem;
+}
+
+.action-buttons.show {
+    display: flex;
+}
+
+.bulk-actions {
+    background: var(--surface);
+    padding: 1rem;
+    border-radius: 0.5rem;
+    margin-top: 1rem;
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+}
+
     </style>
 </head>
 
@@ -234,13 +253,20 @@
 
         <li class="text-xs font-bold mb-4 mt-6">
           <i class="ti ti-dots nav-small-cap-icon text-lg hidden text-center"></i>
-          <span class="text-xs text-gray-400 font-semibold">Admin_dash</span>
+          <span class="text-xs text-gray-400 font-semibold">Admin_Board</span>
         </li>
 
         <li class="sidebar-item">
           <a class="sidebar-link gap-3 py-2.5 my-1 text-base   flex items-center relative  rounded-md text-gray-500  w-full" href="/Medira/Views/Admin_dashboard.php"
            >
             <i class="ti ti-article ps-2 text-2xl"></i> <span>Admin Dashboard</span>
+          </a>
+        </li>
+
+		<li class="sidebar-item">
+          <a class="sidebar-link gap-3 py-2.5 my-1 text-base   flex items-center relative  rounded-md text-gray-500  w-full" href="/Medira/Views/Admin_home.php"
+           >
+            <i class="ti ti-cards ps-2 text-2xl"></i> <span>Manage Admin</span>
           </a>
         </li>
 
@@ -254,15 +280,20 @@
            >
             <i class="ti ti-alert-circle ps-2 text-2xl"></i> <span>Discussion Form Over-Sight</span>
           </a>
-        </li>    
+        </li>        
+
         
+
+       
+
+       
+        
+       
         
 
-
-
-</nav>
+      </ul>
+    </nav>
 </div>
-
 
 <!-- Bottom Upgrade Option -->
 <div class="m-4  relative grid">
@@ -420,28 +451,28 @@
                     </thead>
                     <tbody>
                        
-                       <?php
-                        require_once '../Controllers/AdminController.php';
-                        require_once '../Models/Admin.php';
-                
-                        $model = new Admin();
-                        $controller = new AdminController();
-                        $users = $controller->getAllUsers();
+                      <?php
+require_once '../Controllers/AdminController.php';
+require_once '../Models/Admin.php';
 
-                        foreach ($users as $user) {
-                            $userId = htmlspecialchars($user['id']);
-                            $userName = htmlspecialchars($user['name']);
-                            $userRole = htmlspecialchars($user['role']);
-                            echo "<tr data-userid='{$userId}' data-role='{$userRole}'>";
-                            Echo"          ";echo "<td>{$userName}</td>";
-                            echo "<td>{$userRole}</td>";
-                            echo "<td><span class='status-badge status-active'>" . htmlspecialchars($user['status']) . "</span></td>";
-                            echo "<td>" . htmlspecialchars($user['registration_date']) . "</td>";
-                            echo "<td>
-                                  </td>";
-                            echo "</tr>";
-                        }
-                        ?>
+$model = new Admin();
+$controller = new AdminController();
+$users = $controller->getAllUsers();
+
+foreach ($users as $user) {
+    $userId = htmlspecialchars($user['id']);
+    $userName = htmlspecialchars($user['name']);
+    $userRole = htmlspecialchars($user['role']);
+    echo "<tr data-userid='{$userId}' data-role='{$userRole}'>";
+    echo "<td>     {$userName}</td>";
+    echo "<td>      {$userRole}</td>";
+    echo "<td><span class='status-badge status-active'>" . htmlspecialchars($user['status']) . "</span></td>";
+    echo "<td>" . htmlspecialchars($user['registration_date']) . "</td>";
+    echo "<td></td>";
+    echo "</tr>";
+}
+?>
+
                     </tbody>
                 </table>
             </div>
@@ -458,6 +489,24 @@
         </div>
     </div>
 
+
+
+    <link rel="shortcut icon" type="image/png" href="/Medira/Media/assets/images/logos/favicon.png" />
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap"
+  rel="stylesheet" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@2.44.0/tabler-icons.min.css">
+
+    <script src="/Medira/Media/assets/libs/jquery/dist/jquery.min.js"></script>
+<script src="/Medira/Media/assets/libs/simplebar/dist/simplebar.min.js"></script>
+<script src="/Medira/Media/assets/libs/iconify-icon/dist/iconify-icon.min.js"></script>
+<script src="/Medira/Media/assets/libs/@preline/dropdown/index.js"></script>
+<script src="/Medira/Media/assets/libs/@preline/overlay/index.js"></script>
+<script src="/Medira/Media/assets/js/sidebarmenu.js"></script>
+
+
+
+	<script src="/Medira/Media/assets/libs/apexcharts/dist/apexcharts.min.js"></script>
+    <script src="/Medira/Media/assets/js/dashboard.js"></script>
     
 </body>
 </html>
