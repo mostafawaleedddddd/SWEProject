@@ -85,7 +85,7 @@ $user_type = $_SESSION['user_type'];
   <footer>
     <!-- Footer Start -->
 <div class="footer-area section-bg" data-background="/Medira/Media/images/A_black_image.jpg">
-    <div class="container">
+    <div class="containers">
         <div class="footer-top footer-padding">
             <div class="row d-flex justify-content-between">
                 <!-- Logo Section -->

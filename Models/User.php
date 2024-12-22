@@ -11,20 +11,20 @@ class User {
 
     // Create the `users` table if it doesn't exist
     private function initializeTables() {
-        // Create ContactUs table
-          $sql = "CREATE TABLE IF NOT EXISTS ContactUs (
-              id INT AUTO_INCREMENT PRIMARY KEY,
-              name VARCHAR(100) NOT NULL,
-              username VARCHAR(100) NOT NULL,
-              message TEXT NOT NULL,
-              created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-          )";
-          
-          if (!$this->db->query($sql)) {
-              die("Error initializing ContactUs table: " . $this->db->getConn()->error);
-          }
-      }
-
+        // Create Forum table
+        $sql = "CREATE TABLE IF NOT EXISTS forum (
+            id INT AUTO_INCREMENT PRIMARY KEY,
+            parent_comment INT DEFAULT NULL,
+            student VARCHAR(100) NOT NULL,
+            post TEXT NOT NULL,
+            date DATETIME DEFAULT CURRENT_TIMESTAMP,
+            FOREIGN KEY (parent_comment) REFERENCES forum(id) ON DELETE CASCADE
+        )";
+    
+        if (!$this->db->query($sql)) {
+            die("Error initializing forum table: " . $this->db->getConn()->error);
+        }
+    }
     // Insert a new user
     public function insertUser($name, $password, $email, $birthdate, $gender, $phoneno) {
         $sql = "INSERT INTO users (name, password, email, birthdate, gender, phone) 

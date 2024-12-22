@@ -1,62 +1,96 @@
 <?php
+
+require_once '../db/dp.php';  // Assuming DBh.php is the database connection class
+
 class Forum {
-    private $name;
-    private $message;
-    private $order;
-    private $timestamps;
+    private $db;
+    private $id;
+    private $parent_comment;
+    private $student;
+    private $post;
 
-    public function __construct($name, $message, $order) {
-        $this->setName($name);
-        $this->setMessage($message);
-        $this->setOrder($order);
-        $this->timestamps = [
-            'created_at' => date('Y-m-d H:i:s'),
-            'updated_at' => date('Y-m-d H:i:s')
-        ];
-    }
+    // Constructor for Forum class
+    public function __construct($parent_comment, $student, $post)
+    {
+        $this->db = new DBh(); // Create a new DB connection
 
-    public function setName($name) {
-        if (preg_match("/^([A-ZÀ-ÿ-a-z. ']+[ ]*)+$/", $name)) {
-            $this->name = $name;
+        // Set the parent_comment to NULL if it's 0 (indicating it's a new discussion)
+        if ($parent_comment == 0) {
+            $parent_comment = NULL; // Set to NULL for main discussions
+        }
+
+        // Set the instance variables
+        $this->parent_comment = $parent_comment;
+        $this->student = $student;
+        $this->post = $post;
+
+        // Insert discussion or reply based on parent_comment
+        if ($this->parent_comment === NULL) {
+            $this->insertDiscussion(); // Main discussion (no parent comment)
         } else {
-            throw new Exception("Invalid name format.");
+            $this->insertReply(); // Reply to an existing discussion
         }
     }
 
-    public function getName() {
-        return $this->name;
-    }
+    // Insert a new discussion (main post)
+    private function insertDiscussion()
+    {
+        // SQL query to insert the main discussion
+        $sql = "INSERT INTO forums (student, post, parent_comment) VALUES (?, ?, ?)";
+        $stmt = $this->db->getConn()->prepare($sql);
 
-    public function setMessage($message) {
-        if (preg_match("/^([A-ZÀ-ÿ-a-z. ']+[ ]*)+$/", $message)) {
-            $this->message = $message;
-        } else {
-            throw new Exception("Invalid message format.");
+        if (!$stmt) {
+            throw new Exception("Error preparing SQL statement: " . $this->db->getConn()->error);
         }
-    }
 
-    public function getMessage() {
-        return $this->message;
-    }
+        // Bind parameters to the prepared statement
+        $stmt->bind_param("sss", $this->student, $this->post, $this->parent_comment);
 
-    public function setOrder($order) {
-        if (is_int($order) && $order > 0) {
-            $this->order = $order;
-        } else {
-            throw new Exception("Order must be a positive integer.");
+        if (!$stmt->execute()) {
+            throw new Exception("Error inserting discussion: " . $stmt->error);
         }
+
+        $stmt->close();
     }
 
-    public function getOrder() {
-        return $this->order;
+    // Insert a reply to an existing discussion
+    private function insertReply()
+    {
+        // SQL query to insert a reply
+        $sql = "INSERT INTO forums (student, post, parent_comment) VALUES (?, ?, ?)";
+        $stmt = $this->db->getConn()->prepare($sql);
+
+        if (!$stmt) {
+            throw new Exception("Error preparing SQL statement: " . $this->db->getConn()->error);
+        }
+
+        // Bind parameters to the prepared statement
+        $stmt->bind_param("ssi", $this->student, $this->post, $this->parent_comment);
+
+        if (!$stmt->execute()) {
+            throw new Exception("Error inserting reply: " . $stmt->error);
+        }
+
+        $stmt->close();
     }
 
-    public function getTimestamps() {
-        return $this->timestamps;
-    }
+    // Get all discussions and replies from the database
+    public static function getAllInstances()
+    {
+        $db = new DBh();
+        $sql = "SELECT * FROM forums ORDER BY id DESC"; // Retrieve discussions and replies
+        $result = $db->getConn()->query($sql);
 
-    public function updateTimestamps() {
-        $this->timestamps['updated_at'] = date('Y-m-d H:i:s');
+        if (!$result) {
+            throw new Exception("Error fetching discussions: " . $db->getConn()->error);
+        }
+
+        $discussions = [];
+        while ($row = $result->fetch_assoc()) {
+            $discussions[] = $row;
+        }
+
+        return $discussions;
     }
 }
 ?>
