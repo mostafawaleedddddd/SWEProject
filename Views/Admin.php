@@ -217,7 +217,7 @@
 							<div class="card">
 								<div class="card-body">
 									<div class="flex  justify-between mb-5">
-										<h4 class="text-gray-500 text-lg font-semibold sm:mb-0 mb-2">Profit & Expenses</h4>
+										<h4 class="text-gray-500 text-lg font-semibold sm:mb-0 mb-2">Traffic Per day</h4>
 										<div class="hs-dropdown relative inline-flex [--placement:bottom-right] sm:[--trigger:hover]">
 											<a class="relative hs-dropdown-toggle cursor-pointer align-middle rounded-full">
                                                 <i class="ti ti-dots-vertical text-2xl text-gray-400"></i>
@@ -243,13 +243,23 @@
 							</div>
 						 </div>
                          
+
+
+
+
+
+						 <!-- //</> -->
+
+
+
+
 						 <div class="flex flex-col gap-6">
 							<div class="card">
 								<div class="card-body">
 									<h4 class="text-gray-500 text-lg font-semibold mb-4">Traffic Distribution</h4>
 									<div class="flex items-center justify-between gap-12">
                                     <div >
-										<h3 class="text-[22px] font-semibold text-gray-500 mb-4">$36,358</h3>
+										<h3 class="text-[22px] font-semibold text-gray-500 mb-4">36,358 person</h3>
 										<div class="flex items-center gap-1 mb-3">
                                            <span class="flex items-center justify-center w-5 h-5 rounded-full bg-teal-400">
 											<i class="ti ti-arrow-up-left text-teal-500"></i>
@@ -274,6 +284,13 @@
 									</div>
 								</div>
 							</div>
+
+
+							<!-- kvibsjrvrg -->
+
+
+
+
 							<div class="card">
 								<div class="card-body">
 									<div class="flex gap-6 items-center justify-between">
@@ -405,7 +422,7 @@
 
 
 	
-<script src="/Medira/Media/assets/libs/jquery/dist/jquery.min.js"></script>
+<script src="\Medira\Media\spike-free-tailwind-v1 2\dist\assets\libs\jquery\dist\jquery.min.js"></script>
 <script src="/Medira/Media/assets/libs/simplebar/dist/simplebar.min.js"></script>
 <script src="/Medira/Media/assets/libs/iconify-icon/dist/iconify-icon.min.js"></script>
 <script src="/Medira/Media/assets/libs/@preline/dropdown/index.js"></script>
@@ -414,8 +431,9 @@
 
 
 
-	<script src="/Medira/Media/assets/libs/apexcharts/dist/apexcharts.min.js"></script>
-    <script src="/Medira/Media/assets/js/dashboard.js"></script>
+	<script src="/Medira/Media/Spike/dist/assets/libs/apexcharts/dist/apexcharts.min.js"></script>
+    <script src="/Medira/Media/spike/dist/assets/js/dashboard.js"></script>
+	
 </body>
 
 </html>
