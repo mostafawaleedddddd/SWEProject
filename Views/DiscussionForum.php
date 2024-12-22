@@ -87,13 +87,13 @@ $discussions = Forum::getAllInstances();
                     foreach ($discussions as $discussion) {
                         if ($discussion['parent_comment'] == 0) {
                             // Display main discussion
-                            echo '<tr><td><b><img src="../Media/images/avatar.jpg" width="30px" height="30px" />' . $discussion['student'] . '</b><br><p style="padding-left:80px">' . $discussion['post'] . '<br><a data-toggle="modal" data-id="' . $discussion['id'] . '" class="open-ReplyModal" href="#ReplyModal">Reply</a></p></td></tr>';
+                            echo '<tr><td><b><img src="../Media/images/avatar.jpg" width="30px" height="30px" />' . $discussion['patient'] . '</b><br><p style="padding-left:80px">' . $discussion['post'] . '<br><a data-toggle="modal" data-id="' . $discussion['id'] . '" class="open-ReplyModal" href="#ReplyModal">Reply</a></p></td></tr>';
 
 
                             // Display replies to this discussion
                             foreach ($discussions as $reply) {
                                 if ($reply['parent_comment'] == $discussion['id']) {
-                                    echo '<tr><td style="padding-left:80px"><b><img src="../Media/images/avatar.jpg" width="30px" height="30px" />' . $reply['student'] . '</b><br><p style="padding-left:40px">' . $reply['post'] . '</p></td></tr>';
+                                    echo '<tr><td style="padding-left:80px"><b><img src="../Media/images/avatar.jpg" width="30px" height="30px" />' . $reply['patient'] . '</b><br><p style="padding-left:40px">' . $reply['post'] . '</p></td></tr>';
 
                                 }
                             }

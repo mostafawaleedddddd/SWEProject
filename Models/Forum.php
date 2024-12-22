@@ -6,11 +6,11 @@ class Forum {
     private $db;
     private $id;
     private $parent_comment;
-    private $student;
+    private $patient;
     private $post;
 
     // Constructor for Forum class
-    public function __construct($parent_comment, $student, $post)
+    public function __construct($parent_comment, $patient, $post)
     {
         $this->db = new DBh(); // Create a new DB connection
 
@@ -21,7 +21,7 @@ class Forum {
 
         // Set the instance variables
         $this->parent_comment = $parent_comment;
-        $this->student = $student;
+        $this->patient = $patient;
         $this->post = $post;
 
         // Insert discussion or reply based on parent_comment
@@ -36,7 +36,7 @@ class Forum {
     private function insertDiscussion()
     {
         // SQL query to insert the main discussion
-        $sql = "INSERT INTO forums (student, post, parent_comment) VALUES (?, ?, ?)";
+        $sql = "INSERT INTO forums (patient, post, parent_comment) VALUES (?, ?, ?)";
         $stmt = $this->db->getConn()->prepare($sql);
 
         if (!$stmt) {
@@ -44,7 +44,7 @@ class Forum {
         }
 
         // Bind parameters to the prepared statement
-        $stmt->bind_param("sss", $this->student, $this->post, $this->parent_comment);
+        $stmt->bind_param("sss", $this->patient, $this->post, $this->parent_comment);
 
         if (!$stmt->execute()) {
             throw new Exception("Error inserting discussion: " . $stmt->error);
@@ -57,7 +57,7 @@ class Forum {
     private function insertReply()
     {
         // SQL query to insert a reply
-        $sql = "INSERT INTO forums (student, post, parent_comment) VALUES (?, ?, ?)";
+        $sql = "INSERT INTO forums (patient, post, parent_comment) VALUES (?, ?, ?)";
         $stmt = $this->db->getConn()->prepare($sql);
 
         if (!$stmt) {
@@ -65,7 +65,7 @@ class Forum {
         }
 
         // Bind parameters to the prepared statement
-        $stmt->bind_param("ssi", $this->student, $this->post, $this->parent_comment);
+        $stmt->bind_param("ssi", $this->patient, $this->post, $this->parent_comment);
 
         if (!$stmt->execute()) {
             throw new Exception("Error inserting reply: " . $stmt->error);
