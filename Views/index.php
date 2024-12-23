@@ -4,7 +4,6 @@ if (!isset($_SESSION['user_type'])) {
   $_SESSION['user_type'] = 'guest';
 }
 $user_type = $_SESSION['user_type'];
-echo  $user_type;
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -18,10 +17,7 @@ echo  $user_type;
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
-  <link rel="manifest" href="site.webmanifest">
-    <link rel="shortcut icon" type="image/x-icon" href="assets/img/favicon.ico">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/themify-icons/0.1.0/css/themify-icons.css">
-    <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <title>Medira</title>
 </head>
 
@@ -37,8 +33,8 @@ echo  $user_type;
       <!-- Single Slider -->
       <div class="single-slider slider-height d-flex align-items-center">
         <div class="container">
-          <div class="row">
-            <div class="col-xl-7 col-lg-9 col-md-8 col-sm-9">
+          <div >
+            <div >
               <div class="hero__caption">
                 <span>Committed to success</span>
                 <h1 class="cd-headline letters scale">We care about your 
@@ -54,7 +50,7 @@ echo  $user_type;
                 </p>
                 <!-- Button Container -->
                 <div class="button-container">
-                  <?php if ($user_type == 'healthCare'): ?>
+                  <?php if ($user_type == 'healthcare'): ?>
                     <!-- Add a button for healthcare user type if needed -->
                   <?php elseif ($user_type == 'admin'): ?>
                     <!-- Add a button for admin user type if needed -->
@@ -63,7 +59,8 @@ echo  $user_type;
                             onclick="location.href='/Medira/Views/Chat.php';" 
                             data-animation="fadeInLeft" data-delay="0.5s" 
                             style="animation-delay: 0.5s;"> 
-                      Start Chatting <i class="fa-solid fa-arrow-right"></i>
+                      Start Chatting 
+                      <i class="fa-solid fa-arrow-right"></i>
                     </button>
                   <?php else: ?>
                     <button class="started" 
@@ -76,31 +73,24 @@ echo  $user_type;
                   <?php endif; ?>
                 </div>
               </div>
-            </div>
-          </div>
         </div>
       </div>
-      <!-- Additional Slider Content -->
     </div>
   </div>
   <footer>
     <!-- Footer Start -->
 <div class="footer-area section-bg" data-background="/Medira/Media/images/A_black_image.jpg">
-    <div class="containers">
+    <div class="container">
         <div class="footer-top footer-padding">
             <div class="row d-flex justify-content-between">
                 <!-- Logo Section -->
-                <div class="col-xl-3 col-lg-3 col-md-4 col-sm-8">
                     <div class="single-footer-caption mb-50">
                         <!-- logo -->
                         <div class="footer-logo">
-                            <a href="index.html"><img src="/Medira/Media/images/LOGO-footer.png" alt=""></a>
+                            <a href="#"><img src="/Medira/Media/images/LOGO-footer.png" alt=""></a>
                         </div>
                     </div>
-                </div>
-
                 <!-- About Us Section -->
-                <div class="col-xl-3 col-lg-4 col-md-6 col-sm-5">
                     <div class="single-footer-caption mb-50">
                         <div class="footer-tittle">
                             <h4>About Us</h4>
@@ -111,31 +101,24 @@ echo  $user_type;
                             </div>
                         </div>
                     </div>
-                </div>
-
                 <!-- Phone Number and Email Section -->
-                <div class="col-xl-3 col-lg-3 col-md-6 col-sm-8">
                     <div class="single-footer-caption mb-50">
                         <div class="footer-number-mb-50">
                             <h4><span>+20 </span>115 648 226</h4>
                             <p>Medira @outlook.com</p>
                         </div>
                     </div>
-                </div>
             </div>
         </div>
         <!-- Footer Bottom -->
         <div class="footer-bottom">
             <div class="row d-flex justify-content-between align-items-center">
-                <div class="col-xl-9 col-lg-8">
                     <div class="footer-copy-right">
                         <p>
                             Copyright &copy; 2024 Medira. All rights reserved. Empowering healthcare professionals and patients with reliable
                             medical information.
                         </p>
                     </div>
-                </div>
-                <div class="col-xl-3 col-lg-4">
                     <!-- Footer Social -->
                     <div class="footer-social f-right">
                         <a href="#"><i class="fab fa-twitter"></i></a>
@@ -143,13 +126,11 @@ echo  $user_type;
                         <a href="#"><i class="fas fa-globe"></i></a>
                         <a href="#"><i class="fab fa-instagram"></i></a>
                     </div>
-                </div>
             </div>
         </div>
     </div>
 </div>
 <!-- Footer End-->
-
 </footer>
 
   <!-- Feedback Button -->
