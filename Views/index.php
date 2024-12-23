@@ -4,6 +4,7 @@ if (!isset($_SESSION['user_type'])) {
   $_SESSION['user_type'] = 'guest';
 }
 $user_type = $_SESSION['user_type'];
+echo $user_type;
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -17,7 +18,7 @@ $user_type = $_SESSION['user_type'];
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
   <title>Medira</title>
 </head>
 
