@@ -50,7 +50,7 @@ $user_type = $_SESSION['user_type'];
                 </p>
                 <!-- Button Container -->
                 <div class="button-container">
-                  <?php if ($user_type == 'healthcare'): ?>
+                  <?php if ($user_type == 'healthCare'): ?>
                     <!-- Add a button for healthcare user type if needed -->
                   <?php elseif ($user_type == 'admin'): ?>
                     <!-- Add a button for admin user type if needed -->
