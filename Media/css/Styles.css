@@ -15,6 +15,15 @@ body {
   flex-direction: column; 
 }
 
+.slider-area {
+  position: relative;
+  background-image: url('/Medira/Media/images/h1_hero.png');
+  background-size: contain; 
+  background-repeat: no-repeat;
+  background-position: center;
+  margin-top: -1%;
+}
+
 .single-slider {
   display: flex;
   align-items: center;
@@ -23,6 +32,8 @@ body {
   height: 100vh;
   position: relative; 
 }
+
+
 
 .hero__caption {
   position: absolute;
@@ -137,77 +148,60 @@ element.style {
 /* Footer Area */
 .footer-area {
   background: #11141b; /* Dark background */
-  padding: 50px 0;
+  padding: 20px 0;
   color: #fff;
 }
 
 /* Footer Logo */
 .footer-logo a img {
-  max-width: 100%;
+  max-width: 80%;
   height: auto;
-}
-
-/* Footer Top */
-.footer-top {
-  margin-bottom: 50px;
 }
 
 /* Footer Caption */
 .single-footer-caption {
-  margin-bottom: 50px;
+  margin-bottom: 30px;
 }
 
 /* Footer Title */
 .footer-tittle h4 {
-  font-size: 30px;
+  font-size: 18px;
   font-weight: bold;
   color: #fff;
-  margin-bottom: 20px;
+  margin-bottom: 15px;
   text-transform: uppercase;
 }
 
 /* Footer Paragraph */
 .footer-pera p  {
-  font-size: 20px;
-  line-height: 1.6;
+  font-size: 12px; 
+  line-height: 1.4;
   color: rgba(255, 255, 255, 0.8);
 }
 
 /* Footer Number and Email */
 .footer-number h4 {
-  font-size: 20px;
+  font-size: 30px;
   font-weight: bold;
   color: #fff;
-  margin-bottom: 10px;
+  margin-bottom: 8px;
 }
 
 .footer-number p {
-  font-size: 14px;
+  font-size: 12px;
   color: rgba(255, 255, 255, 0.8);
-}
-
-/* Footer Social Icons */
-.footer-social a {
-  color: #fff;
-  margin-right: 15px;
-  font-size: 20px;
-  transition: color 0.3s ease;
-}
-
-.footer-social a:hover {
-  color: #559af3; /* Change color on hover */
 }
 
 /* Footer Bottom */
 .footer-bottom {
   border-top: 1px solid rgba(255, 255, 255, 0.1);
-  padding-top: 20px;
-  padding-bottom: 20px;
+  padding-top: 15px;
+  padding-bottom: 15px;
 }
 
 /* Footer Copyright */
 .footer-copy-right p {
-  font-size: 14px;
+  font-size: 12px;
   color: rgba(255, 255, 255, 0.6);
   margin-bottom: 0;
   text-align: center;
@@ -222,16 +216,9 @@ element.style {
   text-decoration: underline;
 }
 
-/* Footer Form */
-/* Footer Area */
-.footer-area {
-  background: #11141b; /* Dark background */
-  padding: 50px 0;
-  color: #fff;
-}
-
 /* Footer Layout */
 .footer-top .row {
+  padding-left: 2vh;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -262,54 +249,26 @@ element.style {
   color: rgba(255, 255, 255, 0.8);
 }
 
-/* Phone Number and Email */
-.footer-number h4 {
-  font-size: 20px;
-  font-weight: bold;
-  color: #fff;
-  margin-bottom: 10px;
-}
-
-.footer-number p {
-  font-size: 14px;
-  color: rgba(255, 255, 255, 0.8);
-}
-
-/* Footer Bottom */
-.footer-bottom {
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
-  padding-top: 20px;
-  padding-bottom: 20px;
-}
-
-/* Footer Copyright */
-.footer-copy-right p {
-  font-size: 14px;
-  color: rgba(255, 255, 255, 0.6);
-  margin-bottom: 0;
-  text-align: center;
-}
-
-.footer-copy-right a {
-  color: #559af3; /* Color for the links */
-  text-decoration: none;
-}
-
-.footer-copy-right a:hover {
-  text-decoration: underline;
-}
-
 /* Footer Social Icons */
 .footer-social a {
   color: #fff;
-  margin-right: 15px;
-  font-size: 20px;
+  margin-right: 10px;
+  font-size: 16px;
   transition: color 0.3s ease;
 }
 
 .footer-social a:hover {
   color: #559af3; /* Change color on hover */
 }
+
+/* Footer logo */
+
+.footer-logo a img {
+  width: 300px; 
+  height: auto; 
+  max-width: 100%;
+}
+
 
 .footer-area .footer-top .single-footer-caption .footer-number-mb-50 h4 span {
   color: #fff;
@@ -325,13 +284,13 @@ element.style {
 .footer-area .footer-top .single-footer-caption .footer-number-mb-50 p {
   color: #bdbdbd;
   font-family: "Muli", sans-serif;
-  font-size: 20px;
-  line-height: 30px;
-  margin-bottom: 15px;
+   font-size: 20px; 
+  line-height: 1.4; 
+  margin-bottom: 10px;
   font-weight: normal;
 }
 .footer-area .footer-top .single-footer-caption .footer-number-mb-50{
-  padding-right: 50px;
+  padding-right: 30px;
 }
 
 

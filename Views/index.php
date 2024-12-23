@@ -28,10 +28,10 @@ $user_type = $_SESSION['user_type'];
   </div>
 
   <!-- Slider Section -->
-  <div class="slider-area position-relative" style="background-image: url('/Medira/Media/images/h1_hero.png');">
+  <div class="slider-area">
     <div class="slider-active">
       <!-- Single Slider -->
-      <div class="single-slider slider-height d-flex align-items-center">
+      <div class="single-slider">
         <div class="container">
           <div >
             <div >
@@ -50,7 +50,7 @@ $user_type = $_SESSION['user_type'];
                 </p>
                 <!-- Button Container -->
                 <div class="button-container">
-                  <?php if ($user_type == 'healthcare'): ?>
+                  <?php if ($user_type == 'healthCare'): ?>
                     <!-- Add a button for healthcare user type if needed -->
                   <?php elseif ($user_type == 'admin'): ?>
                     <!-- Add a button for admin user type if needed -->
@@ -81,7 +81,7 @@ $user_type = $_SESSION['user_type'];
     <!-- Footer Start -->
 <div class="footer-area section-bg" data-background="/Medira/Media/images/A_black_image.jpg">
     <div class="container">
-        <div class="footer-top footer-padding">
+        <div class="footer-top">
             <div class="row d-flex justify-content-between">
                 <!-- Logo Section -->
                     <div class="single-footer-caption mb-50">
