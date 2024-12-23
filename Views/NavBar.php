@@ -17,7 +17,7 @@ if (isset($_GET['logout'])) {
 <nav class="navbar">
     <div class="logo"><a href="/Medira/Views/index.php"><img src="/Medira/Media/images/LOGO.png"></a> </div>
     <ul>
-        <?php if ($user_type == 'healthcare'): ?>
+        <?php if ($user_type == 'healthCare'): ?>
             <li><a href="/Medira/Views/index.php">Home</a></li>
             <li><a href="/Medira/Views/DiscussionForum.php">Discussion Forum</a></li>
             <li><a href="?logout=true" class="button">Logout</a></li>

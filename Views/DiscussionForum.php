@@ -1,7 +1,10 @@
 <?php
 // Include the Forum model to access the database functions
 require_once '../Models/Forum.php';
-
+if (!isset($_SESSION['user_type'])) {
+    $_SESSION['user_type'] = 'guest';
+  }
+  $user_type = $_SESSION['user_type'];
 // Handle form submission for new discussion
 if (isset($_POST['save'])) {
     $name = $_POST['name'];
@@ -86,15 +89,25 @@ $discussions = Forum::getAllInstances();
                     // Display all discussions and their replies
                     foreach ($discussions as $discussion) {
                         if ($discussion['parent_comment'] == 0) {
-                            // Display main discussion
-                            echo '<tr><td><b><img src="../Media/images/avatar.jpg" width="30px" height="30px" />' . $discussion['patient'] . '</b><br><p style="padding-left:80px">' . $discussion['post'] . '<br><a data-toggle="modal" data-id="' . $discussion['id'] . '" class="open-ReplyModal" href="#ReplyModal">Reply</a></p></td></tr>';
-
-
+                            // Start the discussion display
+                            echo '<tr><td><b><img src="../Media/images/avatar.jpg" width="30px" height="30px" />' . 
+                                 $discussion['patient'] . '</b><br><p style="padding-left:80px">' . 
+                                 $discussion['post'] . '<br>';
+                            
+                            // Conditionally display the Reply link
+                            if ($user_type == "healthCare") {
+                                echo '<a data-toggle="modal" data-id="' . $discussion['id'] . 
+                                     '" class="open-ReplyModal" href="#ReplyModal">Reply</a>';
+                            }
+                            
+                            echo '</p></td></tr>';
+                    
                             // Display replies to this discussion
                             foreach ($discussions as $reply) {
                                 if ($reply['parent_comment'] == $discussion['id']) {
-                                    echo '<tr><td style="padding-left:80px"><b><img src="../Media/images/avatar.jpg" width="30px" height="30px" />' . $reply['patient'] . '</b><br><p style="padding-left:40px">' . $reply['post'] . '</p></td></tr>';
-
+                                    echo '<tr><td style="padding-left:80px"><b><img src="../Media/images/avatar.jpg" width="30px" height="30px" />' . 
+                                         $reply['patient'] . '</b><br><p style="padding-left:40px">' . 
+                                         $reply['post'] . '</p></td></tr>';
                                 }
                             }
                         }
