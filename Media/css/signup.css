@@ -12,7 +12,7 @@ body{
     align-items: center;
     background-image: url(/Medira/Media/images/Picture.jpg);
     background-size: cover;
-    
+    overflow-y: hidden;
 }
 
 body::before {

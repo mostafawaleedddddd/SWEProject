@@ -10,6 +10,7 @@ body {
     background-image: url(/Medira/Media/images/Picture.jpg);
     background-size: cover;
     background-position: center;
+    overflow-y: hidden;
 }
 
 body::before {

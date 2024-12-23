@@ -4,7 +4,6 @@ if (!isset($_SESSION['user_type'])) {
   $_SESSION['user_type'] = 'guest';
 }
 $user_type = $_SESSION['user_type'];
-echo $user_type;
 ?>
 <!DOCTYPE html>
 <html lang="en">
