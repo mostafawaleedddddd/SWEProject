@@ -52,7 +52,7 @@ class UserController extends Controller {
         $stmt->bind_param("ss", $email, $password);
         $stmt->execute();
         $healthResult = $stmt->get_result()->fetch_assoc();
-    
+        
         if ($adminResult) {
             $_SESSION['user'] = $adminResult;
             $_SESSION['user_type'] = 'admin';

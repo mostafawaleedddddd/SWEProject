@@ -281,8 +281,6 @@
         $month = str_pad($_POST['month'], 2, '0', STR_PAD_LEFT);
         $year = $_POST['year'];
         $birthdate = "$year-$month-$day";
-
-        // Basic validation
         if (empty($fullName) || empty($email) || empty($password) || empty($phone) || empty($gender) || empty($birthdate)) {
             $errors[] = "All fields are required.";
         }
@@ -295,19 +293,21 @@
         if (strlen($password) < 8 || !preg_match("/[A-Z]/", $password)) {
             $errors[] = "Password must be at least 8 characters long and contain One UpperCase letter.";
         }
+        if ($controller->userExist($email)){
+
+            $errors[] = "Email Already exist Try another one ";
+        }
         if (!preg_match("/^\d{11}$/", $phone)) {
             $errors[] = "Invalid phone number.";
         }
         if (!empty($errors)) {
-            $message = ''; // Initialize the message variable
+            $message = ''; 
             foreach ($errors as $error) {
                 $message .= $error . " "; // Use .= to concatenate strings
             }
             echo "<div class='message error'>" . $message . "</div>";
         } else {
-            // Additional validation can be added here
-    
-            // Attempt to add the user
+            
             if ($controller->addUser($fullName, $password, $email, $birthdate, $gender, $phone)) {
                 echo "<div class='message success'>User added successfully!</div>";
             } else {
@@ -392,7 +392,7 @@
                             <option value="">Year</option>
                             <script>
                                 const currentYear = new Date().getFullYear();
-                                for (let i = 1944; i <= currentYear; i++) {
+                                for (let i = currentYear; i >= 1970; i--) {
                                     document.write('<option value="' + i + '">' + i + '</option>');
                                 }
                             </script>

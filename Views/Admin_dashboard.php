@@ -196,6 +196,163 @@ input, select {
     align-items: center;
 }
 
+<<<<<<< Updated upstream
+=======
+        .users-table {
+            width: 100%;
+            background: var(--surface);
+            border-radius: 0.5rem;
+            overflow: hidden;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            margin-top: 2rem;
+        }
+
+        .users-table table {
+            width: 100%;
+            border-collapse: collapse;
+            table-layout: fixed;
+        }
+
+        .users-table th, 
+        .users-table td {
+            padding: 1rem;
+            text-align: left;
+            width: 25%; /* Equal width for all columns */
+        }
+
+        .users-table th {
+            background: #f8fafc;
+            font-weight: 600;
+            color: var(--secondary);
+            border-bottom: 2px solid #e2e8f0;
+            white-space: nowrap;
+        }
+
+        .users-table td {
+            border-bottom: 1px solid #e2e8f0;
+            vertical-align: middle;
+        }
+
+        /* Specific column widths */
+        .users-table th:nth-child(1),
+        .users-table td:nth-child(1) { 
+            width: 20%;
+            padding-left: 2rem;
+        }
+
+        .users-table th:nth-child(2),
+        .users-table td:nth-child(2) { 
+            width: 25%;
+            padding-left: 2rem;
+        }
+
+        .users-table th:nth-child(3),
+        .users-table td:nth-child(3) { 
+            width: 15%;
+            padding-left: 2rem;
+        }
+
+        .users-table th:nth-child(4),
+        .users-table td:nth-child(4) { 
+            width: 20%;
+            padding-left: 2rem;
+        }
+
+        .status-badge {
+            padding: 0.25rem 0.75rem;
+            border-radius: 1rem;
+            font-size: 0.875rem;
+            font-weight: 500;
+            display: inline-block;
+        }
+
+        .status-active {
+            background: #dcfce7;
+            color: #166534;
+        }
+
+        .status-inactive {
+            background: #fee2e2;
+            color: #991b1b;
+        }
+
+        /* Search bar styles */
+        .search-bar {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            align-items: center;
+            padding: 1rem;
+            background: var(--surface);
+            border-radius: 0.5rem;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+
+        input, select {
+            padding: 0.5rem 1rem;
+            border: 1px solid #e2e8f0;
+            border-radius: 0.375rem;
+            font-size: 0.875rem;
+        }
+
+        .button {
+            padding: 0.5rem 1rem;
+            border: none;
+            border-radius: 0.375rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: opacity 0.2s;
+            background: var(--primary);
+            color: white;
+        }
+
+        .button:hover {
+            opacity: 0.9;
+        }
+        /* Existing status badge styles */
+.status-badge {
+    padding: 0.25rem 0.75rem;
+    border-radius: 1rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    display: inline-block;
+}
+
+/* Status styles */
+.status-active {
+    background: #dcfce7;
+    color: #166534;
+}
+
+.status-inactive {
+    background: #fee2e2;
+    color: #991b1b;
+}
+
+/* New role badge styles */
+.role-badge {
+    padding: 0.25rem 0.75rem;
+    border-radius: 1rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    display: inline-block;
+}
+
+.role-healthcare {
+    background: #dcfce7;
+    color:rgb(11, 237, 60);
+}
+
+.role-user {
+    background: #dcfce7;
+    color:rgb(104, 11, 235);
+}
+
+.role-banned {
+    background: #fee2e2;
+    color: #991b1b;
+}
+>>>>>>> Stashed changes
     </style>
 </head>
 
@@ -260,6 +417,12 @@ input, select {
           <a class="sidebar-link gap-3 py-2.5 my-1 text-base   flex items-center relative  rounded-md text-gray-500  w-full" href="/Medira/Views/Admin_dashboard.php"
            >
             <i class="ti ti-article ps-2 text-2xl"></i> <span>Admin Dashboard</span>
+          </a>
+        </li>
+        <li class="sidebar-item">
+          <a class="sidebar-link gap-3 py-2.5 my-1 text-base   flex items-center relative  rounded-md text-gray-500  w-full" href="/Medira/Views/Admin_home.php"
+           >
+            <i class="ti ti-article ps-2 text-2xl"></i> <span>Managing Users</span>
           </a>
         </li>
 
@@ -407,22 +570,46 @@ input, select {
         </div>
     </nav>
 <body>
-    <!-- <div class="dashboard">
-        <div class="sidebar">
-            <div class="logo">Medical System</div>
-            <div class="nav-item active">Dashboard</div>
-            <div class="nav-item">View Users</div>
-            <div class="nav-item">Edit Users</div>
-            <div class="nav-item">Manage Roles</div>
-            <div class="nav-item">Settings</div>
-        </div> -->
 
-        <div class="main-content">
-            <div class="header">
-                <h1>User Management</h1>
-                <a href="/Medira/Views/Add_Users.php" class="button button-primary">+ Add New User</a>
-            </div>
+<div class="search-bar">
+        <input type="text" id="searchInput" placeholder="Search users..." style="width: 300px;">
+        <select id="roleFilter">
+            <option>All Roles</option>
+            <option>Healthcare Provider</option>
+            <option>User</option>
+        </select>
+        <select id="statusFilter">
+            <option>All Status</option>
+            <option>Active</option>
+            <option>Inactive</option>
+        </select>
+        <select id="nameSort">
+            <option>All Names</option>
+            <option>Sort A-Z</option>
+            <option>Sort Z-A</option>
+        </select>
+        <button class="button" onclick="searchUsers()">Search</button>
+    </div>
+           <div class="users-table">
+        <table>
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Role</th>
+                    <th>Status</th>
+                    <th>Birth Date</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php
+                require_once '../Controllers/AdminController.php';
+                require_once '../Models/Admin.php';
+        
+                $model = new Admin();
+                $controller = new AdminController();
+                $users = $controller->getAllUsers();
 
+<<<<<<< Updated upstream
             <div class="search-bar">
                 <input type="text" placeholder="Search users..." style="width: 300px;">
                 <select>
@@ -507,6 +694,156 @@ foreach ($users as $user) {
 
 	<script src="/Medira/Media/assets/libs/apexcharts/dist/apexcharts.min.js"></script>
     <script src="/Medira/Media/assets/js/dashboard.js"></script>
+=======
+                foreach ($users as $user) {
+                    $userId = htmlspecialchars($user['id']);
+                    $userName = htmlspecialchars($user['name']);
+                    $userRole = htmlspecialchars($user['role']);
+                    
+                    // Determine status class
+                    $statusClass = $user['status'] === 'Active' ? 'status-active' : 'status-inactive';
+                    
+                    // Determine role class
+                    $roleClass = '';
+                    switch($userRole) {
+                        case 'Healthcare Provider':
+                            $roleClass = 'role-healthcare';
+                            break;
+                        case 'User':
+                            $roleClass = 'role-user';
+                            break;
+                        case 'Banned':
+                            $roleClass = 'role-banned';
+                            break;
+                    }
+                    
+                    echo "<tr data-userid='{$userId}' data-role='{$userRole}'>";
+                    echo "<td>{$userName}</td>";
+                    echo "<td><span class='role-badge {$roleClass}'>{$userRole}</span></td>";
+                    echo "<td><span class='status-badge {$statusClass}'>" . htmlspecialchars($user['status']) . "</span></td>";
+                    echo "<td>" . htmlspecialchars($user['registration_date']) . "</td>";
+                    echo "</tr>";
+                }
+                ?>
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+function filterUsersByRole() {
+    const roleSelect = document.getElementById('roleFilter');
+    const tableRows = document.querySelectorAll('tbody tr');
+    
+    roleSelect.addEventListener('change', function() {
+        const selectedRole = this.value;
+        
+        tableRows.forEach(row => {
+            const roleCell = row.querySelector('td:nth-child(2)');
+            
+            if (selectedRole === 'All Roles' || roleCell.textContent === selectedRole) {
+                row.style.display = '';
+            } else {
+                row.style.display = 'none';
+            }
+        });
+    });
+}
+
+function sortUsersByName() {
+    const sortSelect = document.getElementById('nameSort');
+    const tbody = document.querySelector('tbody');
+    
+    sortSelect.addEventListener('change', function() {
+        const selectedSort = this.value;
+        const rows = Array.from(tbody.querySelectorAll('tr'));
+        
+        rows.sort((a, b) => {
+            const nameA = a.querySelector('td:first-child').textContent.toLowerCase();
+            const nameB = b.querySelector('td:first-child').textContent.toLowerCase();
+            
+            if (selectedSort === 'Sort A-Z') {
+                return nameA.localeCompare(nameB);
+            } else if (selectedSort === 'Sort Z-A') {
+                return nameB.localeCompare(nameA);
+            }
+            return 0;
+        });
+        
+        tbody.innerHTML = '';
+        rows.forEach(row => tbody.appendChild(row));
+    });
+}
+
+function searchUsers() {
+    const searchInput = document.getElementById('searchInput');
+    const searchTerm = searchInput.value.toLowerCase().trim();
+    const tableRows = document.querySelectorAll('tbody tr');
+    let found = false;
+
+    tableRows.forEach(row => {
+        const nameCell = row.querySelector('td:first-child');
+        const name = nameCell.textContent.toLowerCase();
+        
+        if (searchTerm === '' || name.includes(searchTerm)) {
+            row.style.display = '';
+            found = true;
+        } else {
+            row.style.display = 'none';
+        }
+    });
+
+    // Show alert if no users found
+    if (!found && searchTerm !== '') {
+        alert('No users found matching your search.');
+    }
+}
+
+// Also add real-time search as user types
+document.getElementById('searchInput').addEventListener('input', function(e) {
+    const searchTerm = e.target.value.toLowerCase().trim();
+    const tableRows = document.querySelectorAll('tbody tr');
+    let found = false;
+
+    tableRows.forEach(row => {
+        const nameCell = row.querySelector('td:first-child');
+        const name = nameCell.textContent.toLowerCase();
+        
+        if (searchTerm === '' || name.includes(searchTerm)) {
+            row.style.display = '';
+            found = true;
+        } else {
+            row.style.display = 'none';
+        }
+    });
+});
+
+function filterUsersByStatus() {
+    const statusSelect = document.getElementById('statusFilter');
+    const tableRows = document.querySelectorAll('tbody tr');
+    
+    statusSelect.addEventListener('change', function() {
+        const selectedStatus = this.value;
+        
+        tableRows.forEach(row => {
+            const statusCell = row.querySelector('td:nth-child(3)');
+            const status = statusCell.textContent.trim();
+            
+            if (selectedStatus === 'All Status' || status === selectedStatus) {
+                row.style.display = '';
+            } else {
+                row.style.display = 'none';
+            }
+        });
+    });
+}
+// Call all functions when the page loads
+document.addEventListener('DOMContentLoaded', function() {
+    filterUsersByRole();
+    sortUsersByName();
+    filterUsersByStatus();
+});
+</script>
+>>>>>>> Stashed changes
     
 </body>
 </html>
