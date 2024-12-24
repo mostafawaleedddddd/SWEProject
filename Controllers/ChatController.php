@@ -62,8 +62,8 @@ class ChatController
                         $response .= "\n\n";  // Add space between each result
                     }
                     $response .= "Advice: " . $match['advice'] . "\n";
-                    $response .= "Urgency: " . $match['urgency'] . "\n";
-                    $response .= "Specialist: " . $match['specialist'] . "\n";
+                    $response .= "" . $match['urgency'] . "\n";
+                    $response .= "" . $match['specialist'] . "\n";
                 }
                 return $response;  // Return advice as a string
             } else {
