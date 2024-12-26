@@ -3,12 +3,13 @@
 require_once '../Models/model.php'; // Assume this contains your database connection logic
 
 require_once('../Controllers/Controller.php');
-
+require_once('../Controllers/AdminController.php');
 class UserController extends Controller {
     protected $model;
     public function __construct() {
         $this->model = new User();
     }
+
     public function  insert() {
         $name = $_REQUEST['fullName'];
         $password = $_REQUEST['password'];
@@ -32,12 +33,27 @@ class UserController extends Controller {
         exit();
     }
     }
+    public function isEmailBanned($email) {
+        try {
+            $db = new PDO("mysql:host=localhost;dbname=Medical", "root", "");
+            $stmt = $db->prepare("SELECT COUNT(*) FROM banned WHERE email = ?");
+            $stmt->execute([$email]);
+            return $stmt->fetchColumn() > 0;
+        } catch (PDOException $e) {
+            error_log("Email check error: " . $e->getMessage());
+            return false;
+        }
+    }
     public function login($email, $password) {
-         // Assume $conn is the database connection from db.php
+        if ($this->isEmailBanned($email)) {
+            header("Location: ../Views/Bannedusers.php");
+            exit(); 
+        }
     
         $query = "SELECT * FROM Admins WHERE Username = '?' AND Password = '?'";
         $stmt = $this->conn->prepare($query);
         $stmt->bind_param("ss", $email, $password);
+
         $stmt->execute();
         $adminResult = $stmt->get_result()->fetch_assoc();
     
@@ -47,11 +63,16 @@ class UserController extends Controller {
         $stmt->execute();
         $userResult = $stmt->get_result()->fetch_assoc();
     
+
+    
         $query = "SELECT * FROM HealthCare WHERE Username = '?' AND Password = '?'";
         $stmt = $this->conn->prepare($query);
         $stmt->bind_param("ss", $email, $password);
         $stmt->execute();
         $healthResult = $stmt->get_result()->fetch_assoc();
+        
+        
+        
         
         if ($adminResult) {
             $_SESSION['user'] = $adminResult;
@@ -70,9 +91,7 @@ class UserController extends Controller {
             echo 'Invalid credentials';
         }
     }
-    
-    
-}
+    }
 
 
 

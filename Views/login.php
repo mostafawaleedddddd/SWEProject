@@ -24,7 +24,11 @@ if (isset($_POST['login'])) {
     ];
 
     $authenticated = false;
-
+    if ($controller->isEmailBanned($name)) {
+      header("Location: ../Views/Bannedusers.php");
+      exit(); 
+  }
+  else{
     foreach ($userTables as $userType => $tableName) {
         $query = "SELECT * FROM $tableName WHERE email = ? and password = ?";
         $stmt = $conn->prepare($query);
@@ -44,6 +48,7 @@ if (isset($_POST['login'])) {
             break;
         }
     }
+  }
 
     // Handle authentication result
     if ($authenticated) {

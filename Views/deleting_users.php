@@ -108,7 +108,7 @@
             $userName = $_POST['userName'];
            
 
-       if (!$controller->isValidName($userName)) {
+       if (!filter_var($userName, FILTER_VALIDATE_EMAIL)) {
         echo "<div class='message error'>Please enter a valid name.</div>";
     } else {
         

@@ -22,22 +22,22 @@ public function deleteUserByName($userName){
         $db = new PDO("mysql:host=localhost;dbname=Medical", "root", "");
         
         // Check healthcare table
-        $stmt = $db->prepare("SELECT COUNT(*) FROM healthcare WHERE name = ?");
+        $stmt = $db->prepare("SELECT COUNT(*) FROM healthcare WHERE email = ?");
         $stmt->execute([$userName]);
         $healthcareCount = $stmt->fetchColumn();
         
         // Check users table
-        $stmt = $db->prepare("SELECT COUNT(*) FROM users WHERE name = ?");
+        $stmt = $db->prepare("SELECT COUNT(*) FROM users WHERE email = ?");
         $stmt->execute([$userName]);
         $usersCount = $stmt->fetchColumn();
         
         // Delete from appropriate table
         if ($healthcareCount > 0) {
-            $stmt = $db->prepare("DELETE FROM healthcare WHERE name = ?");
+            $stmt = $db->prepare("DELETE FROM healthcare WHERE email = ?");
             $stmt->execute([$userName]);
             return true;
         } elseif ($usersCount > 0) {
-            $stmt = $db->prepare("DELETE FROM users WHERE name = ?");
+            $stmt = $db->prepare("DELETE FROM users WHERE email = ?");
             $stmt->execute([$userName]);
             return true;
         }
@@ -105,7 +105,13 @@ public function deleteUserByName($userName){
                       </div>";
                 return false;
             }
-            
+            if (!$this->userExist($email)){
+                echo "<div class='error-message'>
+                <i class='error-icon'>⚠️</i>
+                This email is not found. Please try another one.
+              </div>";
+        return false;
+            }
             // Check if user exists before attempting to ban
             $db = new PDO("mysql:host=localhost;dbname=Medical", "root", "");
             
@@ -133,24 +139,24 @@ public function deleteUserByName($userName){
             $result = $stmt->execute([$name, $email]);
             
             if ($result) {
-                $deleteResult = $this->deleteUserByName($name);
-                
-                if ($deleteResult) {
                     echo "<div class='success-message'>
                             <i class='success-icon'>✓</i>
                             User has been successfully banned and removed from the system.
                           </div>";
-                } else {
+                } 
+                else {
                     echo "<div class='warning-message'>
                             <i class='warning-icon'>⚠️</i>
                             User was banned but could not be removed from the system.
                           </div>";
                 }
-            }
+            
             
             return $result;
             
-        } catch (PDOException $e) {
+        } 
+        
+        catch (PDOException $e) {
             error_log("Ban user error: " . $e->getMessage());
             echo "<div class='error-message'>
                     <i class='error-icon'>⚠️</i>
@@ -165,13 +171,13 @@ public function deleteUserByName($userName){
        
         try {
             $db = new PDO("mysql:host=localhost;dbname=Medical", "root", "");
-            $stmt = $db->prepare("SELECT COUNT(*) FROM healthcare WHERE name = ?");
+            $stmt = $db->prepare("SELECT COUNT(*) FROM healthcare WHERE email = ?");
             $stmt->execute([$userName]);
             $healthcareCount = $stmt->fetchColumn();
             
             // Check users table
             $db = new PDO("mysql:host=localhost;dbname=Medical", "root", "");
-            $stmt = $db->prepare("SELECT COUNT(*) FROM users WHERE name = ?");
+            $stmt = $db->prepare("SELECT COUNT(*) FROM users WHERE email = ?");
             $stmt->execute([$userName]);
             $usersCount = $stmt->fetchColumn();
             return ($healthcareCount > 0 || $usersCount > 0);
@@ -193,36 +199,61 @@ public function deleteUserByName($userName){
 	public function getAllUsers() {
         $users = [];
         
+        // Get users from users table
         $sqlUsers = "SELECT *, 'User' as role FROM users";
         $resultUsers = $this->db->query($sqlUsers);
         
         while ($row = $resultUsers->fetch_assoc()) {
-            $row['status'] = 'Active'; 
-            $row['registration_date'] = $row['birthdate']; 
+            // Check if email is banned
+            if ($this->isEmailBanned($row['email'])) {
+                $row['status'] = 'In Active (Banned)';
+            } else {
+                $row['status'] = 'Active';
+            }
+            $row['registration_date'] = $row['birthdate'];
             $users[] = $row;
         }
         
-        $sqlUsers = "SELECT *, 'Banned' as role ,''as id,''as birthdate FROM banned";
-        $resultUsers = $this->db->query($sqlUsers);
-        while ($row = $resultUsers->fetch_assoc()) {
-            $row['status'] = 'In Active (Banned)'; 
-            $row['registration_date'] ='0000-00-00'; 
-            $users[] = $row;
-        }
-        
-
+        // Get users from healthcare table
         $sqlHealthcare = "SELECT *, 'Healthcare Provider' as role FROM healthcare";
         $resultHealthcare = $this->db->query($sqlHealthcare);
         
         while ($row = $resultHealthcare->fetch_assoc()) {
-            $row['status'] = 'Active'; 
-            $row['registration_date'] = $row['birthdate']; 
+            // Check if email is banned
+            if ($this->isEmailBanned($row['email'])) {
+                $row['status'] = 'In Active (Banned)';
+            } else {
+                $row['status'] = 'Active';
+            }
+            $row['registration_date'] = $row['birthdate'];
             $users[] = $row;
         }
         
         return $users;
     }
-	
+    public function getAllMessages() {
+        try {
+            $db = new PDO("mysql:host=localhost; dbname=medical", "root", "");
+            $query = "SELECT name, username as email, message, created_at FROM contactus ORDER BY created_at DESC";
+            $stmt = $db->prepare($query);
+            $stmt->execute();
+            
+            $messages = array();
+            while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                $messages[] = array(
+                    'name' => $row['name'],
+                    'email' => $row['email'],  // username column aliased as email
+                    'message' => $row['message'],
+                    'created_at' => $row['created_at']
+                );
+            }
+            
+            return $messages;
+        } catch (Exception $e) {
+            error_log("Error retrieving messages: " . $e->getMessage());
+            return false;
+        }
+    }
 }
 ?>
 <style>
