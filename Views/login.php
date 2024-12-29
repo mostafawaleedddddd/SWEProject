@@ -11,52 +11,55 @@ $controller = new UserController($model);
 $loginError = false; // Initialize login error flag
 
 if (isset($_POST['login'])) {
-    $name = $_POST["username"];
-    $password = $_POST["password"];
-    $dbh = new DBh();
-    $conn = $dbh->getConn();
+  $name = $_POST["username"];
+  $password = $_POST["password"];
+  $dbh = new DBh();
+  $conn = $dbh->getConn();
 
-    // Define the user types and their corresponding tables
-    $userTables = [
-        'admin' => 'admins',
-        'patient' => 'users',
-        'healthCare' => 'healthcare' // Ensure table name is consistent with database
-    ];
+  // Define the user types and their corresponding tables
+  $userTables = [
+    'admin' => 'admins',
+    'patient' => 'users',
+    'healthCare' => 'healthcare' // Ensure table name is consistent with database
+  ];
 
-    $authenticated = false;
-    if ($controller->isEmailBanned($name)) {
-      header("Location: ../Views/Bannedusers.php");
-      exit(); 
-  }
-  else{
+  $authenticated = false;
+  if ($controller->isEmailBanned($name)) {
+    header("Location: ../Views/Bannedusers.php");
+    exit();
+  } else {
     foreach ($userTables as $userType => $tableName) {
-        $query = "SELECT * FROM $tableName WHERE email = ? and password = ?";
-        $stmt = $conn->prepare($query);
+      $query = "SELECT * FROM $tableName WHERE email = ? and password = ?";
+      $stmt = $conn->prepare($query);
 
-        if (!$stmt) {
-            die("Query preparation failed: " . $conn->error);
-        }
+      if (!$stmt) {
+        die("Query preparation failed: " . $conn->error);
+      }
 
-        $stmt->bind_param("ss", $name, $password); // Bind email (username) parameter
-        $stmt->execute();
-        $result = $stmt->get_result()->fetch_assoc();
+      $stmt->bind_param("ss", $name, $password); // Bind email (username) parameter
+      $stmt->execute();
+      $result = $stmt->get_result()->fetch_assoc();
 
-        if ($result) {
-            $_SESSION['user'] = $result;
-            $_SESSION['user_type'] = $userType;
-            $authenticated = true;
-            break;
-        }
+      if ($result) {
+        $_SESSION['user'] = $result;
+        $_SESSION['user_type'] = $userType;
+        $authenticated = true;
+        break;
+      }
     }
   }
 
-    // Handle authentication result
-    if ($authenticated) {
-        header("Location: /Medira/Views/index.php");
-        exit();
+  // Handle authentication result
+  if ($authenticated) {
+    if ($_SESSION['user_type'] == 'admin') {
+      header("Location: ../Views/Admin_dashboard.php");
     } else {
-        $loginError = true; // Set the error flag
+      header("Location: /Medira/Views/index.php");
+      exit();
     }
+  } else {
+    $loginError = true; // Set the error flag
+  }
 }
 ?>
 <!DOCTYPE html>
@@ -100,7 +103,7 @@ if (isset($_POST['login'])) {
     <script>
       alert("Invalid credentials. Please try again.");
     </script>
-    <?php $loginError=false;  ?>
+    <?php $loginError = false; ?>
   <?php endif; ?>
 </body>
 

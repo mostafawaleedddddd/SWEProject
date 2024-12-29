@@ -1,5 +1,6 @@
 <?php
 // Include the Forum model to access the database functions
+session_start();
 require_once '../Models/Forum.php';
 if (!isset($_SESSION['user_type'])) {
     $_SESSION['user_type'] = 'guest';

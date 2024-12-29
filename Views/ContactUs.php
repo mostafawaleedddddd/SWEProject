@@ -1,5 +1,6 @@
 <?php
 require_once '../Models/ContactUs.php';
+session_start();
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
  $name=$_POST["name"];
  $username=$_POST["username"];

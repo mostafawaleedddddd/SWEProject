@@ -1,8 +1,11 @@
 <?php
+session_start();
 // Include the Forum model to access the database functions
 require_once '../Models/Forum.php';
 if (!isset($_SESSION['user_type'])) {
     $_SESSION['user_type'] = 'guest';
+    header('Location: login.php'); // Redirect to the login page
+    exit();
   }
   $user_type = $_SESSION['user_type'];
 // Handle form submission for new discussion

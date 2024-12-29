@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 22, 2024 at 03:18 PM
+-- Generation Time: Dec 29, 2024 at 07:43 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.0.30
 
@@ -70,6 +70,20 @@ INSERT INTO `contactus` (`id`, `name`, `username`, `message`, `created_at`) VALU
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `forum`
+--
+
+CREATE TABLE `forum` (
+  `id` int(11) NOT NULL,
+  `parent_comment` int(11) DEFAULT NULL,
+  `student` varchar(100) NOT NULL,
+  `post` text NOT NULL,
+  `date` datetime DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `forums`
 --
 
@@ -85,19 +99,9 @@ CREATE TABLE `forums` (
 --
 
 INSERT INTO `forums` (`id`, `patient`, `post`, `parent_comment`) VALUES
-(1, 'Omar', 'hi how are you', NULL),
-(2, 'Ramez', 'Hiiiiiiiiiiiii', NULL),
-(3, 'Omar', 'hi', 2),
-(4, 'Omar', 'hi', 2),
-(5, 'Omar', 'hi', 2),
-(6, 'Madrid', 'Where are you guys', NULL),
-(7, 'Omar', ' at home', 6),
-(8, 'Ramez', ' none of your busbus', 6),
-(9, 'Mazen', 'Hi alll', NULL),
-(10, 'Omar', 'hi how are you', 9),
-(11, 'Akram', 'i am gay', NULL),
-(12, 'Ramez', 'I know', 11),
-(13, 'Akram', ' hi', NULL);
+(14, 'Ramez', 'I have back pain and the doctor prescribed me viodican but i don\'t know what it does can anyone tell what it do?', NULL),
+(17, 'HealthCare Provider', 'Try taking pandol joint', 14),
+(18, 'Mostafa', 'I am taking cortosol for my nerve pain is it good for nerve pain', NULL);
 
 -- --------------------------------------------------------
 
@@ -122,6 +126,35 @@ CREATE TABLE `healthcare` (
 INSERT INTO `healthcare` (`id`, `name`, `password`, `email`, `birthdate`, `gender`, `phone`) VALUES
 (1, 'Akram', 'Akram@2004', 'akram@gmail.com', '0000-00-00', 'Male', '01200588939'),
 (2, 'Mostafa', '123', 'mostafas90@gmail.com', '1963-11-20', 'Male', '01200588939');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `medical_conditions`
+--
+
+CREATE TABLE `medical_conditions` (
+  `id` int(11) NOT NULL,
+  `condition_name` varchar(255) NOT NULL,
+  `symptoms` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL CHECK (json_valid(`symptoms`)),
+  `organ` varchar(100) NOT NULL,
+  `advice` text NOT NULL,
+  `urgency` varchar(50) NOT NULL,
+  `specialist` varchar(100) NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `medical_conditions`
+--
+
+INSERT INTO `medical_conditions` (`id`, `condition_name`, `symptoms`, `organ`, `advice`, `urgency`, `specialist`, `created_at`, `updated_at`) VALUES
+(1, 'Flu', '[\"fever\", \"chills\", \"headache\", \"fatigue\", \"muscle aches\"]', '', 'Rest, drink fluids, and take over-the-counter pain relievers.', 'Moderate', 'General Practitioner', '2024-12-23 10:08:00', '2024-12-23 10:08:00'),
+(2, 'Cold', '[\"cough\", \"sore throat\", \"runny nose\", \"sneezing\"]', '', 'Rest, drink warm fluids, and take cough syrup if necessary.', 'Low', 'General Practitioner', '2024-12-23 10:08:00', '2024-12-23 10:08:00'),
+(3, 'Migraine', '[\"headache\", \"nausea\", \"sensitivity to light\", \"vomiting\"]', '', 'Avoid bright lights, stay in a quiet room, and use pain relievers.', 'High', 'Neurologist', '2024-12-23 10:08:00', '2024-12-23 10:08:00'),
+(4, 'Pneumonia', '[\"cough\", \"chest pain\", \"shortness of breath\", \"fever\"]', '', 'Seek immediate medical care, antibiotics may be needed.', 'Very High', 'Pulmonologist', '2024-12-23 10:08:00', '2024-12-23 10:08:00'),
+(5, 'Stomach Ulcer', '[\"stomach pain\", \"nausea\", \"vomiting\", \"indigestion\"]', '', 'Avoid spicy foods, eat smaller meals, and consult a doctor.', 'Moderate', 'Gastroenterologist', '2024-12-23 10:08:00', '2024-12-23 10:08:00');
 
 -- --------------------------------------------------------
 
@@ -165,6 +198,13 @@ ALTER TABLE `contactus`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `forum`
+--
+ALTER TABLE `forum`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `parent_comment` (`parent_comment`);
+
+--
 -- Indexes for table `forums`
 --
 ALTER TABLE `forums`
@@ -202,10 +242,16 @@ ALTER TABLE `contactus`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
+-- AUTO_INCREMENT for table `forum`
+--
+ALTER TABLE `forum`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT for table `forums`
 --
 ALTER TABLE `forums`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT for table `healthcare`
@@ -222,6 +268,12 @@ ALTER TABLE `users`
 --
 -- Constraints for dumped tables
 --
+
+--
+-- Constraints for table `forum`
+--
+ALTER TABLE `forum`
+  ADD CONSTRAINT `forum_ibfk_1` FOREIGN KEY (`parent_comment`) REFERENCES `forum` (`id`) ON DELETE CASCADE;
 
 --
 -- Constraints for table `forums`
