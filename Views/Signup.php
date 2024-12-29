@@ -17,6 +17,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $controller->insert();
         header("Location: /Medira/Views/Signedup.php");
         exit;
+    } else {
+        // Store the errors in the session
+        session_start();
+        $_SESSION['errors'] = $errors;
+
+        // Redirect to the signup page to display the errors
+        header("Location: /Medira/Views/Signup.php");
+        exit;
     }
 }
 ?>
@@ -94,7 +102,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         <label for="male">Male</label>
                         <input type="radio" name="gender" value="Female" id="female">
                         <label for="female">Female</label>
-                
                     </div>
                 </div>
                 <div class="form-submit-btn">
@@ -105,13 +112,22 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     </div>
 
     <!-- Show errors as JavaScript alerts -->
-    <?php if (!empty($errors)) : ?>
+    <?php
+    session_start();
+
+    // Check if there are any errors in the session
+    if (isset($_SESSION['errors']) && !empty($_SESSION['errors'])) :
+    ?>
         <script>
-            <?php foreach ($errors as $error) : ?>
+            <?php foreach ($_SESSION['errors'] as $error) : ?>
                 alert("<?php echo addslashes($error); ?>");
             <?php endforeach; ?>
         </script>
-    <?php endif; ?>
+    <?php
+        // Clear the errors from the session after displaying the alerts
+        unset($_SESSION['errors']);
+    endif;
+    ?>
 </body>
 
 </html>

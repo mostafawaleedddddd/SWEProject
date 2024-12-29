@@ -1,11 +1,32 @@
 <?php
 require_once '../Models/ContactUs.php';
 session_start();
+$errors ;
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
  $name=$_POST["name"];
  $username=$_POST["username"];
  $message=$_POST["message"];
- $model=new Contact($name,$message,$username);
+ $db = new DBh();
+ $sql = "SELECT COUNT(*) as count FROM users WHERE email = ? and name = ?";
+        $stmt = $db->getConn()->prepare($sql);
+        $stmt->bind_param("ss", $username,$name);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $row = $result->fetch_assoc();
+        if ($row['count'] > 0) {
+          
+          $model=new Contact($name,$message,$username);
+          header("Location: /Medira/Views/ContactUS.php");
+          exit;
+      }
+      else{
+        $_SESSION['error'] = "Theis Account doesn't exist.";
+        header("Location: /Medira/Views/ContactUS.php");
+        exit;
+        
+       
+      }
+ 
 }
 
 if (!isset($_SESSION['user_type'])) {
@@ -86,5 +107,21 @@ if (!isset($_SESSION['user_type'])) {
     </a>
   </div>
 </body>
+<?php
+session_start(); // Start the session to access session variables
 
+// Check if there's an error message in the session
+if (isset($_SESSION['error'])):
+?>
+    <script>
+        alert("<?php echo $_SESSION['error']; ?>");
+    </script>
+<?php
+    // Clear the error message from the session after displaying the alert
+    unset($_SESSION['error']);
+    // Redirect after showing the alert
+    header("Location: /Medira/Views/ContactUS.php");
+    exit;
+endif;
+?>
 </html>
