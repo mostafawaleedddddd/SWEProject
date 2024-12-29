@@ -108,7 +108,6 @@ if (!isset($_SESSION['user_type'])) {
   </div>
 </body>
 <?php
-session_start(); // Start the session to access session variables
 
 // Check if there's an error message in the session
 if (isset($_SESSION['error'])):
