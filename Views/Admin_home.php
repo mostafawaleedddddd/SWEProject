@@ -189,6 +189,50 @@
     transform: scale(1.05);
 }
 
+.button {
+  position: absolute; 
+  top: 70px; 
+  right: 1600px; 
+  cursor: pointer;
+  padding: 10px 24px;
+  font-size: 30px;
+  color:rgb(101, 138, 229);
+  border: 2px solid rgb(101, 138, 229);
+  border-radius: 34px;
+  background-color: transparent;
+  font-weight: 600;
+  transition: all 0.3s cubic-bezier(0.23, 1, 0.320, 1);
+  overflow: hidden;
+}
+
+.button::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  margin: auto;
+  width: 85px;
+  height: 50px;
+  border-radius: inherit;
+  scale: 0;
+  z-index: -1;
+  background-color: #396cf0;
+  transition: all 0.6s cubic-bezier(0.23, 1, 0.320, 1);
+}
+
+.button:hover::before {
+  scale: 3;
+}
+
+.button:hover {
+  color: #212121;
+  scale: 1.1;
+  box-shadow: 0 0px 20px rgba(193, 163, 98,0.4);
+}
+
+.button:active {
+  scale: 1;
+}
+
     </style>
 </head>
 <body>
@@ -227,14 +271,9 @@
         </div>
     </div>
 
-    <a href="javascript:history.back()" class="box box4">
-            <span class="icon">
-                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" class="svg">
-                    <path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/>
-                </svg>
-            </span>
-            <span class="label">Go Back</span>
-        </a>
+            <button class="button" onclick="location.href='/Medira/Views/messages.php';">
+                            Go Back
+            </button>
 
 
     
