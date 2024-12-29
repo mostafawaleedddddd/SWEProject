@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 29, 2024 at 08:48 PM
+-- Generation Time: Dec 29, 2024 at 09:22 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.0.30
 
@@ -43,6 +43,26 @@ CREATE TABLE `admins` (
 
 INSERT INTO `admins` (`id`, `name`, `password`, `email`, `birthdate`, `gender`, `phone`) VALUES
 (1, 'mostafa', 'Mostafa@2004', 'mostafa@gmail.com', '0000-00-00', 'Male', '01200588939');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `banned`
+--
+
+CREATE TABLE `banned` (
+  `name` varchar(20) NOT NULL,
+  `email` varchar(20) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `banned`
+--
+
+INSERT INTO `banned` (`name`, `email`) VALUES
+('KSNVS', 'mostafa22@gmail.com'),
+('wefw', 'mostafa@gmail.com'),
+('wefw', 'mostafa741@gmail.com');
 
 -- --------------------------------------------------------
 
