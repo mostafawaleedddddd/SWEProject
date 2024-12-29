@@ -27,6 +27,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         exit;
     }
 }
+
+$currentYear = date("Y");
+$currentMonth = date("m");
+$currentDay = date("d");
 ?>
 
 <!DOCTYPE html>
@@ -73,26 +77,43 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     <div class="gender-category">
                         <select id="day" name="day" required>
                             <option value="">Day</option>
-                            <?php for ($i = 1; $i <= 31; $i++) : ?>
+                            <?php
+                            // Check if the selected month and year are the current month and year
+                            $selectedMonth = isset($_POST['month']) ? $_POST['month'] : $currentMonth;
+                            $selectedYear = isset($_POST['year']) ? $_POST['year'] : $currentYear;
+                            
+                            // Get the number of days in the selected month
+                            $daysInMonth = cal_days_in_month(CAL_GREGORIAN, $selectedMonth, $selectedYear);
+
+                            // Loop through the days of the month
+                            for ($i = 1; $i <= $daysInMonth; $i++) :
+                                // Disable days that are in the future
+                                if ($selectedYear == $currentYear && $selectedMonth == $currentMonth && $i > $currentDay) :
+                            ?>
+                                <option value="<?php echo $i; ?>" disabled><?php echo $i; ?></option>
+                            <?php else: ?>
                                 <option value="<?php echo $i; ?>"><?php echo $i; ?></option>
-                            <?php endfor; ?>
+                            <?php endif; endfor; ?>
                         </select>
+
                         <select id="month" name="month" required>
                             <option value="">Month</option>
                             <?php
-                            $months = [
-                                "January", "February", "March", "April", "May",
-                                "June", "July", "August", "September", "October", "November", "December"
-                            ];
-                            foreach ($months as $index => $month) :
+                            // Loop through numbers 1 to 12 for months
+                            for ($i = 1; $i <= 12; $i++) :
+                                // Disable future months if the selected year is the current year
+                                if ($selectedYear == $currentYear && $i > $currentMonth) :
                             ?>
-                                <option value="<?php echo $index + 1; ?>"><?php echo $month; ?></option>
-                            <?php endforeach; ?>
+                                <option value="<?php echo $i; ?>" disabled><?php echo $i; ?></option>
+                            <?php else: ?>
+                                <option value="<?php echo $i; ?>"><?php echo $i; ?></option>
+                            <?php endif; endfor; ?>
                         </select>
+
                         <select id="year" name="year" required>
                             <option value="">Year</option>
-                            <?php for ($i = 1944; $i <= date("Y"); $i++) : ?>
-                                <option value="<?php echo $i; ?>"><?php echo $i; ?></option>
+                            <?php for ($i = 1944; $i <= $currentYear; $i++) : ?>
+                                <option value="<?php echo $i; ?>" <?php echo ($i == $currentYear) ? 'selected' : ''; ?>><?php echo $i; ?></option>
                             <?php endfor; ?>
                         </select>
                     </div>
