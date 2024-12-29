@@ -132,8 +132,8 @@ $discussions = Forum::getAllInstances();
                 <form method="POST">
                     <input type="hidden" id="commentid" name="commentid">
                     <div class="form-group">
-                        <label for="Rname">Write your name:</label>
-                        <input type="text" class="form-control" name="Rname" required>
+                        <label for="Rname"> Your name:</label>
+                        <input type="text" class="form-control" name="Rname" value="HealthCare Provider" required readonly>
                     </div>
                     <div class="form-group">
                         <label for="Rmsg">Write your reply:</label>

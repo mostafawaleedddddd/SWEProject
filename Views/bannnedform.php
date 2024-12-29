@@ -36,7 +36,11 @@ if (!empty($errors)) {
 }
 
 }    
-    
+
+if (!isset($_SESSION['user_type'])) {
+    header('Location: login.php');
+}
+
     
     ?>
 

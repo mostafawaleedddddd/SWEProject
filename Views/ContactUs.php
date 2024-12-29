@@ -7,6 +7,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
  $model=new Contact($name,$message,$username);
 }
 
+if (!isset($_SESSION['user_type'])) {
+  header('Location: login.php');
+}
 ?>
 
 <!DOCTYPE html>

@@ -3,6 +3,9 @@
 require_once '../Models/Forum.php';
 if (!isset($_SESSION['user_type'])) {
     $_SESSION['user_type'] = 'guest';
+    header('Location: login.php');
+    
+    
 }
 $user_type = $_SESSION['user_type'];
 

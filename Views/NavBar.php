@@ -14,7 +14,7 @@ if (isset($_GET['logout'])) {
 
 ?>
 
-<nav class="navbar">
+<div class="navbar">
     <div class="logo"><a href="/Medira/Views/index.php"><img src="/Medira/Media/images/LOGO.png"></a> </div>
     <ul>
         <?php if ($user_type == 'healthCare'): ?>
@@ -39,4 +39,4 @@ if (isset($_GET['logout'])) {
             <button class="SignIn" onclick="location.href='/Medira/Views/login.php';">SignIn</button>
         <?php endif; ?>
     </ul>
-</nav>
+</div>

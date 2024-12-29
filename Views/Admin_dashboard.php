@@ -1,3 +1,12 @@
+<?php
+
+if (!isset($_SESSION['user_type'])) {
+    header('Location: login.php');
+}
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 

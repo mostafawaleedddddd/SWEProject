@@ -1,3 +1,10 @@
+<?php
+
+if (!isset($_SESSION['user_type'])) {
+    header('Location: login.php');
+}
+
+?>
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
@@ -9,7 +16,9 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@48,400,1,0" />
     <script src="/Medira/Media/js/Chat.js" defer></script>
   </head>
-  <body class="show-chatbot">  <!-- Add class to open the chatbot by default -->
+  <body>  
+  <button class="button" onclick="window.location.href='index.php'">Go Back</button>
+  <div class="show-chatbot">
     <div class="chatbot">
       <!-- Toggle button to open/close the chatbot -->
       <span class="chatbot-toggler">Toggle Chatbot</span>
@@ -27,5 +36,6 @@
         <span id="send-btn" class="material-symbols-rounded">send</span>
       </div>
     </div>
+  </div>
   </body>
 </html>
