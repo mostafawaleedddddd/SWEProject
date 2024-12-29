@@ -23,7 +23,7 @@ body {
   cursor: pointer;
   color: #724ae8;
   transition: all 1000ms;
-  font-size: 15px;
+  font-size: 20px;
   position: relative;
   overflow: hidden;
 }
