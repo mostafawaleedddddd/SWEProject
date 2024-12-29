@@ -55,20 +55,12 @@ $user_type = $_SESSION['user_type'];
                   <?php elseif ($user_type == 'admin'): ?>
                     <!-- Add a button for admin user type if needed -->
                   <?php elseif ($user_type == 'patient'): ?>
-                    <button class="started" 
-                            onclick="location.href='/Medira/Views/Chat.php';" 
-                            data-animation="fadeInLeft" data-delay="0.5s" 
-                            style="animation-delay: 0.5s;"> 
-                      Start Chatting 
-                      <i class="fa-solid fa-arrow-right"></i>
+                    <button class="button" onclick="location.href='/Medira/Views/Chat.php';">
+                      Start Chatting
                     </button>
                   <?php else: ?>
-                    <button class="started" 
-                            onclick="location.href='/Medira/Views/Signup.php';" 
-                            data-animation="fadeInLeft" data-delay="0.5s" 
-                            style="animation-delay: 0.5s;"> 
-                      Get Started 
-                      <i class="fa-solid fa-arrow-right"></i>
+                    <button class="button" onclick="location.href='/Medira/Views/Signup.php';">
+                      Get Started
                     </button>
                   <?php endif; ?>
                 </div>
