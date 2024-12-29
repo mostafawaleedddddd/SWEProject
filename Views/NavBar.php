@@ -21,11 +21,6 @@ if (isset($_GET['logout'])) {
             <li><a href="/Medira/Views/index.php">Home</a></li>
             <li><a href="/Medira/Views/DiscussionForum.php">Discussion Forum</a></li>
             <li><button class="Signup" onclick="location.href='?logout=true';">Logout</button></li>
-        <?php elseif ($user_type == 'admin'): ?>
-            <li><a href="/Medira/Views/Admin.php">Admin Home</a></li>
-            <li><a href="/Medira/Views/Manage.php">Manage Users</a></li>
-            <li><a href="/Medira/Views/Analytics.php">Analytics</a></li>
-            <li><button class="Signup" onclick="location.href='?logout=true';">Logout</button></li>
         <?php elseif ($user_type == 'patient'): ?>
             <li><a href="/Medira/Views/index.php">Home</a></li>
             <li><a href="/Medira/Views/DiscussionForum.php">Discussion Forum</a></li>

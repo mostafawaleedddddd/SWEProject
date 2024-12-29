@@ -86,7 +86,7 @@ if (!isset($_SESSION['user_type'])) {
         </div>
         <div>
           <i class="ri-phone-fill"></i>
-          <span> 45465462561</span>
+          <span> +20 115 648 226</span>
         </div>
         <div>
           <i class="ri-mail-line"></i>
