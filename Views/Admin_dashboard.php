@@ -3,6 +3,11 @@ session_start();
 if (!isset($_SESSION['user_type'])) {
     header('Location: login.php');
 }
+if (isset($_GET['logout'])) {
+    session_destroy();
+    header("Location: /Medira/Views/index.php"); // Redirect to the same page after logout
+    exit;
+}
 
 ?>
 
@@ -430,7 +435,7 @@ if (!isset($_SESSION['user_type'])) {
 
                 <!-- Bottom Upgrade Option -->
                 <div class="m-4  relative grid">
-                    <button class="text-base font-semibold hover:bg-blue-700 btn">logout</button>
+                    <button class="text-base font-semibold hover:bg-blue-700 btn"onclick="location.href='?logout=true';">logout</button>
                 </div>
                 <!-- </aside> -->
             </aside>

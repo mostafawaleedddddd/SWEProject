@@ -11,7 +11,7 @@ if (isset($_GET['logout'])) {
     exit;
 }
 
-
+ 
 ?>
 
 <div class="navbar">

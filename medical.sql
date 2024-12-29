@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 29, 2024 at 07:43 PM
+-- Generation Time: Dec 29, 2024 at 08:48 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.0.30
 
@@ -65,7 +65,8 @@ CREATE TABLE `contactus` (
 INSERT INTO `contactus` (`id`, `name`, `username`, `message`, `created_at`) VALUES
 (1, 'omar', 'omar@gmail.com', 'hi love this website very muchh!!!', '2024-12-20 18:02:40'),
 (3, 'Omar', 'omar@gmail.com', 'Hi i dont love this website at all !!', '2024-12-20 18:07:31'),
-(4, 'Mazen', 'mazen@gmail.com', 'hi i learned alot from your website and i am happy to be with you all <3', '2024-12-20 18:08:33');
+(4, 'Mazen', 'mazen@gmail.com', 'hi i learned alot from your website and i am happy to be with you all <3', '2024-12-20 18:08:33'),
+(9, 'Omar', 'omar@gmail.com', 'hi i got alot of useful information from your website i am very thankful for this', '2024-12-29 19:22:03');
 
 -- --------------------------------------------------------
 
@@ -239,7 +240,7 @@ ALTER TABLE `admins`
 -- AUTO_INCREMENT for table `contactus`
 --
 ALTER TABLE `contactus`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `forum`
