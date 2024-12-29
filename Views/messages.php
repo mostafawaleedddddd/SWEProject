@@ -27,7 +27,7 @@ if (isset($_GET['logout'])) {
         rel="stylesheet" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@2.44.0/tabler-icons.min.css">
     <!-- Core Css -->
-    <link rel="stylesheet" href="/Medira/Media/css/theme.css"" />
+    <link rel="stylesheet" href="/Medira/Media/css/theme.css" />
     <title>Spike TailwindCSS HTML Admin Template</title>
     <style>
         :root {
@@ -124,6 +124,7 @@ if (isset($_GET['logout'])) {
             max-width: 1100px;
             margin: 0 auto;
             padding: 20px;
+            margin-left:300px;
         }
 
         .header {
@@ -223,6 +224,8 @@ if (isset($_GET['logout'])) {
                 max-width: 200px;
             }
         }
+
+
     </style>
 </head>
 
@@ -254,16 +257,10 @@ if (isset($_GET['logout'])) {
                         <ul id="sidebarnav" class="text-gray-600 text-sm">
                             <li class="text-xs font-bold pb-[5px]">
                                 <i class="ti ti-dots nav-small-cap-icon text-lg hidden text-center"></i>
-                                <span class="text-xs text-gray-400 font-semibold">HOME</span>
                             </li>
 
 
-                            <li class="sidebar-item">
-                                <a class="sidebar-link gap-3 py-2.5 my-1 text-base  flex items-center relative  rounded-md text-gray-500  w-full"
-                                    href="/Medira/Views/Admin.php">
-                                    <i class="ti ti-layout-dashboard ps-2  text-2xl"></i> <span>Analytics</span>
-                                </a>
-                            </li>
+                           
 
                             <li class="text-xs font-bold mb-4 mt-6">
                                 <i class="ti ti-dots nav-small-cap-icon text-lg hidden text-center"></i>
@@ -353,5 +350,19 @@ if (isset($_GET['logout'])) {
             </table>
         </div>
     </div>
+    <script src="/Medira/Media/spike-free-tailwind-v1 2/dist/assets/libs/jquery/dist/jquery.min.js"></script>
+<script src="/Medira/Media/assets/libs/simplebar/dist/simplebar.min.js"></script>
+<script src="/Medira/Media/assets/libs/iconify-icon/dist/iconify-icon.min.js"></script>
+<script src="/Medira/Media/assets/libs/@preline/dropdown/index.js"></script>
+<script src="/Medira/Media/assets/libs/@preline/overlay/index.js"></script>
+<script src="/Medira/Media/assets/js/sidebarmenu.js"></script>
+
+
+
+	<script src="/Medira/Media/Spike/dist/assets/libs/apexcharts/dist/apexcharts.min.js"></script>
+    <script src="/Medira/Media/spike/dist/assets/js/dashboard.js"></script>
+	
+
+
 </body>
 </html>

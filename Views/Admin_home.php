@@ -1,8 +1,6 @@
 <?php
-session_start();
-if (!isset($_SESSION['user_type'])) {
-    header('Location: login.php');
-}
+
+
 
 ?>
 <!DOCTYPE html>
@@ -169,10 +167,33 @@ if (!isset($_SESSION['user_type'])) {
             transform: translate(-50%, -100%);
             opacity: 0.8;
         }
+
+
+
+        /* General styles for the Go Back button */
+.box4 {
+    position: absolute; /* Position it relative to the parent container */
+    top: 70px; /* Distance from the top */
+    left: 100px; /* Distance from the left */
+    text-decoration: none;
+    color: #fff;
+    padding: 10px 20px;
+    background-color:rgb(40, 167, 156); /* Green color */
+    border-radius: 8px;
+    font-weight: bold;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.box4:hover {
+    background-color:rgb(47, 33, 136); /* Darker green on hover */
+    transform: scale(1.05);
+}
+
     </style>
 </head>
 <body>
     <div class="card">
+
         <div class="background"></div>
         <div class="welcome-message">
             <h1>Welcome Admin!</h1>
@@ -206,7 +227,14 @@ if (!isset($_SESSION['user_type'])) {
         </div>
     </div>
 
-
+    <a href="javascript:history.back()" class="box box4">
+            <span class="icon">
+                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" class="svg">
+                    <path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/>
+                </svg>
+            </span>
+            <span class="label">Go Back</span>
+        </a>
 
 
     

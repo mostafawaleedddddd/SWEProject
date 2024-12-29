@@ -326,7 +326,13 @@ $discussions = Forum::getAllInstances();
             </div>
         </div>
     </div>
+    
+
 </div>
+
+               
+
+
 
 <footer>
     <div class="footer-area section-bg" data-background="/Medira/Media/images/A_black_image.jpg">
@@ -380,6 +386,11 @@ $discussions = Forum::getAllInstances();
             </div>
         </div>
     </div>
-</footer>
+
+
+
+    
+</footer> 
+
 </body>
 </html>
