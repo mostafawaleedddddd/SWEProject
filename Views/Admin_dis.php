@@ -292,8 +292,11 @@ $discussions = Forum::getAllInstances();
         .logout-btn:hover {
             background: #1d4ed8;
         }
+
     </style>
 </head>
+
+
 
 <body>
     
@@ -329,66 +332,6 @@ $discussions = Forum::getAllInstances();
     
 
 </div>
-
-               
-
-
-
-<footer>
-    <div class="footer-area section-bg" data-background="/Medira/Media/images/A_black_image.jpg">
-        <div class="containers">
-            <div class="footer-top footer-padding">
-                <div class="row d-flex justify-content-between">
-                    <div class="col-xl-3 col-lg-3 col-md-4 col-sm-8">
-                        <div class="single-footer-caption mb-50">
-                            <div class="footer-logo">
-                                <a href="index.html"><img src="/Medira/Media/images/LOGO-footer.png" alt=""></a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xl-3 col-lg-4 col-md-6 col-sm-5">
-                        <div class="single-footer-caption mb-50">
-                            <div class="footer-tittle">
-                                <h4>About Us</h4>
-                                <div class="footer-pera">
-                                    <p class="info1">Helping healthcare professionals and patients access accurate medical information.</p>
-                                    <p class="info1">See how our NLP-driven technology supports better clinical decision-making.</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xl-3 col-lg-3 col-md-6 col-sm-8">
-                        <div class="single-footer-caption mb-50">
-                            <div class="footer-number mb-50">
-                                <h4><span>+20 </span>115 648 226</h4>
-                                <p>Medira @outlook.com</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <div class="row d-flex justify-content-between align-items-center">
-                    <div class="col-xl-9 col-lg-8">
-                        <div class="footer-copy-right">
-                            <p>Copyright &copy; 2024 Medira. All rights reserved.</p>
-                        </div>
-                    </div>
-                    <div class="col-xl-3 col-lg-4">
-                        <div class="footer-social f-right">
-                            <a href="#"><i class="fab fa-twitter"></i></a>
-                            <a href="#"><i class="fab fa-facebook-f"></i></a>
-                            <a href="#"><i class="fas fa-globe"></i></a>
-                            <a href="#"><i class="fab fa-instagram"></i></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-
-
     
 </footer> 
 

@@ -163,22 +163,54 @@ if (!isset($_SESSION['user_type'])) {
         }
 
         .message {
-            margin-top: 20px;
-            padding: 10px;
-            border-radius: 4px;
-            text-align: center;
-            font-weight: bold;
-        }
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 8px 16px;
+    border-radius: 6px;
+    font-size: 13px;
+    font-weight: 500;
+    width: auto;
+    min-width: 200px;
+    max-width: 300px;
+    text-align: center;
+    animation: messageAnimation 3s ease-in-out forwards;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    z-index: 1000;
+    opacity: 0;
+}
 
-        .success {
-            background-color: var(--success-color);
-            color: white;
-        }
+.success {
+    background-color: rgba(0, 191, 255, 0.95);
+    color: white;
+    border: 1px solid rgba(0, 191, 255, 0.3);
+}
 
-        .error {
-            background-color: var(--error-color);
-            color: white;
-        }
+.error {
+    background-color: rgba(255, 69, 58, 0.95);
+    color: white;
+    border: 1px solid rgba(255, 69, 58, 0.3);
+}
+
+@keyframes messageAnimation {
+    0% {
+        opacity: 0;
+        transform: translate(-50%, -20px);
+    }
+    15% {
+        opacity: 1;
+        transform: translate(-50%, 0);
+    }
+    85% {
+        opacity: 1;
+        transform: translate(-50%, 0);
+    }
+    100% {
+        opacity: 0;
+        transform: translate(-50%, -10px) scale(0.95);
+    }
+}
     </style>
 </head>
 

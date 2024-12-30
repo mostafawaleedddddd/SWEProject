@@ -255,45 +255,101 @@ public function deleteUserByName($userName){
         }
     }
 }
+function validateDate($month, $year) {
+    // Check if month and year are provided
+    if (empty($month) || empty($year)) {
+        return [
+            'valid' => false,
+            'error' => 'Month and year are required.'
+        ];
+    }
+
+    // Validate month range
+    if (!is_numeric($month) || $month < 1 || $month > 12) {
+        return [
+            'valid' => false,
+            'error' => 'Invalid month selected.'
+        ];
+    }
+
+    // Validate year range
+    $currentYear = date('Y');
+    if (!is_numeric($year) || $year < 1970 || $year > $currentYear) {
+        return [
+            'valid' => false,
+            'error' => 'Invalid year selected.'
+        ];
+    }
+
+    // Create DateTime objects for comparison
+    $selectedDate = new DateTime("$year-$month-01");
+    $minDate = new DateTime();
+    $minDate->modify('-26 years'); // Subtract 8 years from current date
+
+    // Compare dates
+    if ($selectedDate > $minDate) {
+        return [
+            'valid' => false,
+            'error' => 'You must be at least 8 years old.'
+        ];
+    }
+
+    return [
+        'valid' => true,
+        'error' => null
+    ];
+}
+
+
 ?>
 <style>
-    <style>
-.error-message, .success-message {
-    padding: 15px 20px;
-    border-radius: 8px;
-    margin: 10px 0;
-    font-family: Arial, sans-serif;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    animation: slideIn 0.3s ease-out;
+.message {
+    position: fixed;
+    top: 80px; /* Changed from 20px to 80px to appear below navbar */
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 8px 16px;
+    border-radius: 6px;
+    font-size: 13px;
+    font-weight: 500;
+    width: auto;
+    min-width: 200px;
+    max-width: 300px;
+    text-align: center;
+    animation: messageAnimation 3s ease-in-out forwards;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    z-index: 1000;
+    opacity: 0;
 }
 
-.error-message {
-    background-color: #FFE8E8;
-    border: 1px solid #FFB8B8;
-    color: #D63301;
+.success {
+    background-color: rgba(0, 191, 255, 0.95);
+    color: white;
+    border: 1px solid rgba(0, 191, 255, 0.3);
 }
 
-.success-message {
-    background-color: #E8F5E9;
-    border: 1px solid #A5D6A7;
-    color: #1B5E20;
+.error {
+    background-color: rgba(255, 69, 58, 0.95);
+    color: white;
+    border: 1px solid rgba(255, 69, 58, 0.3);
 }
 
-.error-icon, .success-icon {
-    font-size: 20px;
-}
-
-@keyframes slideIn {
-    from {
-        transform: translateY(-10px);
+@keyframes messageAnimation {
+    0% {
         opacity: 0;
+        transform: translate(-50%, -20px);
     }
-    to {
-        transform: translateY(0);
+    15% {
         opacity: 1;
+        transform: translate(-50%, 0);
+    }
+    85% {
+        opacity: 1;
+        transform: translate(-50%, 0);
+    }
+    100% {
+        opacity: 0;
+        transform: translate(-50%, -10px) scale(0.95);
     }
 }
-</style>
 </style>

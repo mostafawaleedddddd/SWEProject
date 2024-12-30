@@ -193,11 +193,11 @@ if (isset($_GET['logout'])) {
         .container {
             background-color: #fff;
             padding: 2rem;
-            height: 20%;
+            height: 10%;
             border-radius: 8px;
             box-shadow: 0 0 10px rgba(0,0,0,0.1);
             width: 100%;
-            max-width: 400px;
+             max-width: 700px; 
         }
         
         .form {
@@ -390,50 +390,54 @@ if (isset($_GET['logout'])) {
         }
 
         .message {
-            padding: 15px 25px;
-            border-radius: 10px;
-            font-size: 14px;
-            font-weight: 500;
-            width: 300px;
-            text-align: center;
-            animation: fadeInOut 4s ease-in-out forwards;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-            opacity: 0;
-        }
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 8px 16px;
+    border-radius: 6px;
+    font-size: 13px;
+    font-weight: 500;
+    width: auto;
+    min-width: 200px;
+    max-width: 300px;
+    text-align: center;
+    animation: messageAnimation 3s ease-in-out forwards;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    z-index: 1000;
+    opacity: 0;
+}
 
-        .success {
-            background-color: rgba(0, 191, 255, 0.9);
-            color: white;
-            border: 1px solid rgba(0, 191, 255, 0.3);
-        }
+.success {
+    background-color: rgba(0, 191, 255, 0.95);
+    color: white;
+    border: 1px solid rgba(0, 191, 255, 0.3);
+}
 
-        .error {
-            background-color: rgba(255, 69, 58, 0.9);
-            color: white;
-            border: 1px solid rgba(255, 69, 58, 0.3);
-        }
+.error {
+    background-color: rgba(255, 69, 58, 0.95);
+    color: white;
+    border: 1px solid rgba(255, 69, 58, 0.3);
+}
 
-        @keyframes fadeInOut {
-            0% {
-                opacity: 0;
-                transform: translateY(-20px);
-            }
-
-            10% {
-                opacity: 1;
-                transform: translateY(0);
-            }
-
-            80% {
-                opacity: 1;
-                transform: translateY(0);
-            }
-
-            100% {
-                opacity: 0;
-                transform: translateY(-20px);
-            }
-        }
+@keyframes messageAnimation {
+    0% {
+        opacity: 0;
+        transform: translate(-50%, -20px);
+    }
+    15% {
+        opacity: 1;
+        transform: translate(-50%, 0);
+    }
+    85% {
+        opacity: 1;
+        transform: translate(-50%, 0);
+    }
+    100% {
+        opacity: 0;
+        transform: translate(-50%, -10px) scale(0.95);
+    }
+}
     </style>
 
     <?php
@@ -451,6 +455,8 @@ if (isset($_GET['logout'])) {
         $phone = $_POST['phoneNumber'];
         $gender = $_POST['gender'];
         $errors = [];
+        $isBanned=$controller->isEmailBanned($email);
+        $validation = validateDate($_POST['month'], $_POST['year']);
         $day = str_pad($_POST['day'], 2, '0', STR_PAD_LEFT);
         $month = str_pad($_POST['month'], 2, '0', STR_PAD_LEFT);
         $year = $_POST['year'];
@@ -464,6 +470,7 @@ if (isset($_GET['logout'])) {
         if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
             $errors[] = "Invalid email.";
         }
+        
         if (strlen($password) < 8 || !preg_match("/[A-Z]/", $password)) {
             $errors[] = "Password must be at least 8 characters long and contain One UpperCase letter.";
         }
@@ -473,6 +480,14 @@ if (isset($_GET['logout'])) {
         }
         if (!preg_match("/^\d{11}$/", $phone)) {
             $errors[] = "Invalid phone number.";
+        }
+        if (!$validation['valid']){
+
+            $errors[] = "Invalid Date you have to be at least 26 years old .";
+        }
+        if ($isBanned){
+            
+                $errors[]="Email is already banned ";
         }
         if (!empty($errors)) {
             $message = ''; 

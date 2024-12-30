@@ -32,7 +32,7 @@ if (!empty($errors)) {
 } else {
   
   if ($controller->banUser($fullName,$email)) {
-      echo "";
+      echo "User banned successfully and removed from the Sytem ";
   } else {
       echo "";
   }
@@ -208,6 +208,56 @@ if (isset($_GET['logout'])) {
         .submit:hover {
             background-color: #cc0000;
         }
+      
+        .message {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 8px 16px;
+    border-radius: 6px;
+    font-size: 13px;
+    font-weight: 500;
+    width: auto;
+    min-width: 200px;
+    max-width: 300px;
+    text-align: center;
+    animation: messageAnimation 3s ease-in-out forwards;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    z-index: 1000;
+    opacity: 0;
+}
+
+.success {
+    background-color: rgba(0, 191, 255, 0.95);
+    color: white;
+    border: 1px solid rgba(0, 191, 255, 0.3);
+}
+
+.error {
+    background-color: rgba(255, 69, 58, 0.95);
+    color: white;
+    border: 1px solid rgba(255, 69, 58, 0.3);
+}
+
+@keyframes messageAnimation {
+    0% {
+        opacity: 0;
+        transform: translate(-50%, -20px);
+    }
+    15% {
+        opacity: 1;
+        transform: translate(-50%, 0);
+    }
+    85% {
+        opacity: 1;
+        transform: translate(-50%, 0);
+    }
+    100% {
+        opacity: 0;
+        transform: translate(-50%, -10px) scale(0.95);
+    }
+}
     </style>
 </head>
 <body class=" bg-surface">

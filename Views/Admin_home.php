@@ -271,9 +271,7 @@
         </div>
     </div>
 
-            <button class="button" onclick="location.href='/Medira/Views/messages.php';">
-                            Go Back
-            </button>
+    
 
 
     
