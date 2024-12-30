@@ -1,7 +1,7 @@
 <?php
 require_once '../Models/Person.php';
 require_once '../Models/model.php';
-class User extends Person {
+class User  {
     private $db;
 
     public function __construct() {
