@@ -845,9 +845,8 @@ if (isset($_GET['logout'])) {
                 const statusCell = row.querySelector('td:nth-child(3)');
                 const roleMatch = roleSelect.value === 'All Roles' || roleCell.textContent === roleSelect.value;
                 const statusMatch = statusSelect.value === 'All Status' ||
-                    (statusSelect.value === 'Active' && statusCell.textContent.includes('Active')) ||
-                    (statusSelect.value === 'In Active' && statusCell.textContent.includes('In Active'));
-
+                    (statusSelect.value === 'In Active' && statusCell.textContent.includes('In Active'))||
+                    statusCell.textContent=== statusSelect.value ;
                 if (roleMatch && statusMatch) {
                     row.style.display = '';
                 } else {
